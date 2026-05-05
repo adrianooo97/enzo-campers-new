@@ -413,7 +413,7 @@
                 return `
                     <div class="${classes}" onclick="selectOption('${category}', '${item.id}')">
                         <span>${item.name}</span>
-                        ${item.label && !isActive ? `<span class="text-xs text-brand-ebony/40">${item.label}</span>` : ''}
+                        ${item.label ? `<span class="text-xs ${isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">${item.label}</span>` : ''}
                     </div>
                 `;
             }).join('');
