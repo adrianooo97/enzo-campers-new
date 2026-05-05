@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurator Enzo Campers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#1A1814',
+                            brass: '#C4A46B',
+                            ivory: '#F9F7F2',
+                            linen: '#E8E0D0',
+                            sage: '#7A8C7E',
+                            wood: '#7A6B5A',
+                            sand: '#EFE7D8',
+                            mist: '#D8CCB9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #F9F7F2;
+            color: #1A1814;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 45%, #F9F7F2 0%, #E8E0D0 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .step-transition { transition: all 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Nawigacja -->
+    <header class="w-full px-12 py-8 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-brand-linen/40 backdrop-blur-md z-[100]">
+        <a href="home.html" class="text-3xl font-display font-medium tracking-[0.2em] uppercase">
+            Enzo<span class="opacity-40 font-light">Campers</span>
+        </a>
+        <nav class="hidden md:flex gap-12 text-[10px] tracking-[0.3em] font-medium uppercase opacity-80">
+            <a href="home.html" class="hover:text-brand-brass transition-colors">Start</a>
+            <a href="models.html" class="hover:text-brand-brass transition-colors">Modele</a>
+            <a href="nasza-historia.html" class="hover:text-brand-brass transition-colors">Nasza historia</a>
+            <a href="configurator.html" class="hover:text-brand-brass transition-colors">Konfigurator</a>
+        </nav>
+        <a href="configurator.html" class="bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
+            Konfiguruj
+        </a>
+    </header>
+
+    <!-- Główna zawartość -->
+    <div class="bg-brand-linen/40 flex-1">
+    <main class="max-w-7xl mx-auto w-full px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        <!-- Lewa kolumna: Formularz -->
+        <div class="lg:col-span-8">
+            
+            <!-- Wskaźniki kroków -->
+            <div id="steps-header" class="flex items-center text-[11px] uppercase tracking-widest font-medium text-brand-ebony/35 mb-12 overflow-x-auto no-scrollbar pb-2 whitespace-nowrap">
+                <!-- Generowane przez JS -->
+            </div>
+
+            <!-- Kontent kroku -->
+            <div id="step-content" class="step-transition">
+                <!-- Generowane przez JS -->
+            </div>
+
+            <!-- Przyciski nawigacji -->
+            <div class="mt-12 flex gap-4">
+                <button id="prevBtn" onclick="prevStep()" class="hidden border border-brand-ebony/15 text-brand-ebony px-8 py-4 text-[10px] uppercase tracking-widest font-medium hover:border-brand-brass hover:text-brand-brass transition-all">
+                    Wstecz
+                </button>
+                <button id="nextBtn" onclick="nextStep()" class="bg-brand-ivory hover:bg-brand-sand text-brand-ebony border border-brand-mist px-8 py-4 text-[10px] uppercase tracking-widest font-medium transition-all duration-300 flex items-center gap-2">
+                    Dalej
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Prawa kolumna: Podsumowanie -->
+        <div class="lg:col-span-4">
+            <div class="bg-white p-8 border border-brand-ebony/10 sticky top-32">
+                <h2 class="text-3xl font-display uppercase mb-6">Twoja konfiguracja</h2>
+                
+                <div class="space-y-4 text-sm mb-6 border-b border-brand-ebony/10 pb-6">
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Model</span>
+                        <span class="font-medium text-brand-ebony" id="summary-model-name">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Wykończenie</span>
+                        <span class="font-medium text-brand-ebony" id="summary-finish-name">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Spanie</span>
+                        <span class="font-medium text-brand-ebony" id="summary-beds-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Fotele</span>
+                        <span class="font-medium text-brand-ebony" id="summary-seats-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Kuchnia</span>
+                        <span class="font-medium text-brand-ebony" id="summary-kitchen-type">-</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3 mb-8">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-brand-ebony/60">Netto (VAT 0%)</span>
+                        <span class="font-medium text-brand-ebony" id="summary-netto">0 zł</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold text-brand-brass">
+                        <span>Brutto (VAT 23%)</span>
+                        <span id="summary-brutto">0 zł</span>
+                    </div>
+                </div>
+
+                <button onclick="alert('Dziękujemy! Otrzymaliśmy Twoją konfigurację.')" class="w-full bg-brand-ivory hover:bg-brand-sand text-brand-ebony border border-brand-mist py-4 text-[10px] uppercase tracking-widest font-medium transition-all duration-300">
+                    Wyślij zapytanie
+                </button>
+            </div>
+        </div>
+
+    </main>
+    </div>
+
+    <footer class="bg-brand-ivory py-32 px-12 border-t border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <div class="text-4xl font-display font-medium tracking-tighter uppercase mb-8">Enzo<span class="opacity-30">Campers</span></div>
+                <p class="text-sm text-brand-ebony/60 font-light leading-loose mb-12 italic font-serif max-w-sm">
+                    "Zaprojektowane, by zachwycać. Zbudowane, by odkrywać. Twoja droga w stronę słońca zaczyna się tutaj."
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-24">
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Manufaktura</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium">
+                        <li><a href="home.html" class="hover:text-brand-brass transition-colors">Start</a></li>
+                        <li><a href="models.html" class="hover:text-brand-brass transition-colors">Modele</a></li>
+                        <li><a href="nasza-historia.html" class="hover:text-brand-brass transition-colors">Nasza historia</a></li>
+                        <li><a href="configurator.html" class="hover:text-brand-brass transition-colors">Konfigurator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Kontakt</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium text-brand-brass">
+                        <li><a href="configurator.html" class="hover:underline">Rezerwacje 2026</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-32 pt-12 border-t border-brand-ebony/10 text-[9px] uppercase tracking-[0.4em] opacity-30 text-center">
+            &copy; 2026 Enzo Campers — Manufaktura w budowie.
+        </div>
+    </footer>
+
+    <script>
+        const steps = [
+            { id: 1, name: 'Układ' },
+            { id: 2, name: 'Spanie' },
+            { id: 3, name: 'Fotele' },
+            { id: 4, name: 'Kuchnia' },
+            { id: 5, name: 'Instalacje' },
+            { id: 6, name: 'Toaleta' },
+            { id: 7, name: 'Okna' }
+        ];
+
+        const configData = {
+            models: [
+                { id: 'standard', name: 'Standardowy', price: 189000, available: true, beds: 2, seats: 2 },
+                { id: 'mini', name: 'Mini', price: 0, available: false, tag: 'wkrótce' },
+                { id: 'family', name: 'Familijny', price: 245000, available: true, beds: 4, seats: 4 }
+            ],
+            finishes: [
+                { id: 'original', name: 'Oryginalne', price: 0, available: true, label: '(w cenie)' },
+                { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)' },
+                { id: 'offroad', name: 'Terenowe', price: 15000, available: true, label: '(+ 15 000 zł)' }
+            ],
+            beds: [
+                { id: 'fixed', name: 'Łóżko stałe tył', price: 0, available: true, label: '(standard)' },
+                { id: 'lift', name: 'Łóżko opuszczane elektrycznie', price: 12500, available: true, label: '(+ 12 500 zł)' },
+                { id: 'bunk', name: 'Łóżka piętrowe', price: 8000, available: true, label: '(+ 8 000 zł)' }
+            ],
+            seats: [
+                { id: 'factory', name: 'Oryginalne fotele', price: 0, available: true, label: '(standard)' },
+                { id: 'swivel', name: 'Fotele obrotowe', price: 4500, available: true, label: '(+ 4 500 zł)' },
+                { id: 'captain', name: 'Fotele kapitańskie (Premium)', price: 9800, available: true, label: '(+ 9 800 zł)' }
+            ],
+            kitchens: [
+                { id: 'basic', name: 'Kuchnia Standard', price: 0, available: true, label: '(standard)' },
+                { id: 'full', name: 'Kuchnia Pełnowymiarowa (Piekarnik)', price: 7200, available: true, label: '(+ 7 200 zł)' },
+                { id: 'outside', name: 'Wysuwana kuchnia zewnętrzna', price: 5400, available: true, label: '(+ 5 400 zł)' }
+            ]
+        };
+
+        let currentStep = 1;
+        let selection = {
+            model: 'standard',
+            finish: 'original',
+            bed: 'fixed',
+            seat: 'factory',
+            kitchen: 'basic'
+        };
+
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('pl-PL', { 
+                style: 'currency', 
+                currency: 'PLN',
+                maximumFractionDigits: 0
+            }).format(price);
+        };
+
+        const nextStep = () => { if (currentStep < steps.length) { currentStep++; render(); } };
+        const prevStep = () => { if (currentStep > 1) { currentStep--; render(); } };
+
+        window.selectOption = (category, id) => {
+            selection[category] = id;
+            render();
+        };
+
+        const renderHeader = () => {
+            const header = document.getElementById('steps-header');
+            header.innerHTML = steps.map((step, index) => {
+                const isActive = step.id === currentStep;
+                const isPast = step.id < currentStep;
+                return `
+                    <div class="flex items-center ${isActive ? 'text-brand-ebony' : isPast ? 'text-brand-ebony/70' : 'text-brand-ebony/30'} shrink-0">
+                        <div class="w-7 h-7 rounded-full ${isActive ? 'bg-brand-sand text-brand-ebony border border-brand-mist' : isPast ? 'bg-brand-brass text-brand-ivory' : 'border border-brand-ebony/20'} flex items-center justify-center mr-2 text-xs">
+                            ${isPast ? '✓' : step.id}
+                        </div>
+                        <span>${step.name}</span>
+                    </div>
+                    ${index < steps.length - 1 ? '<div class="w-10 h-px bg-brand-ebony/15 mx-3 shrink-0"></div>' : ''}
+                `;
+            }).join('');
+        };
+
+        const renderStepContent = () => {
+            const content = document.getElementById('step-content');
+            
+            if (currentStep === 1) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Wybierz układ i wykończenie</h1>
+                    <p class="text-brand-ebony/60 mb-10">Wybierz bazowy układ i pakiet wykończeniowy kampera.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Model</h3><div class="flex flex-wrap gap-4">${generateOptions('model', configData.models, selection.model)}</div></div>
+                    <div class="mb-12"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wykończenie</h3><div class="flex flex-wrap gap-4">${generateOptions('finish', configData.finishes, selection.finish)}</div></div>
+                `;
+            } else if (currentStep === 2) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Konfiguracja sypialni</h1>
+                    <p class="text-brand-ebony/60 mb-10">Dostosuj sposób spania do swoich potrzeb.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Rodzaj łóżka</h3><div class="flex flex-wrap gap-4">${generateOptions('bed', configData.beds, selection.bed)}</div></div>
+                `;
+            } else if (currentStep === 3) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Fotele i tapicerka</h1>
+                    <p class="text-brand-ebony/60 mb-10">Wygoda podczas jazdy i postoju.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Fotele przednie</h3><div class="flex flex-wrap gap-4">${generateOptions('seat', configData.seats, selection.seat)}</div></div>
+                `;
+            } else if (currentStep === 4) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Wyposażenie kuchni</h1>
+                    <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wariant kuchni</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
+                    <div class="p-6 bg-brand-linen/40 border border-brand-brass/30 flex gap-4 text-brand-ebony italic">
+                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <p class="text-sm">Uwaga: Wybór piekarnika w pełnowymiarowej kuchni wymaga zainstalowania większego zbiornika na gaz lub mocniejszej instalacji elektrycznej (Step 5).</p>
+                    </div>
+                `;
+            } else {
+                content.innerHTML = `
+                    <div class="py-20 text-center">
+                        <div class="w-20 h-20 bg-brand-linen/60 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-ebony/40">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                        </div>
+                        <h2 class="text-3xl font-display uppercase mb-2">Sekcja w budowie</h2>
+                        <p class="text-brand-ebony/50">Pracujemy nad detalami dla kroku: ${steps.find(s => s.id === currentStep).name}</p>
+                    </div>
+                `;
+            }
+
+            document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Zakończ' : 'Dalej';
+        };
+
+        const generateOptions = (category, data, selectedId) => {
+            return data.map(item => {
+                const isActive = selectedId === item.id;
+                const isDisabled = !item.available;
+                let classes = "border px-5 py-4 text-sm font-medium transition-all duration-200 flex items-center gap-2 ";
+                if (isDisabled) classes += "border-brand-ebony/10 text-brand-ebony/30 bg-brand-ebony/5 cursor-not-allowed";
+                else if (isActive) classes += "border-brand-brass bg-brand-linen/50 text-brand-ebony cursor-pointer";
+                else classes += "border-brand-ebony/20 text-brand-ebony/80 hover:border-brand-brass cursor-pointer";
+
+                return `
+                    <div class="${classes}" onclick="selectOption('${category}', '${item.id}')">
+                        <span>${item.name}</span>
+                        ${item.label && !isActive ? `<span class="text-xs text-brand-ebony/40">${item.label}</span>` : ''}
+                    </div>
+                `;
+            }).join('');
+        };
+
+        const renderSummary = () => {
+            const activeModel = configData.models.find(m => m.id === selection.model);
+            const activeFinish = configData.finishes.find(f => f.id === selection.finish);
+            const activeBed = configData.beds.find(b => b.id === selection.bed) || { price: 0 };
+            const activeSeat = configData.seats.find(s => s.id === selection.seat) || { price: 0 };
+            const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
+
+            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price;
+            const brutto = netto * 1.23;
+
+            document.getElementById('summary-model-name').textContent = activeModel.name;
+            document.getElementById('summary-finish-name').textContent = activeFinish.name;
+            document.getElementById('summary-beds-type').textContent = activeBed.name;
+            document.getElementById('summary-seats-type').textContent = activeSeat.name;
+            document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
+            
+            document.getElementById('summary-netto').textContent = formatPrice(netto);
+            document.getElementById('summary-brutto').textContent = formatPrice(brutto);
+        };
+
+        const render = () => {
+            renderHeader();
+            renderStepContent();
+            renderSummary();
+        };
+
+        document.addEventListener('DOMContentLoaded', render);
+    </script>
+</body>
+</html>
