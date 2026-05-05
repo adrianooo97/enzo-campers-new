@@ -434,9 +434,41 @@
             blind: 'basic'
         };
 
+        const luxuryPresets = {
+            bed: 'lift',
+            seat: 'captain',
+            kitchen: 'full',
+            electrical: 'lifepo400',
+            solar: 'solar400',
+            heating: 'combi',
+            toilet: 'compost',
+            shower: 'both',
+            window: 'panorama',
+            blind: 'electric'
+        };
+
+        const standardPresets = {
+            bed: 'fixed',
+            seat: 'factory',
+            kitchen: 'basic',
+            electrical: 'agm100',
+            solar: 'none',
+            heating: 'diesel2',
+            toilet: 'cassette',
+            shower: 'indoor',
+            window: 'standard',
+            blind: 'basic'
+        };
+
+        const applyPresets = (presets) => {
+            Object.keys(presets).forEach(key => {
+                selection[key] = presets[key];
+            });
+        };
+
         const formatPrice = (price) => {
-            return new Intl.NumberFormat('pl-PL', { 
-                style: 'currency', 
+            return new Intl.NumberFormat('pl-PL', {
+                style: 'currency',
                 currency: 'PLN',
                 maximumFractionDigits: 0
             }).format(price);
@@ -450,6 +482,10 @@
                 selection.model = id;
                 const layouts = configData.layouts[id];
                 selection.layout = layouts[0].id;
+            } else if (category === 'finish' && id !== selection.finish) {
+                selection.finish = id;
+                if (id === 'luxury') applyPresets(luxuryPresets);
+                else applyPresets(standardPresets);
             } else {
                 selection[category] = id;
             }
@@ -603,6 +639,10 @@
         };
 
         const generateOptions = (category, data, selectedId) => {
+            const isLuxury = selection.finish === 'luxury';
+            const luxDefault = luxuryPresets[category];
+            const luxDefaultItem = isLuxury && luxDefault ? data.find(d => d.id === luxDefault) : null;
+
             return data.map(item => {
                 const isActive = selectedId === item.id;
                 const isDisabled = !item.available;
@@ -611,10 +651,24 @@
                 else if (isActive) classes += "border-brand-brass bg-brand-linen/50 text-brand-ebony cursor-pointer";
                 else classes += "border-brand-ebony/20 text-brand-ebony/80 hover:border-brand-brass cursor-pointer";
 
+                let priceLabel = item.label || '';
+                if (isLuxury && luxDefaultItem) {
+                    const diff = item.price - luxDefaultItem.price;
+                    if (item.id === luxDefault) {
+                        priceLabel = '(w pakiecie Luksusowe)';
+                    } else if (diff < 0) {
+                        priceLabel = `(${new Intl.NumberFormat('pl-PL').format(diff)} zł)`;
+                    } else if (diff > 0) {
+                        priceLabel = `(+ ${new Intl.NumberFormat('pl-PL').format(diff)} zł)`;
+                    } else {
+                        priceLabel = '(w cenie)';
+                    }
+                }
+
                 return `
                     <div class="${classes}" onclick="selectOption('${category}', '${item.id}')">
                         <span>${item.name}</span>
-                        ${item.label ? `<span class="text-xs ${isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">${item.label}</span>` : ''}
+                        <span class="text-xs ${isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">${priceLabel}</span>
                     </div>
                 `;
             }).join('');
