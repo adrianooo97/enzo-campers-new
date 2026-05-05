@@ -184,6 +184,25 @@
             transform: scale(1.03);
             transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
         }
+
+        /* Hero stagger */
+        .hero-stagger > * {
+            opacity: 0; transform: translateY(25px);
+            animation: heroReveal 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+        .hero-stagger > *:nth-child(1) { animation-delay: 0.2s; }
+        .hero-stagger > *:nth-child(2) { animation-delay: 0.5s; }
+        .hero-stagger > *:nth-child(3) { animation-delay: 0.8s; }
+        .hero-stagger > *:nth-child(4) { animation-delay: 1.1s; }
+        @keyframes heroReveal { to { opacity: 1; transform: translateY(0); } }
+
+        /* Model number decoration */
+        .model-number {
+            font-size: clamp(6rem, 12vw, 10rem);
+            line-height: 1;
+            color: rgba(196,164,107,0.08);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -203,101 +222,177 @@
         </a>
     </header>
 
-    <!-- Nagłówek Sekcji -->
-    <section class="py-24 px-8 text-center bg-brand-linen/40">
-        <span class="reveal text-brand-brass font-serif italic text-2xl mb-4 block">Nasza Flota</span>
-        <h1 class="reveal font-display text-5xl md:text-7xl uppercase tracking-tight mb-8" style="transition-delay: 80ms">Porównaj modele Enzo</h1>
-        <p class="reveal max-w-2xl mx-auto text-brand-ebony/60 font-light leading-relaxed" style="transition-delay: 160ms">
-            Każdy Enzo posiada w standardzie zbiornik wody czystej 100L oraz szarej 93L. Wybierz bazowy układ, a następnie dopasuj pakiet wykończenia do swojego stylu podróżowania.
-        </p>
+    <!-- Hero -->
+    <section class="min-h-[85vh] flex items-center justify-center px-8 bg-brand-linen/30 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.03]">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[25vw] uppercase select-none whitespace-nowrap">Modele</div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 hero-stagger">
+            <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Rodzina Enzo</span>
+
+            <h1 class="font-display text-5xl md:text-[5.5rem] uppercase tracking-tight leading-[0.9] mb-10">
+                Trzy charaktery,<br>
+                <span class="font-serif italic lowercase text-4xl md:text-[4.5rem] opacity-80">jeden standard wykończenia</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-brand-ebony/65 font-light leading-relaxed text-lg">
+                Każdy Enzo posiada w standardzie zbiornik wody czystej 100L oraz szarej 93L. Wybierz bazowy układ, a następnie dopasuj pakiet wykończenia do swojego stylu podróżowania.
+            </p>
+        </div>
     </section>
 
-    <!-- Szczegółowe Prezentacje Modeli -->
-    <section class="px-8 pb-32 space-y-32 bg-brand-linen/40">
-        <!-- Enzo Mini -->
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="reveal-right order-2 lg:order-1">
-                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Kompaktowy apartament</span>
-                <h2 class="text-5xl font-display uppercase mb-8">Enzo Mini</h2>
-                <div class="grid grid-cols-2 gap-y-8 gap-x-4 mb-12 border-t border-brand-ebony/10 pt-8">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System wodny</p>
-                        <p class="font-display text-xl uppercase">100L Czysta / 93L Szara</p>
+    <!-- Prezentacje Modeli -->
+    <section class="py-32 px-8 bg-white border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto space-y-0">
+
+            <!-- Enzo Mini -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pb-32">
+                <div class="lg:col-span-7 reveal-left">
+                    <div class="aspect-[16/10] bg-brand-linen/50 border border-brand-ebony/10 p-8 flex flex-col justify-between relative overflow-hidden group cursor-pointer img-zoom">
+                        <div class="absolute top-6 right-8 model-number font-display select-none">01</div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50 relative z-10">Miejsce na zdjęcie modelu</p>
+                        <div class="relative z-10">
+                            <p class="font-display text-2xl uppercase mb-1">Enzo Mini</p>
+                            <p class="text-[10px] uppercase tracking-widest opacity-40">L2H2 / Kompaktowy apartament</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Przeszklenie</p>
-                        <p class="font-display text-xl uppercase">3 Boczne / 1 Dachowe</p>
+                </div>
+                <div class="lg:col-span-5 reveal-right">
+                    <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Kompaktowy apartament</span>
+                    <h2 class="text-5xl md:text-6xl font-display uppercase mb-4 leading-[0.9]">
+                        Enzo Mini
+                    </h2>
+                    <div class="flex items-baseline gap-3 mb-10">
+                        <span class="font-display text-3xl">od 145 000 zł</span>
+                        <span class="text-[10px] uppercase tracking-widest opacity-40">netto</span>
                     </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Baza pojazdu</p>
-                        <p class="font-display text-xl uppercase">L2H2 (ok. 5.4m)</p>
+                    <div class="grid grid-cols-2 gap-y-8 gap-x-6 mb-12 border-t border-brand-ebony/10 pt-8">
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Baza pojazdu</p>
+                            <p class="font-display text-lg uppercase">L2H2 (ok. 5.4m)</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System spania</p>
+                            <p class="font-display text-lg uppercase">Rozkładana sofa</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Przeszklenie</p>
+                            <p class="font-display text-lg uppercase">3 Boczne / 1 Dachowe</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System wodny</p>
+                            <p class="font-display text-lg uppercase">100L / 93L</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System spania</p>
-                        <p class="font-display text-xl uppercase">Rozkładana sofa</p>
+                    <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-white px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                        Konfiguruj Mini
+                    </a>
+                </div>
+            </div>
+
+            <!-- Enzo Standard -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center py-32 border-t border-brand-ebony/5">
+                <div class="lg:col-span-5 reveal-left order-2 lg:order-1">
+                    <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Złoty środek</span>
+                    <h2 class="text-5xl md:text-6xl font-display uppercase mb-4 leading-[0.9]">
+                        Enzo Standard
+                    </h2>
+                    <div class="flex items-baseline gap-3 mb-10">
+                        <span class="font-display text-3xl">od 165 000 zł</span>
+                        <span class="text-[10px] uppercase tracking-widest opacity-40">netto</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-y-8 gap-x-6 mb-12 border-t border-brand-ebony/10 pt-8">
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Baza pojazdu</p>
+                            <p class="font-display text-lg uppercase">L3H2 (ok. 6.0m)</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System spania</p>
+                            <p class="font-display text-lg uppercase">Stałe łóżko tył</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Przeszklenie</p>
+                            <p class="font-display text-lg uppercase">4 Boczne / 1 Dachowe</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System wodny</p>
+                            <p class="font-display text-lg uppercase">100L / 93L</p>
+                        </div>
+                    </div>
+                    <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-white px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                        Konfiguruj Standard
+                    </a>
+                </div>
+                <div class="lg:col-span-7 reveal-right order-1 lg:order-2">
+                    <div class="aspect-[16/10] bg-brand-linen/50 border border-brand-ebony/10 p-8 flex flex-col justify-between relative overflow-hidden group cursor-pointer img-zoom">
+                        <div class="absolute top-6 right-8 model-number font-display select-none">02</div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50 relative z-10">Miejsce na zdjęcie modelu</p>
+                        <div class="relative z-10">
+                            <p class="font-display text-2xl uppercase mb-1">Enzo Standard</p>
+                            <p class="text-[10px] uppercase tracking-widest opacity-40">L3H2 / Złoty środek</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="reveal-left order-1 lg:order-2 aspect-video bg-brand-linen rounded-sm flex items-center justify-center relative overflow-hidden group">
-                <span class="font-display text-brand-ebony/10 text-9xl uppercase select-none">Mini</span>
+
+            <!-- Enzo Luksusowy -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pt-32 border-t border-brand-ebony/5">
+                <div class="lg:col-span-7 reveal-left">
+                    <div class="aspect-[16/10] bg-brand-linen/50 border border-brand-ebony/10 p-8 flex flex-col justify-between relative overflow-hidden group cursor-pointer img-zoom">
+                        <div class="absolute top-6 right-8 model-number font-display select-none">03</div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50 relative z-10">Miejsce na zdjęcie modelu</p>
+                        <div class="relative z-10">
+                            <p class="font-display text-2xl uppercase mb-1">Enzo Luksusowy</p>
+                            <p class="text-[10px] uppercase tracking-widest opacity-40">L4H2 / Bez kompromisów</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 reveal-right">
+                    <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Bez kompromisów</span>
+                    <h2 class="text-5xl md:text-6xl font-display uppercase mb-4 leading-[0.9]">
+                        Enzo Luksusowy
+                    </h2>
+                    <div class="flex items-baseline gap-3 mb-10">
+                        <span class="font-display text-3xl">od 195 000 zł</span>
+                        <span class="text-[10px] uppercase tracking-widest opacity-40">netto</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-y-8 gap-x-6 mb-12 border-t border-brand-ebony/10 pt-8">
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Baza pojazdu</p>
+                            <p class="font-display text-lg uppercase">L4H2 (ok. 6.4m)</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System spania</p>
+                            <p class="font-display text-lg uppercase">Łóżko opuszczane</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">Przeszklenie</p>
+                            <p class="font-display text-lg uppercase">6 Bocznych / 2 Dachowe</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-2">System wodny</p>
+                            <p class="font-display text-lg uppercase">100L / 93L</p>
+                        </div>
+                    </div>
+                    <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-white px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                        Konfiguruj Luksusowy
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Enzo Standard -->
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center border-t border-brand-ebony/5 pt-32">
-            <div class="reveal-left aspect-video bg-brand-linen rounded-sm flex items-center justify-center relative overflow-hidden group">
-                <span class="font-display text-brand-ebony/10 text-9xl uppercase select-none">Standard</span>
-            </div>
-            <div class="reveal-right">
-                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Złoty środek</span>
-                <h2 class="text-5xl font-display uppercase mb-8">Enzo Standard</h2>
-                <div class="grid grid-cols-2 gap-y-8 gap-x-4 mb-12 border-t border-brand-ebony/10 pt-8">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System wodny</p>
-                        <p class="font-display text-xl uppercase">100L Czysta / 93L Szara</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Przeszklenie</p>
-                        <p class="font-display text-xl uppercase">4 Boczne / 1 Dachowe</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Baza pojazdu</p>
-                        <p class="font-display text-xl uppercase">L3H2 (ok. 6.0m)</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System spania</p>
-                        <p class="font-display text-xl uppercase">Stałe łóżko tył</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Enzo Luksusowy (Przywrócony) -->
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center border-t border-brand-ebony/5 pt-32">
-            <div class="reveal-right order-2 lg:order-1">
-                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Bez kompromisów</span>
-                <h2 class="text-5xl font-display uppercase mb-8">Enzo Luksusowy</h2>
-                <div class="grid grid-cols-2 gap-y-8 gap-x-4 mb-12 border-t border-brand-ebony/10 pt-8">
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System wodny</p>
-                        <p class="font-display text-xl uppercase">100L Czysta / 93L Szara</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Przeszklenie</p>
-                        <p class="font-display text-xl uppercase">6 Bocznych / 2 Dachowe</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">Baza pojazdu</p>
-                        <p class="font-display text-xl uppercase">L4H2 (ok. 6.4m)</p>
-                    </div>
-                    <div>
-                        <p class="text-[9px] uppercase tracking-widest opacity-40 mb-1">System spania</p>
-                        <p class="font-display text-xl uppercase">Łóżko opuszczane</p>
-                    </div>
-                </div>
-            </div>
-            <div class="reveal-left order-1 lg:order-2 aspect-video bg-brand-linen rounded-sm flex items-center justify-center relative overflow-hidden group">
-                <span class="font-display text-brand-ebony/10 text-9xl uppercase select-none">Luxury</span>
+    <!-- Cytat rozdzielacz -->
+    <section class="py-24 px-8 bg-brand-linen/30 border-y border-brand-ebony/5">
+        <div class="max-w-4xl mx-auto text-center reveal-scale">
+            <blockquote class="font-serif italic text-3xl md:text-4xl leading-snug text-brand-ebony/80 mb-8">
+                Ten sam charakter wnętrza.<br>Trzy sposoby na życie w drodze.
+            </blockquote>
+            <div class="flex items-center justify-center gap-4">
+                <div class="w-12 h-px bg-brand-brass"></div>
+                <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-ebony/50">Enzo Campers</span>
+                <div class="w-12 h-px bg-brand-brass"></div>
             </div>
         </div>
     </section>
@@ -305,9 +400,12 @@
     <!-- SEKCJA: Wybierz swój charakter (Styl tabeli porównawczej) -->
     <section id="finishes" class="py-32 px-8 border-t border-brand-ebony/10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-24">
-                <span class="text-brand-brass font-serif italic text-2xl mb-4 block">Wybierz swój charakter</span>
-                <h2 class="text-5xl font-display uppercase tracking-tight mb-6">Pakiety wykończenia</h2>
+            <div class="text-center mb-24 reveal">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Wybierz swój charakter</span>
+                <h2 class="text-5xl md:text-6xl font-display uppercase leading-[0.9] mb-8">
+                    Pakiety wykończenia<br>
+                    <span class="font-serif italic lowercase text-4xl md:text-5xl opacity-80">materiał robi różnicę</span>
+                </h2>
                 <p class="text-brand-ebony/60 font-light max-w-2xl mx-auto leading-relaxed">Kliknij kategorię, aby zobaczyć szczegółowe porównanie materiałów i wykończeń w każdym pakiecie.</p>
             </div>
 
@@ -513,10 +611,12 @@
     <!-- SEKACJA FAQ -->
     <section id="faq" class="py-40 px-8 bg-brand-linen/30 border-y border-brand-ebony/5">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-24">
-                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">FAQ</span>
-                <h3 class="text-5xl font-display uppercase tracking-wider mb-6 leading-tight">Najczęstsze pytania</h3>
-                <div class="w-12 h-px bg-brand-brass mx-auto"></div>
+            <div class="text-center mb-24 reveal">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">FAQ</span>
+                <h3 class="text-5xl md:text-6xl font-display uppercase leading-[0.9] mb-8">
+                    Najczęstsze pytania<br>
+                    <span class="font-serif italic lowercase text-4xl md:text-5xl opacity-80">zanim zdecydujesz</span>
+                </h3>
             </div>
 
             <div class="space-y-4">
@@ -565,12 +665,21 @@
         </div>
     </section>
 
-    <!-- Wezwanie do działania -->
-    <section class="py-40 px-8 text-center bg-brand-ivory text-brand-ebony">
-        <h3 class="font-display text-4xl md:text-6xl uppercase tracking-tighter mb-12">Masz już swój typ?</h3>
-        <a href="configurator.html" class="btn-shine inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-16 py-6 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-brand-sand transition-all duration-500 shadow-xl">
-            Przejdź do konfiguratora
-        </a>
+    <!-- CTA -->
+    <section class="py-40 px-8 text-center bg-brand-ebony text-brand-ivory relative overflow-hidden">
+        <div class="absolute inset-0 opacity-[0.03]">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[25vw] uppercase select-none whitespace-nowrap">Enzo</div>
+        </div>
+        <div class="relative z-10 reveal">
+            <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Gotowy?</span>
+            <h3 class="font-display text-5xl md:text-7xl uppercase leading-[0.9] mb-6">
+                Masz już swój typ?
+            </h3>
+            <p class="font-serif italic text-2xl text-brand-ivory/50 mb-14">wybierz model i zacznij konfigurację</p>
+            <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-brand-ebony px-16 py-5 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                Przejdź do konfiguratora
+            </a>
+        </div>
     </section>
 
     <footer class="bg-brand-ebony text-brand-ivory py-24 px-12 relative overflow-hidden">
