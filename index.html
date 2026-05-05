@@ -272,8 +272,8 @@
         <div class="hero-side-line right-12 top-1/2 -translate-y-1/2 hidden md:block"></div>
 
         <!-- Nawigacja -->
-        <header class="w-full px-12 py-8 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-transparent z-[100]">
-            <a href="index.html" class="text-3xl font-display font-medium tracking-[0.2em] uppercase">
+        <header class="w-full px-4 md:px-12 py-4 md:py-8 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-transparent z-[100]">
+            <a href="index.html" class="text-2xl md:text-3xl font-display font-medium tracking-[0.2em] uppercase">
                 Enzo<span class="opacity-40 font-light">Campers</span>
             </a>
 
@@ -283,12 +283,22 @@
                 <a href="nasza-historia.html" class="nav-link hover:text-brand-brass transition-colors">Nasza historia</a>
             </nav>
 
-            <div class="flex items-center gap-8">
-                <a href="configurator.html" class="btn-shine bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
+            <div class="flex items-center gap-4">
+                <a href="configurator.html" class="btn-shine hidden md:inline-block bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
                     Konfigurator
                 </a>
+                <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden w-10 h-10 flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </header>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-brand-ivory/98 backdrop-blur-md border-b border-brand-ebony/10 z-[99] px-4 py-6 space-y-4">
+            <a href="index.html" class="block text-sm font-medium uppercase tracking-widest py-2 text-brand-brass">Home</a>
+            <a href="models.html" class="block text-sm font-medium uppercase tracking-widest py-2 hover:text-brand-brass transition-colors">Modele</a>
+            <a href="nasza-historia.html" class="block text-sm font-medium uppercase tracking-widest py-2 hover:text-brand-brass transition-colors">Nasza historia</a>
+            <a href="configurator.html" class="block text-sm font-medium uppercase tracking-widest py-3 mt-2 text-center bg-brand-brass text-white">Konfigurator</a>
+        </div>
 
         <!-- Treść Hero -->
         <div class="flex-1 flex flex-col justify-center items-center relative z-10 text-center px-4 hero-stagger">
@@ -318,24 +328,24 @@
         </div>
 
         <!-- Bottom bar -->
-        <div class="absolute bottom-0 w-full px-16 py-8 flex justify-between items-end z-20">
+        <div class="absolute bottom-0 w-full px-4 md:px-16 py-4 md:py-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-0 z-20">
             <div class="group cursor-default">
-                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-2">Etap</p>
+                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-1 md:mb-2">Etap</p>
                 <div class="flex items-center gap-3">
                     <span class="w-2 h-2 bg-brand-brass rounded-full animate-pulse"></span>
-                    <p class="font-display text-xl uppercase tracking-wide">Budowa prototypów</p>
+                    <p class="font-display text-sm md:text-xl uppercase tracking-wide">Budowa prototypów</p>
                 </div>
             </div>
 
-            <div class="group cursor-default text-right">
-                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-2">Dostępność</p>
-                <p class="font-display text-xl uppercase text-brand-brass italic font-serif lowercase tracking-wide">sezon 2026</p>
+            <div class="group cursor-default md:text-right">
+                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-1 md:mb-2">Dostępność</p>
+                <p class="font-display text-sm md:text-xl uppercase text-brand-brass italic font-serif lowercase tracking-wide">sezon 2026</p>
             </div>
         </div>
     </section>
 
     <!-- Esencja Enzo -->
-    <section class="py-32 px-8 bg-white border-b border-brand-ebony/5">
+    <section class="py-16 md:py-32 px-4 md:px-8 bg-white border-b border-brand-ebony/5">
         <div class="max-w-7xl mx-auto">
             <div class="max-w-3xl mb-20 reveal">
                 <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Esencja Enzo</span>
@@ -393,7 +403,7 @@
     </section>
 
     <!-- Quote divider -->
-    <section class="py-24 px-8 bg-white border-y border-brand-ebony/5">
+    <section class="py-12 md:py-24 px-4 md:px-8 bg-white border-y border-brand-ebony/5">
         <div class="max-w-4xl mx-auto text-center reveal">
             <div class="font-serif text-7xl md:text-8xl leading-none text-brand-brass opacity-20 mb-6">&ldquo;</div>
             <blockquote class="font-serif italic text-2xl md:text-4xl leading-snug opacity-80 mb-8">
@@ -410,7 +420,7 @@
     </section>
 
     <!-- Dlaczego warto -->
-    <section id="why" class="py-32 px-8 bg-white">
+    <section id="why" class="py-16 md:py-32 px-4 md:px-8 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="max-w-3xl mx-auto text-center mb-20 reveal">
                 <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Co daje vanlife</span>
@@ -421,7 +431,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-brand-ebony/10">
-                <div class="reveal hover-lift p-12 md:p-14 border-b md:border-b md:border-r border-brand-ebony/10 group">
+                <div class="reveal hover-lift p-6 md:p-12 lg:p-14 border-b md:border-b md:border-r border-brand-ebony/10 group">
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-12 h-12 rounded-full border border-brand-brass/30 bg-brand-ivory flex items-center justify-center group-hover:bg-brand-brass/10 transition-colors">
                             <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 10s-4-6-9-6-9 6-9 6 4 6 9 6 9-6 9-6z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
@@ -431,7 +441,7 @@
                     <h3 class="font-display text-3xl uppercase mb-4">Budzisz się gdzie chcesz</h3>
                     <p class="text-sm font-light text-brand-ebony/65 leading-relaxed">Morze, las, góry. Vanlife daje Ci mobilność — bez planowania „pod hotel".</p>
                 </div>
-                <div class="reveal hover-lift p-12 md:p-14 border-b border-brand-ebony/10 group" style="transition-delay: 100ms;">
+                <div class="reveal hover-lift p-6 md:p-12 lg:p-14 border-b border-brand-ebony/10 group" style="transition-delay: 100ms;">
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-12 h-12 rounded-full border border-brand-brass/30 bg-brand-ivory flex items-center justify-center group-hover:bg-brand-brass/10 transition-colors">
                             <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2m0 14v2m-7-9h2m12 0h2m-3.6-5.4 1.4-1.4m-12.2 0 1.4 1.4m10.8 10.8-1.4-1.4m-8-8L5.6 4.2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14a4 4 0 1 0-8 0"/></svg>
@@ -441,7 +451,7 @@
                     <h3 class="font-display text-3xl uppercase mb-4">Jedziesz, gdy masz ochotę</h3>
                     <p class="text-sm font-light text-brand-ebony/65 leading-relaxed">Brak sztywnego grafiku. Decyzje podejmujesz rano: „zostajemy" albo „ruszamy dalej".</p>
                 </div>
-                <div class="reveal hover-lift p-12 md:p-14 md:border-r border-brand-ebony/10 group" style="transition-delay: 200ms;">
+                <div class="reveal hover-lift p-6 md:p-12 lg:p-14 md:border-r border-brand-ebony/10 group" style="transition-delay: 200ms;">
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-12 h-12 rounded-full border border-brand-brass/30 bg-brand-ivory flex items-center justify-center group-hover:bg-brand-brass/10 transition-colors">
                             <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 20h16"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 20c2-7 4-10 6-10s4 3 6 10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 11c0-2 2-4 4-4s4 2 4 4"/></svg>
@@ -451,7 +461,7 @@
                     <h3 class="font-display text-3xl uppercase mb-4">Bliskość natury</h3>
                     <p class="text-sm font-light text-brand-ebony/65 leading-relaxed">Poranna kawa na zewnątrz i cisza. Vanlife to więcej „tu i teraz" i mniej pośpiechu.</p>
                 </div>
-                <div class="reveal hover-lift p-12 md:p-14 group" style="transition-delay: 300ms;">
+                <div class="reveal hover-lift p-6 md:p-12 lg:p-14 group" style="transition-delay: 300ms;">
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-12 h-12 rounded-full border border-brand-brass/30 bg-brand-ivory flex items-center justify-center group-hover:bg-brand-brass/10 transition-colors">
                             <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5z"/></svg>
@@ -482,7 +492,7 @@
     </section>
 
     <!-- Opinie klientów -->
-    <section id="opinie" class="py-32 px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
+    <section id="opinie" class="py-16 md:py-32 px-4 md:px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                 <div class="lg:col-span-4 lg:sticky lg:top-32 reveal">
@@ -555,7 +565,7 @@
     </section>
 
     <!-- Galeria -->
-    <section id="galeria" class="py-32 px-8 bg-white border-y border-brand-ebony/5">
+    <section id="galeria" class="py-16 md:py-32 px-4 md:px-8 bg-white border-y border-brand-ebony/5">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-end">
                 <div class="lg:col-span-8 reveal">
@@ -601,7 +611,7 @@
     </section>
 
     <!-- Filozofia -->
-    <section id="about" class="py-32 px-8 bg-brand-linen/30 border-y border-brand-ebony/5 relative overflow-hidden">
+    <section id="about" class="py-16 md:py-32 px-4 md:px-8 bg-brand-linen/30 border-y border-brand-ebony/5 relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.025]">
             <div class="absolute top-1/2 right-0 -translate-y-1/2 font-display text-[20vw] uppercase select-none whitespace-nowrap translate-x-[30%]">Enzo</div>
         </div>
@@ -643,7 +653,7 @@
     </section>
 
     <!-- SEKACJA RODZINA ENZO -->
-    <section id="models" class="py-32 px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
+    <section id="models" class="py-16 md:py-32 px-4 md:px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal">
                 <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Modele</span>
@@ -735,7 +745,7 @@
     </section>
 
     <!-- SEKACJA FAQ -->
-    <section id="faq" class="py-40 px-8 bg-white">
+    <section id="faq" class="py-16 md:py-40 px-4 md:px-8 bg-white">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-24">
                 <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">FAQ</span>
@@ -790,7 +800,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-40 px-8 text-center bg-brand-ebony text-brand-ivory relative overflow-hidden">
+    <section class="py-16 md:py-40 px-4 md:px-8 text-center bg-brand-ebony text-brand-ivory relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.03]">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[25vw] uppercase select-none whitespace-nowrap">Enzo</div>
         </div>
@@ -800,19 +810,19 @@
                 Gotowy na swoje Enzo?
             </h3>
             <p class="font-serif italic text-2xl text-brand-ivory/50 mb-14">wybierz model, dopasuj wykończenie i zarezerwuj termin</p>
-            <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-brand-ebony px-16 py-5 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+            <a href="configurator.html" class="btn-shine inline-block bg-brand-brass text-brand-ebony px-8 md:px-16 py-5 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
                 Przejdź do konfiguratora
             </a>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-brand-ebony text-brand-ivory py-24 px-12 relative overflow-hidden">
+    <footer class="bg-brand-ebony text-brand-ivory py-12 md:py-24 px-6 md:px-12 relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.03]">
             <div class="absolute bottom-0 right-0 font-display text-[18vw] uppercase select-none leading-none translate-x-[10%] translate-y-[20%]">Enzo</div>
         </div>
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 pb-16 border-b border-white/10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 pb-10 md:pb-16 border-b border-white/10">
                 <div class="md:col-span-5">
                     <div class="text-4xl font-display font-medium tracking-[0.15em] uppercase mb-6">Enzo<span class="opacity-30 font-light">Campers</span></div>
                     <p class="text-sm text-brand-ivory/50 font-light leading-relaxed max-w-sm mb-8">
