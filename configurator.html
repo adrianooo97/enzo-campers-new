@@ -328,7 +328,7 @@
     <script>
         const steps = [
             { id: 1, name: 'Model' },
-            { id: 2, name: 'Układ' },
+            { id: 2, name: 'Wykończenie' },
             { id: 3, name: 'Spanie' },
             { id: 4, name: 'Fotele' },
             { id: 5, name: 'Kuchnia' },
@@ -358,9 +358,12 @@
                 ]
             },
             finishes: [
-                { id: 'standard', name: 'Standardowe', price: 0, available: true, label: '(w cenie)' },
-                { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)' },
-                { id: 'offroad', name: 'Terenowe', price: 15000, available: true, label: '(+ 15 000 zł)' }
+                { id: 'standard', name: 'Standardowe', price: 0, available: true, label: '(w cenie)',
+                  features: ['Drewno sosnowe olejowane', 'Tapicerka tkaninowa', 'Blat laminowany', 'Oświetlenie LED ciepłe', 'Podłoga winylowa'] },
+                { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)',
+                  features: ['Drewno dębowe szczotkowane', 'Tapicerka skóra naturalna', 'Blat z kamienia kompozytowego', 'Oświetlenie LED z dimmerem', 'Podłoga dębowa', 'Detale mosiężne', 'Lustra powiększające'] },
+                { id: 'offroad', name: 'Terenowe', price: 15000, available: true, label: '(+ 15 000 zł)',
+                  features: ['Drewno sosnowe olejowane', 'Tapicerka wodoodporna Cordura', 'Blat odporny na uderzenia', 'Oświetlenie LED ciepłe', 'Podłoga antypoślizgowa', 'Wzmocnione zawiasy i zamki', 'Zabezpieczenie antykorozyjne'] }
             ],
             beds: [
                 { id: 'fixed', name: 'Łóżko stałe tył', price: 0, available: true, label: '(standard)' },
@@ -475,6 +478,7 @@
             const content = document.getElementById('step-content');
 
             if (currentStep === 1) {
+                // Model cards
                 const modelCards = configData.models.map(m => {
                     const isActive = selection.model === m.id;
                     return `
@@ -487,13 +491,8 @@
                         </div>
                     `;
                 }).join('');
-                content.innerHTML = `
-                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Wybierz model</h1>
-                    <p class="text-brand-ebony/60 mb-10">Każdy model to inna koncepcja przestrzeni.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">${modelCards}</div>
-                    <div class="mb-12"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wykończenie</h3><div class="flex flex-wrap gap-4">${generateOptions('finish', configData.finishes, selection.finish)}</div></div>
-                `;
-            } else if (currentStep === 2) {
+
+                // Layout cards for selected model
                 const layouts = configData.layouts[selection.model] || [];
                 const isSingle = layouts.length === 1;
                 if (isSingle && selection.layout !== layouts[0].id) {
@@ -507,18 +506,54 @@
                                 <img src="${l.img}" alt="${l.name}" class="w-full h-full object-cover">
                             </div>
                             <div class="p-5">
-                                <h4 class="font-display text-lg uppercase tracking-wide mb-1">${l.name}</h4>
+                                <h4 class="font-display text-base md:text-lg uppercase tracking-wide mb-1">${l.name}</h4>
                                 <p class="text-sm text-brand-ebony/60 font-light">${l.desc}</p>
                                 ${isActive ? '<div class="mt-3 text-[10px] uppercase tracking-widest text-brand-brass font-bold">Wybrany</div>' : ''}
                             </div>
                         </div>
                     `;
                 }).join('');
-                const modelName = configData.models.find(m => m.id === selection.model).name;
+
+                const layoutColClass = layouts.length === 1 ? 'md:grid-cols-1 max-w-md' : layouts.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
+
                 content.innerHTML = `
-                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Układ wnętrza</h1>
-                    <p class="text-brand-ebony/60 mb-10">Wybierz rozkład przestrzeni dla modelu ${modelName}.${isSingle ? ' Ten model posiada jeden układ.' : ''}</p>
-                    <div class="grid grid-cols-1 ${layouts.length === 1 ? 'md:grid-cols-1 max-w-lg' : layouts.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-6 mb-10">${layoutCards}</div>
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Wybierz model i układ</h1>
+                    <p class="text-brand-ebony/60 mb-10">Każdy model to inna koncepcja przestrzeni.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Model</h3><div class="grid grid-cols-1 md:grid-cols-3 gap-4">${modelCards}</div></div>
+                    <div class="mb-10">
+                        <h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Układ wnętrza${isSingle ? ' <span class="text-brand-brass">(jeden dostępny)</span>' : ''}</h3>
+                        <div class="grid grid-cols-1 ${layoutColClass} gap-5">${layoutCards}</div>
+                    </div>
+                `;
+            } else if (currentStep === 2) {
+                // Finish cards with comparison
+                const finishCards = configData.finishes.map(f => {
+                    const isActive = selection.finish === f.id;
+                    return `
+                        <div class="option-card border ${isActive ? 'border-brand-brass bg-brand-linen/50' : 'border-brand-ebony/15 hover:border-brand-brass'} cursor-pointer transition-all duration-200 overflow-hidden" onclick="selectOption('finish', '${f.id}')">
+                            <div class="p-6">
+                                <div class="flex items-start justify-between mb-4">
+                                    <h4 class="font-display text-xl uppercase tracking-wide">${f.name}</h4>
+                                    <span class="text-xs ${isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${f.price === 0 ? 'w cenie' : '+ ' + formatPrice(f.price)}</span>
+                                </div>
+                                <ul class="space-y-2">
+                                    ${f.features.map(feat => `
+                                        <li class="flex items-start gap-2 text-sm text-brand-ebony/70 font-light">
+                                            <svg class="w-4 h-4 text-brand-brass shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                            ${feat}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                                ${isActive ? '<div class="mt-4 pt-4 border-t border-brand-brass/20 text-[10px] uppercase tracking-widest text-brand-brass font-bold">Wybrany</div>' : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                content.innerHTML = `
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Pakiet wykończeniowy</h1>
+                    <p class="text-brand-ebony/60 mb-10">Wybierz poziom materiałów i detali wykończenia.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">${finishCards}</div>
                 `;
             } else if (currentStep === 3) {
                 content.innerHTML = `
