@@ -43,7 +43,41 @@
             color: #1A1814;
         }
         .hero-gradient {
-            background: radial-gradient(circle at 50% 45%, #F9F7F2 0%, #E8E0D0 100%);
+            background: radial-gradient(ellipse 80% 70% at 50% 40%, #F9F7F2 0%, #E8E0D0 60%, #D8CCB9 100%);
+        }
+        .hero-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(20vw, 28vw, 35rem);
+            letter-spacing: 0.08em;
+            opacity: 0.035;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+            animation: watermarkFade 2s ease-out 0.3s both;
+        }
+        @keyframes watermarkFade {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+            to { opacity: 0.035; transform: translate(-50%, -50%) scale(1); }
+        }
+        .hero-side-line {
+            position: absolute;
+            width: 1px;
+            height: 0;
+            background: linear-gradient(to bottom, transparent, #C4A46B, transparent);
+            animation: lineGrow 1.5s cubic-bezier(.2,.8,.2,1) 1s both;
+        }
+        @keyframes lineGrow {
+            to { height: 120px; }
+        }
+        .scroll-indicator {
+            animation: scrollBounce 2.5s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(8px); opacity: 0.8; }
         }
         .fade-in { animation: fadeIn 2s ease-out; }
         @keyframes fadeIn { 
@@ -227,15 +261,22 @@
 </head>
 <body class="antialiased">
 
-    <!-- SEKACJA HERO -->
+    <!-- HERO -->
     <section class="h-screen w-full relative overflow-hidden flex flex-col hero-gradient">
-        
+
+        <!-- Background watermark -->
+        <div class="hero-watermark font-display uppercase">Enzo</div>
+
+        <!-- Decorative side lines -->
+        <div class="hero-side-line left-12 top-1/2 -translate-y-1/2 hidden md:block"></div>
+        <div class="hero-side-line right-12 top-1/2 -translate-y-1/2 hidden md:block"></div>
+
         <!-- Nawigacja -->
         <header class="w-full px-12 py-8 z-50 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-transparent">
             <a href="index.html" class="text-3xl font-display font-medium tracking-[0.2em] uppercase">
                 Enzo<span class="opacity-40 font-light">Campers</span>
             </a>
-            
+
             <nav class="hidden md:flex gap-12 text-[10px] tracking-[0.3em] font-medium uppercase opacity-80">
                 <a href="index.html" class="nav-link hover:text-brand-brass transition-colors">Home</a>
                 <a href="models.html" class="nav-link hover:text-brand-brass transition-colors">Modele</a>
@@ -251,39 +292,49 @@
 
         <!-- Treść Hero -->
         <div class="flex-1 flex flex-col justify-center items-center relative z-10 text-center px-4 hero-stagger">
-            <span class="text-brand-brass font-serif italic text-xl md:text-2xl mb-6">W stronę słońca.</span>
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-px bg-brand-brass/60"></div>
+                <span class="text-brand-brass font-serif italic text-xl md:text-2xl">W stronę słońca.</span>
+                <div class="w-12 h-px bg-brand-brass/60"></div>
+            </div>
 
-            <h1 class="font-display text-5xl md:text-[7rem] font-light tracking-tighter leading-[0.9] mb-8 uppercase max-w-5xl">
+            <h1 class="font-display text-5xl md:text-[7.5rem] font-light tracking-tighter leading-[0.85] mb-10 uppercase max-w-5xl">
                 Zbuduj z nami<br>
                 <span class="font-serif italic lowercase opacity-80 text-4xl md:text-[6rem]">dom na kółkach</span>
             </h1>
 
-            <p class="text-sm tracking-wide opacity-60 mb-12 max-w-2xl leading-relaxed">
-                Zbuduj swojego vana razem z nami. Jasne wnętrza, naturalny dąb, rattan i złote detale — dobierz wyposażenie do swoich potrzeb i poczuj się jak w domu.
+            <p class="text-sm tracking-wide opacity-55 mb-14 max-w-xl leading-relaxed font-light">
+                Jasne wnętrza, naturalny dąb, rattan i złote detale — dobierz wyposażenie do swoich potrzeb i poczuj się jak w domu.
             </p>
 
-            <div class="flex flex-col md:flex-row gap-6">
-                <a href="configurator.html" class="btn-shine bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-widest uppercase px-12 py-5 hover:bg-brand-sand transition-all">
+            <div class="flex flex-col md:flex-row gap-5">
+                <a href="configurator.html" class="btn-shine bg-brand-ebony text-brand-ivory text-[10px] tracking-widest uppercase px-14 py-5 hover:bg-brand-ebony/85 transition-all duration-500">
                     Dobierz wyposażenie
                 </a>
-                <a href="#why" class="border border-brand-ebony/20 text-[10px] tracking-widest uppercase px-10 py-5 hover:border-brand-brass hover:text-brand-brass transition-all backdrop-blur-sm">
+                <a href="#why" class="border border-brand-ebony/20 text-[10px] tracking-widest uppercase px-10 py-5 hover:border-brand-brass hover:text-brand-brass transition-all duration-300 backdrop-blur-sm">
                     Dlaczego warto
                 </a>
             </div>
         </div>
 
-        <!-- Stopka Hero -->
-        <div class="absolute bottom-12 w-full px-16 flex justify-between items-end z-20">
+        <!-- Bottom bar -->
+        <div class="absolute bottom-0 w-full px-16 py-8 flex justify-between items-end z-20 border-t border-brand-ebony/5">
             <div class="group cursor-default">
-                <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Etap</p>
+                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-2">Etap</p>
                 <div class="flex items-center gap-3">
                     <span class="w-2 h-2 bg-brand-brass rounded-full animate-pulse"></span>
-                    <p class="font-display text-2xl uppercase">Budowa prototypów</p>
+                    <p class="font-display text-xl uppercase tracking-wide">Budowa prototypów</p>
                 </div>
             </div>
+
+            <div class="hidden md:flex flex-col items-center gap-2 scroll-indicator">
+                <div class="w-px h-8 bg-brand-ebony/20"></div>
+                <span class="text-[8px] uppercase tracking-[0.3em] opacity-30">Scroll</span>
+            </div>
+
             <div class="group cursor-default text-right">
-                <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Dostępność</p>
-                <p class="font-display text-2xl uppercase text-brand-brass italic font-serif lowercase">sezon 2026</p>
+                <p class="text-[9px] tracking-widest uppercase opacity-35 mb-2">Dostępność</p>
+                <p class="font-display text-xl uppercase text-brand-brass italic font-serif lowercase tracking-wide">sezon 2026</p>
             </div>
         </div>
     </section>
