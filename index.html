@@ -244,7 +244,7 @@
             </nav>
 
             <div class="flex items-center gap-8">
-                <a href="configurator.html" class="bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
+                <a href="configurator.html" class="btn-shine bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
                     Konfiguruj
                 </a>
             </div>
@@ -273,6 +273,14 @@
             </div>
         </div>
 
+        <!-- Scroll indicator (osobny, nie podlega parallax) -->
+        <div id="scroll-indicator" class="hidden lg:flex flex-col items-center absolute bottom-10 left-1/2 -translate-x-1/2 z-30 opacity-40 transition-opacity duration-500">
+            <p class="text-[8px] tracking-[0.5em] uppercase mb-4">Przewiń</p>
+            <div class="w-px h-12 bg-brand-ebony/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-brand-brass -translate-y-full animate-scroll"></div>
+            </div>
+        </div>
+
         <!-- Stopka Hero -->
         <div class="absolute bottom-12 w-full px-16 flex justify-between items-end z-20">
             <div class="flex gap-20">
@@ -286,13 +294,6 @@
                         <span class="w-2 h-2 bg-brand-brass rounded-full animate-pulse"></span>
                         <p class="font-display text-2xl uppercase">Budowa prototypów</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="hidden lg:flex flex-col items-center opacity-30">
-                <p class="text-[8px] tracking-[0.5em] uppercase mb-4">Przewiń</p>
-                <div class="w-px h-12 bg-brand-ebony/20 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-full bg-brand-brass -translate-y-full animate-scroll"></div>
                 </div>
             </div>
 
@@ -567,7 +568,7 @@
                     <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Alex & Adrian — Założyciele</span>
                 </div>
                 <div class="mt-10">
-                    <a href="nasza-historia.html" class="inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                    <a href="nasza-historia.html" class="btn-shine inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
                         Poznaj naszą historię
                     </a>
                 </div>
@@ -615,7 +616,7 @@
                         <li><span class="text-brand-brass">/</span> Rozkładana sofa + pełna łazienka</li>
                     </ul>
 
-                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                    <a href="configurator.html" class="btn-shine w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
                         Poznaj Mini
                     </a>
                 </article>
@@ -640,7 +641,7 @@
                         <li><span class="text-brand-brass">/</span> Stałe łóżko + pełna łazienka</li>
                     </ul>
 
-                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                    <a href="configurator.html" class="btn-shine w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
                         Konfiguruj Standard
                     </a>
                 </article>
@@ -664,7 +665,7 @@
                         <li><span class="text-brand-brass">/</span> Stałe łóżko + pełna łazienka</li>
                     </ul>
 
-                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                    <a href="configurator.html" class="btn-shine w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
                         Poznaj Family
                     </a>
                 </article>
@@ -795,17 +796,22 @@
             });
         })();
 
-        // Parallax on hero footer elements
+        // Parallax on hero footer + scroll indicator fade
         (function () {
             const hero = document.querySelector('.hero-gradient');
             if (!hero) return;
             const footer = hero.querySelector('.absolute.bottom-12');
-            if (!footer) return;
+            const scrollInd = document.getElementById('scroll-indicator');
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY;
                 if (scrolled < window.innerHeight) {
-                    footer.style.transform = `translateY(${scrolled * 0.15}px)`;
-                    footer.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.6));
+                    if (footer) {
+                        footer.style.transform = `translateY(${scrolled * 0.15}px)`;
+                        footer.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.6));
+                    }
+                    if (scrollInd) {
+                        scrollInd.style.opacity = Math.max(0, 0.4 - scrolled / (window.innerHeight * 0.3));
+                    }
                 }
             });
         })();
