@@ -324,12 +324,13 @@
             }).format(price);
         };
 
-        const nextStep = () => { if (currentStep < steps.length) { currentStep++; render(); } };
-        const prevStep = () => { if (currentStep > 1) { currentStep--; render(); } };
+        const nextStep = () => { if (currentStep < steps.length) { currentStep++; render(true); } };
+        const prevStep = () => { if (currentStep > 1) { currentStep--; render(true); } };
 
         window.selectOption = (category, id) => {
             selection[category] = id;
-            render();
+            renderStepContent();
+            renderSummary();
         };
 
         const renderHeader = () => {
@@ -393,10 +394,6 @@
                 `;
             }
 
-            content.classList.remove('step-fade-in');
-            void content.offsetWidth; // force reflow
-            content.classList.add('step-fade-in');
-
             document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
             document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Zakończ' : 'Dalej';
         };
@@ -444,10 +441,16 @@
             bruttoEl.classList.add('price-updated');
         };
 
-        const render = () => {
+        const render = (animate) => {
             renderHeader();
             renderStepContent();
             renderSummary();
+            if (animate) {
+                const content = document.getElementById('step-content');
+                content.classList.remove('step-fade-in');
+                void content.offsetWidth;
+                content.classList.add('step-fade-in');
+            }
         };
 
         document.addEventListener('DOMContentLoaded', render);
