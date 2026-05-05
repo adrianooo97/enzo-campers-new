@@ -362,7 +362,7 @@
                   features: ['Drewno sosnowe olejowane', 'Tapicerka tkaninowa', 'Blat laminowany', 'Oświetlenie LED ciepłe', 'Podłoga winylowa'] },
                 { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)',
                   features: ['Drewno dębowe szczotkowane', 'Tapicerka skóra naturalna', 'Blat z kamienia kompozytowego', 'Oświetlenie LED z dimmerem', 'Podłoga dębowa', 'Detale mosiężne', 'Lustra powiększające'] },
-                { id: 'offroad', name: 'Terenowe', price: 15000, available: true, label: '(+ 15 000 zł)',
+                { id: 'offroad', name: 'Terenowe', price: 15000, available: false, label: 'wkrótce',
                   features: ['Drewno sosnowe olejowane', 'Tapicerka wodoodporna Cordura', 'Blat odporny na uderzenia', 'Oświetlenie LED ciepłe', 'Podłoga antypoślizgowa', 'Wzmocnione zawiasy i zamki', 'Zabezpieczenie antykorozyjne'] }
             ],
             beds: [
@@ -529,12 +529,13 @@
                 // Finish cards with comparison
                 const finishCards = configData.finishes.map(f => {
                     const isActive = selection.finish === f.id;
+                    const isDisabled = !f.available;
                     return `
-                        <div class="option-card border ${isActive ? 'border-brand-brass bg-brand-linen/50' : 'border-brand-ebony/15 hover:border-brand-brass'} cursor-pointer transition-all duration-200 overflow-hidden" onclick="selectOption('finish', '${f.id}')">
+                        <div class="option-card border ${isDisabled ? 'border-brand-ebony/10 opacity-50 cursor-not-allowed' : isActive ? 'border-brand-brass bg-brand-linen/50 cursor-pointer' : 'border-brand-ebony/15 hover:border-brand-brass cursor-pointer'} transition-all duration-200 overflow-hidden" ${isDisabled ? '' : `onclick="selectOption('finish', '${f.id}')"`}>
                             <div class="p-6">
                                 <div class="flex items-start justify-between mb-4">
                                     <h4 class="font-display text-xl uppercase tracking-wide">${f.name}</h4>
-                                    <span class="text-xs ${isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${f.price === 0 ? 'w cenie' : '+ ' + formatPrice(f.price)}</span>
+                                    <span class="text-xs ${isDisabled ? 'text-brand-ebony/40 italic' : isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${isDisabled ? 'wkrótce' : f.price === 0 ? 'w cenie' : '+ ' + formatPrice(f.price)}</span>
                                 </div>
                                 <ul class="space-y-2">
                                     ${f.features.map(feat => `
