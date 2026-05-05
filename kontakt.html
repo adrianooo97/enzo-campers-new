@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enzo Campers — Kontakt</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif'],
                         serif: ['Cormorant Garamond', 'serif'],
+                        accent: ['Caveat', 'cursive'],
                     },
                     colors: {
                         brand: {
-                            ebony: '#1A1814',
-                            brass: '#C4A46B',
-                            ivory: '#F9F7F2',
-                            linen: '#E8E0D0',
-                            sage: '#7A8C7E',
-                            wood: '#7A6B5A',
-                            sand: '#EFE7D8',
-                            mist: '#D8CCB9'
+                            ebony: '#3A3530',
+                            brass: '#B87D62',
+                            ivory: '#F7F3ED',
+                            linen: '#EDE6DA',
+                            sage: '#8B9A7B',
+                            wood: '#6B6560',
+                            sand: '#C9B99A',
+                            mist: '#A69279'
                         }
                     }
                 }
@@ -33,10 +34,10 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { background-color: #F9F7F2; color: #1A1814; }
+        body { background-color: #F7F3ED; color: #3A3530; }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F9F7F2; }
-        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: #F7F3ED; }
+        ::-webkit-scrollbar-thumb { background: #B87D62; border-radius: 10px; }
 
         .reveal {
             opacity: 0; transform: translateY(14px);
@@ -60,7 +61,7 @@
         .nav-link { position: relative; }
         .nav-link::after {
             content: ''; position: absolute; bottom: -4px; left: 50%;
-            width: 0; height: 1px; background: #C4A46B;
+            width: 0; height: 1px; background: #B87D62;
             transition: width 0.3s ease, left 0.3s ease;
         }
         .nav-link:hover::after { width: 100%; left: 0; }
@@ -68,16 +69,16 @@
         header { transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease; }
         .nav-scrolled {
             padding-top: 1rem !important; padding-bottom: 1rem !important;
-            background: rgba(249,247,242,0.97) !important;
+            background: rgba(247,243,237,0.97) !important;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(26,24,20,0.06);
+            box-shadow: 0 4px 30px rgba(58,53,48,0.06);
         }
 
         .btn-shine { position: relative; overflow: hidden; }
         .btn-shine::before {
             content: ''; position: absolute; top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(196,164,107,0.18), transparent);
+            background: linear-gradient(90deg, transparent, rgba(184,125,98,0.18), transparent);
             transition: left 0.5s ease;
         }
         .btn-shine:hover::before { left: 100%; }
@@ -93,7 +94,7 @@
 
         .form-input {
             background: transparent;
-            border: 1px solid rgba(26,24,20,0.15);
+            border: 1px solid rgba(58,53,48,0.15);
             padding: 1rem 1.25rem;
             font-size: 0.875rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -101,11 +102,11 @@
         }
         .form-input:focus {
             outline: none;
-            border-color: #C4A46B;
-            box-shadow: 0 0 0 3px rgba(196,164,107,0.1);
+            border-color: #B87D62;
+            box-shadow: 0 0 0 3px rgba(184,125,98,0.1);
         }
         .form-input::placeholder {
-            color: rgba(26,24,20,0.35);
+            color: rgba(58,53,48,0.35);
         }
 
         /* FAQ Accordion Styles */

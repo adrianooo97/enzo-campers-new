@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfigurator Enzo Campers</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'serif'],
                         serif: ['Cormorant Garamond', 'serif'],
+                        accent: ['Caveat', 'cursive'],
                     },
                     colors: {
                         brand: {
-                            ebony: '#1A1814',
-                            brass: '#C4A46B',
-                            ivory: '#F9F7F2',
-                            linen: '#E8E0D0',
-                            sage: '#7A8C7E',
-                            wood: '#7A6B5A',
-                            sand: '#EFE7D8',
-                            mist: '#D8CCB9'
+                            ebony: '#3A3530',
+                            brass: '#B87D62',
+                            ivory: '#F7F3ED',
+                            linen: '#EDE6DA',
+                            sage: '#8B9A7B',
+                            wood: '#6B6560',
+                            sand: '#C9B99A',
+                            mist: '#A69279'
                         }
                     }
                 }
@@ -34,15 +35,15 @@
     <style>
         html { scroll-behavior: smooth; }
         body {
-            background-color: #F9F7F2;
-            color: #1A1814;
+            background-color: #F7F3ED;
+            color: #3A3530;
         }
         .hero-gradient {
-            background: radial-gradient(circle at 50% 45%, #F9F7F2 0%, #E8E0D0 100%);
+            background: radial-gradient(circle at 50% 45%, #F7F3ED 0%, #EDE6DA 100%);
         }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F9F7F2; }
-        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: #F7F3ED; }
+        ::-webkit-scrollbar-thumb { background: #B87D62; border-radius: 10px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .step-transition { transition: all 0.3s ease-in-out; }
@@ -56,7 +57,7 @@
             left: 50%;
             width: 0;
             height: 1px;
-            background: #C4A46B;
+            background: #B87D62;
             transition: width 0.3s ease, left 0.3s ease;
         }
         .nav-link:hover::after {
@@ -69,9 +70,9 @@
         .nav-scrolled {
             padding-top: 1rem !important;
             padding-bottom: 1rem !important;
-            background: rgba(249,247,242,0.97) !important;
+            background: rgba(247,243,237,0.97) !important;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(26,24,20,0.06);
+            box-shadow: 0 4px 30px rgba(58,53,48,0.06);
         }
 
         /* Button shine sweep */
@@ -86,7 +87,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(196,164,107,0.18), transparent);
+            background: linear-gradient(90deg, transparent, rgba(184,125,98,0.18), transparent);
             transition: left 0.5s ease;
         }
         .btn-shine:hover::before {
@@ -108,7 +109,7 @@
         }
         .option-card:not(.cursor-not-allowed):hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(26,24,20,0.06);
+            box-shadow: 0 12px 24px rgba(58,53,48,0.06);
         }
 
         /* Summary panel slide in */
@@ -123,7 +124,7 @@
         /* Price update pulse */
         @keyframes pricePulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); color: #C4A46B; }
+            50% { transform: scale(1.05); color: #B87D62; }
             100% { transform: scale(1); }
         }
         .price-updated {
