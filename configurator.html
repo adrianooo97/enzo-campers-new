@@ -208,6 +208,34 @@
                         <span class="text-brand-ebony/60">Kuchnia</span>
                         <span class="font-medium text-brand-ebony" id="summary-kitchen-type">-</span>
                     </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Elektryka</span>
+                        <span class="font-medium text-brand-ebony" id="summary-electrical-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Solar</span>
+                        <span class="font-medium text-brand-ebony" id="summary-solar-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Ogrzewanie</span>
+                        <span class="font-medium text-brand-ebony" id="summary-heating-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Toaleta</span>
+                        <span class="font-medium text-brand-ebony" id="summary-toilet-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Prysznic</span>
+                        <span class="font-medium text-brand-ebony" id="summary-shower-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Okna</span>
+                        <span class="font-medium text-brand-ebony" id="summary-window-type">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-ebony/60">Rolety</span>
+                        <span class="font-medium text-brand-ebony" id="summary-blind-type">-</span>
+                    </div>
                 </div>
 
                 <div class="space-y-3 mb-8">
@@ -275,7 +303,7 @@
             { id: 3, name: 'Fotele' },
             { id: 4, name: 'Kuchnia' },
             { id: 5, name: 'Instalacje' },
-            { id: 6, name: 'Toaleta' },
+            { id: 6, name: 'Łazienka' },
             { id: 7, name: 'Okna' }
         ];
 
@@ -304,6 +332,41 @@
                 { id: 'basic', name: 'Kuchnia Standard', price: 0, available: true, label: '(standard)' },
                 { id: 'full', name: 'Kuchnia Pełnowymiarowa (Piekarnik)', price: 7200, available: true, label: '(+ 7 200 zł)' },
                 { id: 'outside', name: 'Wysuwana kuchnia zewnętrzna', price: 5400, available: true, label: '(+ 5 400 zł)' }
+            ],
+            electrical: [
+                { id: 'agm100', name: 'AGM 100Ah + ładowarka', price: 0, available: true, label: '(standard)' },
+                { id: 'lifepo200', name: 'LiFePO4 200Ah + MPPT', price: 8500, available: true, label: '(+ 8 500 zł)' },
+                { id: 'lifepo400', name: 'LiFePO4 400Ah + falownik 3000W', price: 18000, available: true, label: '(+ 18 000 zł)' }
+            ],
+            solar: [
+                { id: 'none', name: 'Brak paneli', price: 0, available: true, label: '(standard)' },
+                { id: 'solar200', name: 'Panel 200W na dachu', price: 3200, available: true, label: '(+ 3 200 zł)' },
+                { id: 'solar400', name: '2x Panel 200W na dachu', price: 5800, available: true, label: '(+ 5 800 zł)' }
+            ],
+            heating: [
+                { id: 'diesel2', name: 'Webasto 2kW', price: 0, available: true, label: '(standard)' },
+                { id: 'diesel4', name: 'Webasto 4kW', price: 3500, available: true, label: '(+ 3 500 zł)' },
+                { id: 'combi', name: 'Webasto Combi (ogrzewanie + ciepła woda)', price: 7200, available: true, label: '(+ 7 200 zł)' }
+            ],
+            toilets: [
+                { id: 'cassette', name: 'Toaleta kasetowa', price: 0, available: true, label: '(standard)' },
+                { id: 'compost', name: 'Toaleta kompostowa', price: 4500, available: true, label: '(+ 4 500 zł)' },
+                { id: 'none', name: 'Bez toalety (więcej miejsca)', price: -2000, available: true, label: '(- 2 000 zł)' }
+            ],
+            showers: [
+                { id: 'indoor', name: 'Prysznic wewnętrzny z brodzikiem', price: 0, available: true, label: '(standard)' },
+                { id: 'outdoor', name: 'Prysznic zewnętrzny', price: 1200, available: true, label: '(+ 1 200 zł)' },
+                { id: 'both', name: 'Wewnętrzny + zewnętrzny', price: 2800, available: true, label: '(+ 2 800 zł)' }
+            ],
+            windows: [
+                { id: 'standard', name: '3 okna boczne + 1 dachowe', price: 0, available: true, label: '(standard)' },
+                { id: 'extra', name: '5 okien bocznych + 1 dachowe', price: 4200, available: true, label: '(+ 4 200 zł)' },
+                { id: 'panorama', name: '5 okien bocznych + 2 dachowe panoramiczne', price: 8500, available: true, label: '(+ 8 500 zł)' }
+            ],
+            blinds: [
+                { id: 'basic', name: 'Rolety zaciemniające', price: 0, available: true, label: '(standard)' },
+                { id: 'blackout', name: 'Rolety blackout + moskitiery', price: 2400, available: true, label: '(+ 2 400 zł)' },
+                { id: 'electric', name: 'Rolety elektryczne + moskitiery', price: 5200, available: true, label: '(+ 5 200 zł)' }
             ]
         };
 
@@ -313,7 +376,14 @@
             finish: 'original',
             bed: 'fixed',
             seat: 'factory',
-            kitchen: 'basic'
+            kitchen: 'basic',
+            electrical: 'agm100',
+            solar: 'none',
+            heating: 'diesel2',
+            toilet: 'cassette',
+            shower: 'indoor',
+            window: 'standard',
+            blind: 'basic'
         };
 
         const formatPrice = (price) => {
@@ -382,15 +452,27 @@
                         <p class="text-sm">Uwaga: Wybór piekarnika w pełnowymiarowej kuchni wymaga zainstalowania większego zbiornika na gaz lub mocniejszej instalacji elektrycznej (Step 5).</p>
                     </div>
                 `;
-            } else {
+            } else if (currentStep === 5) {
                 content.innerHTML = `
-                    <div class="py-20 text-center">
-                        <div class="w-20 h-20 bg-brand-linen/60 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-ebony/40">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                        </div>
-                        <h2 class="text-3xl font-display uppercase mb-2">Sekcja w budowie</h2>
-                        <p class="text-brand-ebony/50">Pracujemy nad detalami dla kroku: ${steps.find(s => s.id === currentStep).name}</p>
-                    </div>
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Instalacje</h1>
+                    <p class="text-brand-ebony/60 mb-10">Elektryka, panele solarne i ogrzewanie.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Akumulator i elektryka</h3><div class="flex flex-wrap gap-4">${generateOptions('electrical', configData.electrical, selection.electrical)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="flex flex-wrap gap-4">${generateOptions('solar', configData.solar, selection.solar)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie</h3><div class="flex flex-wrap gap-4">${generateOptions('heating', configData.heating, selection.heating)}</div></div>
+                `;
+            } else if (currentStep === 6) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Toaleta i prysznic</h1>
+                    <p class="text-brand-ebony/60 mb-10">Komfort higieny w trasie.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Toaleta</h3><div class="flex flex-wrap gap-4">${generateOptions('toilet', configData.toilets, selection.toilet)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="flex flex-wrap gap-4">${generateOptions('shower', configData.showers, selection.shower)}</div></div>
+                `;
+            } else if (currentStep === 7) {
+                content.innerHTML = `
+                    <h1 class="text-5xl font-display uppercase tracking-tight mb-3">Okna i rolety</h1>
+                    <p class="text-brand-ebony/60 mb-10">Światło, wentylacja i prywatność.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Przeszklenie</h3><div class="flex flex-wrap gap-4">${generateOptions('window', configData.windows, selection.window)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Rolety</h3><div class="flex flex-wrap gap-4">${generateOptions('blind', configData.blinds, selection.blind)}</div></div>
                 `;
             }
 
@@ -422,8 +504,15 @@
             const activeBed = configData.beds.find(b => b.id === selection.bed) || { price: 0 };
             const activeSeat = configData.seats.find(s => s.id === selection.seat) || { price: 0 };
             const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
+            const activeElectrical = configData.electrical.find(e => e.id === selection.electrical) || { price: 0 };
+            const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
+            const activeHeating = configData.heating.find(h => h.id === selection.heating) || { price: 0 };
+            const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
+            const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
+            const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
+            const activeBlind = configData.blinds.find(b => b.id === selection.blind) || { price: 0 };
 
-            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price;
+            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price + activeBlind.price;
             const brutto = netto * 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -431,6 +520,13 @@
             document.getElementById('summary-beds-type').textContent = activeBed.name;
             document.getElementById('summary-seats-type').textContent = activeSeat.name;
             document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
+            document.getElementById('summary-electrical-type').textContent = activeElectrical.name;
+            document.getElementById('summary-solar-type').textContent = activeSolar.name;
+            document.getElementById('summary-heating-type').textContent = activeHeating.name;
+            document.getElementById('summary-toilet-type').textContent = activeToilet.name;
+            document.getElementById('summary-shower-type').textContent = activeShower.name;
+            document.getElementById('summary-window-type').textContent = activeWindow.name;
+            document.getElementById('summary-blind-type').textContent = activeBlind.name;
             
             document.getElementById('summary-netto').textContent = formatPrice(netto);
             document.getElementById('summary-brutto').textContent = formatPrice(brutto);
