@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo Campers — Zbuduj z nami dom na kółkach</title>
+    <meta name="description" content="Zbuduj swojego vana razem z nami. Enzo Campers to manufaktura premium zabudów: jasne wnętrza, naturalny dąb, rattan i złote detale. Dobierz wyposażenie do swoich potrzeb i poczuj się jak w domu.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Enzo Campers — Zbuduj z nami dom na kółkach">
+    <meta property="og:description" content="Jasne, domowe wnętrza premium. Dobierz wyposażenie do swoich potrzeb i skonfiguruj Enzo.">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#1A1814',
+                            brass: '#C4A46B',
+                            ivory: '#F9F7F2',
+                            linen: '#E8E0D0',
+                            sage: '#7A8C7E',
+                            wood: '#7A6B5A',
+                            sand: '#EFE7D8',
+                            mist: '#D8CCB9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #F9F7F2;
+            color: #1A1814;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 45%, #F9F7F2 0%, #E8E0D0 100%);
+        }
+        .fade-in { animation: fadeIn 2s ease-out; }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .animate-scroll {
+            animation: scrollLine 2s infinite;
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .faq-item.active .faq-content {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Scroll reveal (subtelne animacje) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 800ms cubic-bezier(.2,.8,.2,1), transform 800ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Directional reveals */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-left.in-view, .reveal-right.in-view, .reveal-scale.in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Hero staggered entrance */
+        .hero-stagger > * {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroReveal 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+        .hero-stagger > *:nth-child(1) { animation-delay: 0.15s; }
+        .hero-stagger > *:nth-child(2) { animation-delay: 0.4s; }
+        .hero-stagger > *:nth-child(3) { animation-delay: 0.65s; }
+        .hero-stagger > *:nth-child(4) { animation-delay: 0.9s; }
+        @keyframes heroReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card hover lift */
+        .hover-lift {
+            transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 25px 50px rgba(26,24,20,0.08);
+        }
+
+        /* Nav link animated underline */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #C4A46B;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Navbar scroll shrink */
+        header { transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease; }
+        .nav-scrolled {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            background: rgba(249,247,242,0.97) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(26,24,20,0.06);
+        }
+
+        /* Button shine sweep */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(196,164,107,0.18), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+
+        /* Gallery / image hover zoom */
+        .img-zoom {
+            overflow: hidden;
+        }
+        .img-zoom-inner {
+            transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+        }
+        .img-zoom:hover .img-zoom-inner, .img-zoom:hover {
+            transform: scale(1.04);
+        }
+
+        /* Floating animation */
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: floatY 5s ease-in-out infinite; }
+
+        /* Decorative line grow */
+        .line-grow {
+            width: 0;
+            transition: width 1.2s cubic-bezier(.2,.8,.2,1);
+        }
+        .line-grow.in-view {
+            width: 48px;
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Enzo Campers",
+      "description": "Manufaktura premium zabudów vanów i kamperów.",
+      "url": "https://example.com",
+      "brand": { "@type": "Brand", "name": "Enzo Campers" }
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- SEKACJA HERO -->
+    <section class="h-screen w-full relative overflow-hidden flex flex-col hero-gradient">
+        
+        <!-- Nawigacja -->
+        <header class="w-full px-12 py-8 z-50 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-transparent">
+            <a href="home.html" class="text-3xl font-display font-medium tracking-[0.2em] uppercase">
+                Enzo<span class="opacity-40 font-light">Campers</span>
+            </a>
+            
+            <nav class="hidden md:flex gap-12 text-[10px] tracking-[0.3em] font-medium uppercase opacity-80">
+                <a href="home.html" class="nav-link hover:text-brand-brass transition-colors">Start</a>
+                <a href="models.html" class="nav-link hover:text-brand-brass transition-colors">Modele</a>
+                <a href="nasza-historia.html" class="nav-link hover:text-brand-brass transition-colors">Nasza historia</a>
+                <a href="configurator.html" class="nav-link hover:text-brand-brass transition-colors">Konfigurator</a>
+            </nav>
+
+            <div class="flex items-center gap-8">
+                <a href="configurator.html" class="bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
+                    Konfiguruj
+                </a>
+            </div>
+        </header>
+
+        <!-- Treść Hero -->
+        <div class="flex-1 flex flex-col justify-center items-center relative z-10 text-center px-4 hero-stagger">
+            <span class="text-brand-brass font-serif italic text-xl md:text-2xl mb-6">W stronę słońca.</span>
+
+            <h1 class="font-display text-5xl md:text-[7rem] font-light tracking-tighter leading-[0.9] mb-8 uppercase max-w-5xl">
+                Zbuduj z nami<br>
+                <span class="font-serif italic lowercase opacity-80 text-4xl md:text-[6rem]">dom na kółkach</span>
+            </h1>
+
+            <p class="text-[11px] tracking-[0.4em] uppercase opacity-60 mb-12 max-w-2xl leading-relaxed">
+                Zbuduj swojego vana razem z nami. Jasne wnętrza, naturalny dąb, rattan i złote detale — dobierz wyposażenie do swoich potrzeb i poczuj się jak w domu.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <a href="configurator.html" class="btn-shine bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-widest uppercase px-12 py-5 hover:bg-brand-sand transition-all">
+                    Dobierz wyposażenie
+                </a>
+                <a href="#why" class="border border-brand-ebony/20 text-[10px] tracking-widest uppercase px-10 py-5 hover:border-brand-brass hover:text-brand-brass transition-all backdrop-blur-sm">
+                    Dlaczego warto
+                </a>
+            </div>
+        </div>
+
+        <!-- Stopka Hero -->
+        <div class="absolute bottom-12 w-full px-16 flex justify-between items-end z-20">
+            <div class="flex gap-20">
+                <div class="group cursor-default">
+                    <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Lokalizacja</p>
+                    <p class="font-display text-2xl uppercase group-hover:text-brand-brass transition-colors">Warsztat / Polska</p>
+                </div>
+                <div class="group cursor-default">
+                    <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Etap</p>
+                    <div class="flex items-center gap-3">
+                        <span class="w-2 h-2 bg-brand-brass rounded-full animate-pulse"></span>
+                        <p class="font-display text-2xl uppercase">Budowa prototypów</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex flex-col items-center opacity-30">
+                <p class="text-[8px] tracking-[0.5em] uppercase mb-4">Przewiń</p>
+                <div class="w-px h-12 bg-brand-ebony/20 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full bg-brand-brass -translate-y-full animate-scroll"></div>
+                </div>
+            </div>
+
+            <div class="flex gap-20 text-right">
+                <div class="group cursor-default">
+                    <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Dostępność</p>
+                    <p class="font-display text-2xl uppercase text-brand-brass italic font-serif lowercase">sezon 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja: Szybkie obietnice (SEO + uspójnienie przekazu) -->
+    <section class="py-24 px-8 bg-white border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 reveal-left">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Esencja Enzo</span>
+                <h2 class="text-5xl font-display uppercase leading-[0.9] mb-6">
+                    Poczuj się<br>
+                    <span class="font-serif italic lowercase text-4xl opacity-80">jak w domu</span>
+                </h2>
+                <p class="text-brand-ebony/65 font-light leading-relaxed">
+                    Enzo to jasne, domowe wnętrze w vanie. Naturalny dąb, rattan i złote akcenty — zaprojektowane, żeby odpoczywać, pracować i podróżować bez chaosu.
+                </p>
+
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="reveal hover-lift bg-brand-ivory border border-brand-ebony/10 p-10">
+                    <div class="flex items-start justify-between gap-6 mb-6">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Poczuj się jak w domu</p>
+                        <svg class="w-6 h-6 text-brand-brass opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5z"/></svg>
+                    </div>
+                    <h3 class="font-display text-3xl uppercase mb-4">Jasne wnętrze</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Białe ściany i ciepłe drewno budują spokój. To klimat, który nie męczy nawet po długim dniu w trasie.</p>
+                </article>
+
+                <article class="reveal hover-lift bg-brand-ivory border border-brand-ebony/10 p-10" style="transition-delay: 120ms;">
+                    <div class="flex items-start justify-between gap-6 mb-6">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Dobierz wyposażenie</p>
+                        <svg class="w-6 h-6 text-brand-brass opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m6-6H6"/></svg>
+                    </div>
+                    <h3 class="font-display text-3xl uppercase mb-4">Pod Ciebie</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Układ, spanie, kuchnia i instalacje dobierasz do swoich priorytetów. My dbamy o jakość i spójność.</p>
+                </article>
+
+                <article class="reveal md:col-span-2 bg-white border border-brand-ebony/10 p-10" style="transition-delay: 240ms;">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-7">
+                            <p class="text-[10px] uppercase tracking-[0.35em] opacity-40 mb-4">Zbuduj swojego vana razem z nami</p>
+                            <h3 class="font-display text-3xl uppercase mb-4">Manufaktura</h3>
+                            <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">
+                                Proces oparty o prototypowanie i testy. Mniej obietnic, więcej detali: dopasowania, trwałość i ergonomia w codziennym użyciu.
+                            </p>
+                        </div>
+                        <div class="md:col-span-5">
+                            <div class="aspect-[16/10] bg-brand-linen/55 border border-brand-ebony/10 p-6 flex flex-col justify-between">
+                                <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie</p>
+                                <p class="text-[11px] uppercase tracking-[0.25em] opacity-70">Wnętrze / detal</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja: Dlaczego warto -->
+    <section id="why" class="py-32 px-8 bg-brand-linen/30 border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Dlaczego warto</span>
+                <h2 class="text-5xl font-display font-light leading-[0.9] uppercase mb-8">
+                    Premium w podróży,<br>
+                    <span class="font-serif italic lowercase text-4xl">spokój na co dzień</span>
+                </h2>
+                <p class="text-brand-ebony/70 font-light leading-relaxed">
+                    Enzo to domowe wnętrze w vanie: jasne, ciepłe, uporządkowane. Projektujemy po to, żeby po długim dniu wracać do miejsca, które daje komfort i ciszę.
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="reveal hover-lift bg-white border border-brand-ebony/10 p-10">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 border border-brand-ebony/10 bg-brand-ivory flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 10s-4-6-9-6-9 6-9 6 4 6 9 6 9-6 9-6z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Wolność</p>
+                    </div>
+                    <h3 class="font-display text-2xl uppercase mb-3">Budzisz się gdzie chcesz</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Morze, las, góry. Vanlife daje Ci mobilność — bez planowania „pod hotel”.</p>
+                </div>
+                <div class="reveal hover-lift bg-white border border-brand-ebony/10 p-10" style="transition-delay: 120ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 border border-brand-ebony/10 bg-brand-ivory flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.2 7.2l1.4 1.4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.2 16.8l1.4-1.4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19v2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12h2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.4 8.6l1.4-1.4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.4 15.4l1.4 1.4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14a4 4 0 1 0-8 0"/></svg>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Spontaniczność</p>
+                    </div>
+                    <h3 class="font-display text-2xl uppercase mb-3">Jedziesz, gdy masz ochotę</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Brak sztywnego grafiku. Decyzje podejmujesz rano: „zostajemy” albo „ruszamy dalej”.</p>
+                </div>
+                <div class="reveal hover-lift bg-white border border-brand-ebony/10 p-10" style="transition-delay: 240ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 border border-brand-ebony/10 bg-brand-ivory flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 20h16"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 20c2-7 4-10 6-10s4 3 6 10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 11c0-2 2-4 4-4s4 2 4 4"/></svg>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Natura</p>
+                    </div>
+                    <h3 class="font-display text-2xl uppercase mb-3">Bliskość natury</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Poranna kawa na zewnątrz i cisza. Vanlife to więcej „tu i teraz” i mniej pośpiechu.</p>
+                </div>
+                <div class="reveal hover-lift bg-white border border-brand-ebony/10 p-10" style="transition-delay: 360ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 border border-brand-ebony/10 bg-brand-ivory flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7h18"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7v13"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 20V7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 20V7"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20V7"/></svg>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-40">Komfort</p>
+                    </div>
+                    <h3 class="font-display text-2xl uppercase mb-3">Twoja baza zawsze z Tobą</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed">Masz swoje łóżko, kuchnię i „domową” przestrzeń niezależnie od tego, gdzie parkujesz.</p>
+                </div>
+            </div>
+
+            <!-- Video placeholder (dron) -->
+            <div class="mt-16 reveal">
+                <div class="relative overflow-hidden border border-brand-ebony/10 bg-brand-linen/40">
+                    <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-white/10 to-transparent pointer-events-none"></div>
+                    <div class="aspect-video flex items-center justify-center">
+                        <div class="text-center px-8">
+                            <p class="text-[10px] uppercase tracking-[0.5em] opacity-50 mb-5">Miejsce na video</p>
+                            <h3 class="font-display text-4xl md:text-5xl uppercase mb-4">Ujęcie z drona</h3>
+                            <p class="max-w-2xl mx-auto text-brand-ebony/60 font-light leading-relaxed">
+                                Tutaj wstawimy film z góry — campervan na tle natury. Idealne do pokazania skali, klimatu i wolności vanlife.
+                            </p>
+                            <div class="mt-8 flex justify-center">
+                                <div class="bg-brand-ivory border border-brand-mist px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold text-brand-ebony">
+                                    Play (placeholder)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute left-6 bottom-6 text-[10px] uppercase tracking-[0.35em] opacity-50">
+                        Wideo: 16:9 · MP4 / WebM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja: Opinie klientów -->
+    <section id="opinie" class="py-32 px-8 bg-white border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <div class="reveal text-center">
+                    <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Opinie</span>
+                    <h2 class="text-5xl font-display uppercase mb-6 leading-[0.95]">
+                        Co mówią klienci<br>
+                        <span class="font-serif italic lowercase text-4xl opacity-80">po podróży Enzo</span>
+                    </h2>
+                    <p class="max-w-3xl mx-auto text-brand-ebony/60 font-light leading-relaxed">
+                        Opinie z wynajmów pokazują, że największą różnicę robi klimat wnętrza i ergonomia na co dzień. Ten feedback przekuwamy w kolejne ulepszenia modeli.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <figure class=”reveal-left hover-lift bg-brand-ivory border border-brand-ebony/10 p-10 flex flex-col justify-between min-h-[320px]”>
+                    <div>
+                        <p class=”text-brand-brass mb-5 tracking-[0.15em]”>★★★★★</p>
+                        <blockquote class=”font-serif italic text-xl leading-relaxed text-brand-ebony/80”>„Poczuliśmy się jak w domu. Jasne wnętrze robi robotę — po prostu chce się tam wracać.”</blockquote>
+                    </div>
+                    <figcaption class="mt-10 pt-6 border-t border-brand-ebony/10 flex items-center gap-4">
+                        <div class="w-11 h-11 rounded-full bg-brand-linen border border-brand-ebony/10 flex items-center justify-center text-[10px] uppercase tracking-widest">A</div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-[0.2em] font-medium">Anna</p>
+                            <p class="text-[10px] uppercase tracking-[0.2em] opacity-50">Weekend w górach</p>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class=”reveal-scale hover-lift bg-brand-ivory border border-brand-ebony/10 p-10 flex flex-col justify-between min-h-[320px]” style=”transition-delay: 120ms;”>
+                    <div>
+                        <p class=”text-brand-brass mb-5 tracking-[0.15em]”>★★★★★</p>
+                        <blockquote class=”font-serif italic text-xl leading-relaxed text-brand-ebony/80”>„Detale i jakość wykończenia jak w apartamencie. Najbardziej doceniamy kuchnię i ergonomię.”</blockquote>
+                    </div>
+                    <figcaption class="mt-10 pt-6 border-t border-brand-ebony/10 flex items-center gap-4">
+                        <div class="w-11 h-11 rounded-full bg-brand-linen border border-brand-ebony/10 flex items-center justify-center text-[10px] uppercase tracking-widest">M</div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-[0.2em] font-medium">Marek</p>
+                            <p class="text-[10px] uppercase tracking-[0.2em] opacity-50">7 dni nad morzem</p>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class=”reveal-right hover-lift bg-brand-ivory border border-brand-ebony/10 p-10 flex flex-col justify-between min-h-[320px]” style=”transition-delay: 240ms;”>
+                    <div>
+                        <p class=”text-brand-brass mb-5 tracking-[0.15em]”>★★★★★</p>
+                        <blockquote class=”font-serif italic text-xl leading-relaxed text-brand-ebony/80”>„W końcu van bez campingowego klimatu. Czysto, jasno, naturalnie. Dokładnie tego szukaliśmy.”</blockquote>
+                    </div>
+                    <figcaption class="mt-10 pt-6 border-t border-brand-ebony/10 flex items-center gap-4">
+                        <div class="w-11 h-11 rounded-full bg-brand-linen border border-brand-ebony/10 flex items-center justify-center text-[10px] uppercase tracking-widest">K+B</div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-[0.2em] font-medium">Kasia i Bartek</p>
+                            <p class="text-[10px] uppercase tracking-[0.2em] opacity-50">City-break</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja: Galeria (miejsca na zdjęcia) -->
+    <section id="galeria" class="py-32 px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+                <div class="reveal">
+                    <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Galeria</span>
+                    <h2 class="text-5xl font-display uppercase mb-4 leading-[0.88]">
+                        Poczuj klimat<br>
+                        <span class="font-serif italic lowercase text-4xl opacity-80">wnętrza Enzo</span>
+                    </h2>
+                    <p class="text-brand-ebony/60 font-light leading-relaxed max-w-2xl">
+                        Zobacz detale, które tworzą klimat Enzo: jasne powierzchnie, naturalne faktury i dopracowane wykończenie. Ta galeria pokaże wnętrza dokładnie tak, jak wyglądają w realnej podróży.
+                    </p>
+                </div>
+                <a href="configurator.html" class="reveal btn-shine inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                    Konfiguruj
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <div class="md:col-span-7 reveal img-zoom aspect-[16/10] bg-brand-linen/60 border border-brand-ebony/10 p-6 flex items-end">
+                    <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Zdjęcie główne (wnętrze)</p>
+                </div>
+                <div class="md:col-span-5 grid grid-cols-1 gap-6">
+                    <div class="reveal img-zoom aspect-[16/10] bg-brand-linen/40 border border-brand-ebony/10 p-6 flex items-end" style="transition-delay: 120ms;">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Detal (dąb / rattan)</p>
+                    </div>
+                    <div class="reveal img-zoom aspect-[16/10] bg-brand-linen/40 border border-brand-ebony/10 p-6 flex items-end" style="transition-delay: 240ms;">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Kuchnia / strefa dzienna</p>
+                    </div>
+                </div>
+                <div class="md:col-span-4 reveal img-zoom aspect-[4/3] bg-brand-linen/40 border border-brand-ebony/10 p-6 flex items-end">
+                    <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Sypialnia</p>
+                </div>
+                <div class="md:col-span-4 reveal img-zoom aspect-[4/3] bg-brand-linen/40 border border-brand-ebony/10 p-6 flex items-end" style="transition-delay: 120ms;">
+                    <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Łazienka</p>
+                </div>
+                <div class="md:col-span-4 reveal img-zoom aspect-[4/3] bg-brand-linen/40 border border-brand-ebony/10 p-6 flex items-end" style="transition-delay: 240ms;">
+                    <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Oświetlenie / klimat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKACJA FILOZOFIA -->
+    <section id="about" class="py-40 px-8 bg-white">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+            <div>
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Filozofia</span>
+                <h2 class="text-5xl font-display uppercase mb-10 leading-[0.88]">
+                    Dlaczego nie robimy<br><span class="font-serif italic lowercase text-4xl">zwykłych kamperów?</span>
+                </h2>
+                <div class="space-y-6 text-brand-ebony/70 font-light leading-loose text-sm">
+                    <p>
+                        Wiele kamperów nadal wygląda jak kompromis: techniczne, plastikowe wnętrza, które bardziej przypominają o ograniczeniach niż o wolności. W Enzo Campers odwracamy tę logikę.
+                    </p>
+                    <p>
+                        Projektujemy w duchu <strong>Premium Home</strong> — ciepłe materiały, naturalne drewno, szlachetne tkaniny i światło, które buduje nastrój. Dzięki temu van staje się prawdziwym domem na kołach, a nie tylko środkiem transportu.
+                    </p>
+                </div>
+                <div class="mt-12 flex items-center gap-4">
+                    <div class="w-12 h-px bg-brand-brass"></div>
+                    <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Alex & Adrian — Założyciele</span>
+                </div>
+                <div class="mt-10">
+                    <a href="nasza-historia.html" class="inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-10 py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                        Poznaj naszą historię
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="aspect-[4/5] bg-brand-linen flex items-center justify-center overflow-hidden">
+                    <div class="text-brand-ebony/5 font-display text-[15rem] rotate-90 uppercase select-none">Atelier</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKACJA RODZINA ENZO -->
+    <section id="models" class="py-32 px-8 bg-brand-linen/20 border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">Modele</span>
+                <h3 class="text-5xl font-display uppercase mb-4 leading-[0.95]">
+                    Rodzina Enzo<br>
+                    <span class="font-serif italic lowercase text-4xl opacity-80">dopasowana do podróży</span>
+                </h3>
+                <p class="text-brand-ebony/60 font-light max-w-2xl mx-auto">
+                    Każdy model zachowuje ten sam charakter wnętrza, ale odpowiada na inny styl życia i rytm wyjazdów.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+
+                <!-- Enzo Mini -->
+                <article class="reveal hover-lift bg-white border border-brand-ebony/10 p-8 flex flex-col" style="transition-delay: 0ms;">
+                    <div class="aspect-[16/10] bg-brand-linen/40 border border-brand-ebony/10 p-5 mb-8 flex items-end">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie modelu</p>
+                    </div>
+                    <span class="text-brand-brass text-[9px] tracking-[0.35em] uppercase block mb-3">Zwinność i wolność</span>
+                    <h4 class="text-3xl font-display uppercase mb-4">Enzo Mini</h4>
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span class="text-3xl font-display">od 145 000 zł</span>
+                        <span class="text-[10px] uppercase opacity-40">netto</span>
+                    </div>
+
+                    <ul class="space-y-3 mb-10 text-sm text-brand-ebony/70 font-light flex-1">
+                        <li><span class="text-brand-brass">/</span> Baza: <strong>L2H2</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do jazdy: <strong>2</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do spania: <strong>2</strong></li>
+                        <li><span class="text-brand-brass">/</span> Rozkładana sofa + pełna łazienka</li>
+                    </ul>
+
+                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                        Poznaj Mini
+                    </a>
+                </article>
+
+                <!-- Enzo Standard -->
+                <article class="reveal hover-lift bg-white border border-brand-brass/40 p-8 flex flex-col shadow-xl relative" style="transition-delay: 120ms;">
+                    <div class="absolute -top-4 left-8 bg-brand-brass text-brand-ivory text-[9px] px-5 py-2 uppercase tracking-[0.25em]">Najczęściej wybierany</div>
+                    <div class="aspect-[16/10] bg-brand-linen/55 border border-brand-ebony/10 p-5 mb-8 flex items-end">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie modelu</p>
+                    </div>
+                    <span class="text-brand-brass text-[9px] tracking-[0.35em] uppercase block mb-3">Klasyka gatunku</span>
+                    <h4 class="text-3xl font-display uppercase mb-4">Enzo Standard</h4>
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span class="text-3xl font-display">od 189 000 zł</span>
+                        <span class="text-[10px] uppercase opacity-40">netto</span>
+                    </div>
+
+                    <ul class="space-y-3 mb-10 text-sm text-brand-ebony/70 font-light flex-1">
+                        <li><span class="text-brand-brass">/</span> Baza: <strong>L4H2</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do jazdy: <strong>3</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do spania: <strong>2-3</strong></li>
+                        <li><span class="text-brand-brass">/</span> Stałe łóżko + pełna łazienka</li>
+                    </ul>
+
+                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                        Konfiguruj Standard
+                    </a>
+                </article>
+
+                <!-- Enzo Family -->
+                <article class="reveal hover-lift bg-white border border-brand-ebony/10 p-8 flex flex-col" style="transition-delay: 240ms;">
+                    <div class="aspect-[16/10] bg-brand-linen/40 border border-brand-ebony/10 p-5 mb-8 flex items-end">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie modelu</p>
+                    </div>
+                    <span class="text-brand-brass text-[9px] tracking-[0.35em] uppercase block mb-3">Podróż w komplecie</span>
+                    <h4 class="text-3xl font-display uppercase mb-4">Enzo Family</h4>
+                    <div class="flex items-baseline gap-2 mb-8">
+                        <span class="text-3xl font-display">od 225 000 zł</span>
+                        <span class="text-[10px] uppercase opacity-40">netto</span>
+                    </div>
+
+                    <ul class="space-y-3 mb-10 text-sm text-brand-ebony/70 font-light flex-1">
+                        <li><span class="text-brand-brass">/</span> Baza: <strong>L4H2</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do jazdy: <strong>4</strong></li>
+                        <li><span class="text-brand-brass">/</span> Miejsca do spania: <strong>4-5</strong></li>
+                        <li><span class="text-brand-brass">/</span> Stałe łóżko + pełna łazienka</li>
+                    </ul>
+
+                    <a href="configurator.html" class="w-full text-center bg-brand-ivory border border-brand-mist py-4 text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-sand transition-all">
+                        Poznaj Family
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKACJA FAQ -->
+    <section id="faq" class="py-40 px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-24">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">FAQ</span>
+                <h3 class="text-5xl font-display uppercase tracking-wider mb-6 leading-tight">Najczęstsze pytania</h3>
+                <div class="w-12 h-px bg-brand-brass mx-auto"></div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item border-b border-brand-ebony/10 pb-8 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center py-4">
+                        <h4 class="font-display text-xl uppercase tracking-wide group-hover:text-brand-brass transition-colors">Na jakich vanach robicie zabudowy?</h4>
+                        <div class="faq-icon text-brand-brass">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-brand-ebony/60 font-light leading-relaxed text-sm max-w-2xl">
+                            Pracujemy głównie na modelach Mercedes Sprinter, MAN TGE oraz VW Crafter. Baza L2H2 jest dedykowana dla modelu Mini, natomiast L4H2 dla modeli Standard i Family.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-brand-ebony/10 pb-8 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center py-4">
+                        <h4 class="font-display text-xl uppercase tracking-wide group-hover:text-brand-brass transition-colors">Czy cena obejmuje samochód?</h4>
+                        <div class="faq-icon text-brand-brass">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-brand-ebony/60 font-light leading-relaxed text-sm max-w-2xl">
+                            Podane ceny są cenami netto za samą zabudowę (+23% VAT). Możemy pomóc w zakupie nowej bazy lub wykonać zabudowę na samochodzie dostarczonym przez klienta.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-brand-ebony/10 pb-8 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center py-4">
+                        <h4 class="font-display text-xl uppercase tracking-wide group-hover:text-brand-brass transition-colors">Jak wygląda proces płatności?</h4>
+                        <div class="faq-icon text-brand-brass">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-brand-ebony/60 font-light leading-relaxed text-sm max-w-2xl">
+                            Proces dzielimy na etapy: rezerwacja terminu, zaliczka na materiały przed rozpoczęciem prac oraz płatności etapowe zgodnie z postępem w manufakturze.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-ivory py-32 px-12 border-t border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <div class="text-4xl font-display font-medium tracking-tighter uppercase mb-8">Enzo<span class="opacity-30">Campers</span></div>
+                <p class="text-sm text-brand-ebony/60 font-light leading-loose mb-12 italic font-serif max-w-sm">
+                    "Zaprojektowane, by zachwycać. Zbudowane, by odkrywać. Twoja droga w stronę słońca zaczyna się tutaj."
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-24">
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Manufaktura</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium">
+                        <li><a href="home.html" class="hover:text-brand-brass transition-colors">Start</a></li>
+                        <li><a href="models.html" class="hover:text-brand-brass transition-colors">Modele</a></li>
+                        <li><a href="nasza-historia.html" class="hover:text-brand-brass transition-colors">Nasza historia</a></li>
+                        <li><a href="configurator.html" class="hover:text-brand-brass transition-colors">Konfigurator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Kontakt</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium text-brand-brass">
+                        <li><a href="configurator.html" class="hover:underline">Rezerwacje 2026</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-32 pt-12 border-t border-brand-ebony/10 text-[9px] uppercase tracking-[0.4em] opacity-30 text-center">
+            &copy; 2026 Enzo Campers — Manufaktura w budowie.
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal (all directional variants)
+        (function () {
+            const selectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .line-grow';
+            const elements = Array.from(document.querySelectorAll(selectors));
+            if (!('IntersectionObserver' in window)) {
+                elements.forEach(el => el.classList.add('in-view'));
+                return;
+            }
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+            elements.forEach(el => io.observe(el));
+        })();
+
+        // Navbar shrink on scroll
+        (function () {
+            const header = document.querySelector('header');
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        header.classList.toggle('nav-scrolled', window.scrollY > 60);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        })();
+
+        // Parallax on hero footer elements
+        (function () {
+            const hero = document.querySelector('.hero-gradient');
+            if (!hero) return;
+            const footer = hero.querySelector('.absolute.bottom-12');
+            if (!footer) return;
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if (scrolled < window.innerHeight) {
+                    footer.style.transform = `translateY(${scrolled * 0.15}px)`;
+                    footer.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.6));
+                }
+            });
+        })();
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>

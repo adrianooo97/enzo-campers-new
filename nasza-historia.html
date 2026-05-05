@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo Campers - Nasza historia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#1A1814',
+                            brass: '#C4A46B',
+                            ivory: '#F9F7F2',
+                            linen: '#E8E0D0',
+                            sage: '#7A8C7E',
+                            wood: '#7A6B5A',
+                            sand: '#EFE7D8',
+                            mist: '#D8CCB9'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #F9F7F2; color: #1A1814; }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 45%, #F9F7F2 0%, #E8E0D0 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F9F7F2; }
+        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+
+        /* Directional reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 800ms cubic-bezier(.2,.8,.2,1), transform 800ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1);
+            will-change: opacity, transform;
+        }
+        .reveal.in-view, .reveal-left.in-view, .reveal-right.in-view, .reveal-scale.in-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Card hover lift */
+        .hover-lift {
+            transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 25px 50px rgba(26,24,20,0.08);
+        }
+
+        /* Nav link animated underline */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: #C4A46B;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Navbar scroll shrink */
+        header { transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease; }
+        .nav-scrolled {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+            background: rgba(249,247,242,0.97) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(26,24,20,0.06);
+        }
+
+        /* Button shine sweep */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(196,164,107,0.18), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+
+        /* Counter animation */
+        .counter-value {
+            display: inline-block;
+        }
+
+        /* Stagger children */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 600ms ease, transform 600ms ease;
+        }
+        .stagger-children.in-view > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+        .stagger-children.in-view > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 100ms; }
+        .stagger-children.in-view > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 200ms; }
+        .stagger-children.in-view > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 300ms; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="w-full px-12 py-8 flex justify-between items-center border-b border-brand-ebony/10 sticky top-0 bg-brand-linen/40 backdrop-blur-md z-[100]">
+        <a href="home.html" class="text-3xl font-display font-medium tracking-[0.2em] uppercase">
+            Enzo<span class="opacity-40 font-light">Campers</span>
+        </a>
+        <nav class="hidden md:flex gap-12 text-[10px] tracking-[0.3em] font-medium uppercase opacity-80">
+            <a href="home.html" class="nav-link hover:text-brand-brass transition-colors">Start</a>
+            <a href="models.html" class="nav-link hover:text-brand-brass transition-colors">Modele</a>
+            <a href="nasza-historia.html" class="nav-link hover:text-brand-brass transition-colors text-brand-brass">Nasza historia</a>
+            <a href="configurator.html" class="nav-link hover:text-brand-brass transition-colors">Konfigurator</a>
+        </nav>
+        <a href="configurator.html" class="bg-brand-ivory text-brand-ebony border border-brand-mist text-[10px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-brand-sand transition-all duration-300">
+            Konfiguruj
+        </a>
+    </header>
+
+    <section class="pt-24 pb-14 px-8 bg-brand-linen/40">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-12 items-end">
+            <div class="xl:col-span-8">
+                <span class="reveal text-brand-brass font-serif italic text-2xl mb-5 block">Kim jesteśmy</span>
+                <h1 class="reveal font-display text-5xl md:text-7xl uppercase tracking-tight leading-[0.95] mb-8" style="transition-delay: 100ms;">
+                    Nasza historia to<br>
+                    <span class="font-serif italic lowercase text-4xl md:text-6xl opacity-80">spokojna rewolucja</span>
+                </h1>
+                <p class="reveal max-w-3xl text-brand-ebony/70 font-light leading-relaxed text-lg" style="transition-delay: 200ms;">
+                    Zaczęliśmy od jednego pytania: jak zbudować kampera, który daje wolność podróży, ale wewnątrz czuje się jak dopracowany apartament. Od tamtej pory każdy projekt rozwijamy w tym samym rytmie - mniej kompromisów, więcej sensownych decyzji.
+                </p>
+            </div>
+            <div class="xl:col-span-4 reveal-right">
+                <div class="bg-white/70 border border-brand-ebony/10 p-8">
+                    <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-3">Manifest</p>
+                    <p class="font-serif italic text-2xl leading-snug">
+                        "Nie projektujemy vanow. Projektujemy przestrzen, w ktorej chce sie byc."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-12 pb-24 px-8 bg-brand-linen/40">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
+            <div class="bg-white/80 border border-brand-ebony/10 p-6 hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">Od</p>
+                <p class="font-display text-3xl uppercase" data-count="2023">2023</p>
+                <p class="text-sm text-brand-ebony/60 mt-2">pracujemy nad koncepcja Enzo</p>
+            </div>
+            <div class="bg-white/80 border border-brand-ebony/10 p-6 hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">+300</p>
+                <p class="font-display text-3xl uppercase" data-count="300" data-prefix="+">godzin</p>
+                <p class="text-sm text-brand-ebony/60 mt-2">testow ergonomii i ukladow</p>
+            </div>
+            <div class="bg-white/80 border border-brand-ebony/10 p-6 hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">5</p>
+                <p class="font-display text-3xl uppercase" data-count="5">iteracji</p>
+                <p class="text-sm text-brand-ebony/60 mt-2">pierwszego modelu zabudowy</p>
+            </div>
+            <div class="bg-white/80 border border-brand-ebony/10 p-6 hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">1 cel</p>
+                <p class="font-display text-3xl uppercase">jakosc</p>
+                <p class="text-sm text-brand-ebony/60 mt-2">ponad sezonowe trendy</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-28 px-8 bg-white border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal-left">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">01 - Początek</span>
+                <h2 class="text-5xl font-display uppercase leading-tight mb-8">
+                    Od garażu do
+                    <span class="font-serif italic lowercase text-4xl">manufaktury</span>
+                </h2>
+                <div class="space-y-5 text-brand-ebony/70 font-light leading-relaxed">
+                    <p>Pierwszy projekt powstał po godzinach - z potrzeby zbudowania przestrzeni, która nie przypomina typowego vana, tylko dopracowane wnętrze premium.</p>
+                    <p>Z czasem ta potrzeba zamieniła się w proces: prototypy, testy materiałów, poprawki układów i setki godzin pracy nad detalami.</p>
+                    <p>Dzisiaj tworzymy Enzo Campers jako markę, która łączy rzemiosło, funkcję i design w jednej, spójnej filozofii.</p>
+                </div>
+            </div>
+            <div class="space-y-4 reveal-right">
+                <div class="aspect-[16/10] bg-brand-linen/55 border border-brand-ebony/10 p-6 flex flex-col justify-between">
+                    <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie</p>
+                    <div>
+                        <p class="font-display text-2xl uppercase">Założyciele Enzo</p>
+                        <p class="text-sm text-brand-ebony/60 font-light">Portret zespołu lub zdjęcie z warsztatu.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="aspect-[5/4] bg-brand-ivory border border-brand-mist p-5 flex flex-col justify-between">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-60">Miejsce na zdjęcie</p>
+                        <p class="text-[11px] uppercase tracking-[0.25em]">Pierwszy prototyp</p>
+                    </div>
+                    <div class="aspect-[5/4] bg-brand-linen/40 border border-brand-ebony/10 p-5 flex flex-col justify-between">
+                        <p class="text-[10px] uppercase tracking-[0.35em] opacity-50">Miejsce na zdjęcie</p>
+                        <p class="text-[11px] uppercase tracking-[0.25em] opacity-70">Proces budowy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-28 px-8 bg-brand-linen/40">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">02 - Podejście</span>
+                <h2 class="text-5xl font-display uppercase mb-6">Jak pracujemy</h2>
+                <p class="max-w-3xl text-brand-ebony/65 font-light leading-relaxed">
+                    Traktujemy każdy projekt jak długoterminową inwestycję klienta. Dlatego proces opieramy na transparentności, testach i konsekwentnej jakości wykonania.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <article class="lg:col-span-4 bg-white p-10 border border-brand-ebony/10 reveal hover-lift">
+                    <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-4">Rzemiosło</p>
+                    <h3 class="font-display text-3xl uppercase mb-4">Materiały</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-6">Dobieramy drewno, tkaniny i okucia tak, aby wnętrze dobrze się starzało, było łatwe w serwisie i odporne na codzienne użytkowanie.</p>
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-brand-brass">Naturalne surowce / testowane wykończenia</p>
+                </article>
+                <article class="lg:col-span-4 bg-white p-10 border border-brand-ebony/10 reveal hover-lift" style="transition-delay: 100ms;">
+                    <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-4">Funkcja</p>
+                    <h3 class="font-display text-3xl uppercase mb-4">Ergonomia</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-6">Każdy układ projektujemy pod realne scenariusze podróży: gotowanie, pracę, odpoczynek i przechowywanie bez chaosu.</p>
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-brand-brass">Rytm dnia / przestrzeń bez kompromisów</p>
+                </article>
+                <article class="lg:col-span-4 bg-white p-10 border border-brand-ebony/10 reveal hover-lift" style="transition-delay: 200ms;">
+                    <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-4">Estetyka</p>
+                    <h3 class="font-display text-3xl uppercase mb-4">Spójnosc</h3>
+                    <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-6">Nie składamy przypadkowych elementów. Tworzymy jednolitą przestrzeń, która wygląda dobrze i działa intuicyjnie przez lata.</p>
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-brand-brass">Premium home feeling / ponadczasowy styl</p>
+                </article>
+            </div>
+            <div class="mt-8 bg-brand-sand text-brand-ebony p-8 border border-brand-ebony/10">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-60 mb-3">Nasz standard współpracy</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <p class="text-sm font-light text-brand-ebony/80"><span class="text-brand-brass">/</span> Transparentny kosztorys i zakres prac przed startem.</p>
+                    <p class="text-sm font-light text-brand-ebony/80"><span class="text-brand-brass">/</span> Kamienie kontrolne na każdym etapie realizacji.</p>
+                    <p class="text-sm font-light text-brand-ebony/80"><span class="text-brand-brass">/</span> Odbiór z dokumentacją i wsparciem po wdrożeniu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-28 px-8 bg-white border-y border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mb-14">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">03 - Droga</span>
+                <h2 class="text-5xl font-display uppercase mb-6">Mapa rozwoju Enzo</h2>
+                <p class="text-brand-ebony/65 font-light leading-relaxed">
+                    Poniżej jest roadmapa produktu i marki. Każdy etap ma własny cel biznesowy, technologiczny i jakościowy.
+                </p>
+            </div>
+            <div class="relative bg-brand-linen/30 border border-brand-ebony/10 p-8 md:p-12 overflow-hidden">
+                <div class="absolute left-12 right-12 top-1/2 h-px bg-brand-ebony/15 hidden md:block"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <article class="bg-white border border-brand-ebony/10 p-8 relative reveal">
+                        <span class="hidden md:block absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-brass"></span>
+                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">Q3 2026</p>
+                        <h3 class="font-display text-2xl uppercase mb-3">Launch Series</h3>
+                        <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-4">Pierwsze realizacje i zamkniecie petli feedbacku od pierwszych wlascicieli.</p>
+                        <ul class="space-y-2 text-[12px] text-brand-ebony/65">
+                            <li><span class="text-brand-brass mr-2">/</span>wdrozenie checklist odbiorowych</li>
+                            <li><span class="text-brand-brass mr-2">/</span>standaryzacja procesu produkcji</li>
+                        </ul>
+                    </article>
+                    <article class="bg-white border border-brand-ebony/10 p-8 relative reveal" style="transition-delay: 100ms;">
+                        <span class="hidden md:block absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-brass"></span>
+                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-60 mb-2">Q1 2027</p>
+                        <h3 class="font-display text-2xl uppercase mb-3">Platforma modeli</h3>
+                        <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-4">Rozszerzenie gamy o kolejne warianty oraz modularne pakiety dla roznych stylow podrozy.</p>
+                        <ul class="space-y-2 text-[12px] text-brand-ebony/65">
+                            <li><span class="text-brand-brass mr-2">/</span>nowe konfiguracje bazowe</li>
+                            <li><span class="text-brand-brass mr-2">/</span>rozwoj pakietow premium i outdoor</li>
+                        </ul>
+                    </article>
+                    <article class="bg-white border border-brand-ebony/10 p-8 relative reveal" style="transition-delay: 200ms;">
+                        <span class="hidden md:block absolute -top-10 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brand-brass"></span>
+                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-2">Q4 2027</p>
+                        <h3 class="font-display text-2xl uppercase mb-3">Enzo Community</h3>
+                        <p class="text-sm font-light text-brand-ebony/70 leading-relaxed mb-4">Ekosystem serwisowy i program relacji z wlascicielami po odbiorze kampera.</p>
+                        <ul class="space-y-2 text-[12px] text-brand-ebony/65">
+                            <li><span class="text-brand-brass mr-2">/</span>plan przegladow i opieki posprzedazowej</li>
+                            <li><span class="text-brand-brass mr-2">/</span>wydarzenia i trasy dla klientow Enzo</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-8 bg-brand-linen/40">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white border border-brand-ebony/10 p-10 reveal-left hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mb-3">Nasze DNA</p>
+                <h3 class="font-display text-4xl uppercase mb-6">3 zasady Enzo</h3>
+                <ul class="space-y-4 text-brand-ebony/70 font-light">
+                    <li><span class="text-brand-brass mr-2">/</span>Jakość konstrukcji ponad ilość funkcji.</li>
+                    <li><span class="text-brand-brass mr-2">/</span>Projektowanie pod codzienne użytkowanie, nie pod katalog.</li>
+                    <li><span class="text-brand-brass mr-2">/</span>Spójny design, który nie starzeje się po jednym sezonie.</li>
+                </ul>
+            </div>
+            <div class="bg-brand-sand text-brand-ebony p-10 border border-brand-ebony/10 reveal-right hover-lift">
+                <p class="text-[10px] uppercase tracking-[0.3em] opacity-60 mb-3">Proces współpracy</p>
+                <h3 class="font-display text-4xl uppercase mb-6">Jak zaczynamy</h3>
+                <ol class="space-y-4 text-brand-ebony/80 font-light">
+                    <li><span class="text-brand-brass mr-2">01.</span>Rozmowa o stylu podróżowania i priorytetach.</li>
+                    <li><span class="text-brand-brass mr-2">02.</span>Dobór modelu i pakietu wykończenia.</li>
+                    <li><span class="text-brand-brass mr-2">03.</span>Konfiguracja detali oraz harmonogram realizacji.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-8 text-center bg-brand-linen text-brand-ebony">
+        <h3 class="reveal-scale font-display text-4xl md:text-6xl uppercase tracking-tighter mb-6">Chcesz zbudować coś swojego?</h3>
+        <p class="max-w-2xl mx-auto mb-12 font-light text-brand-ebony/75">Przejdź do konfiguratora i opowiedz nam, jak ma wyglądać Twój kamper - od układu po wykończenie.</p>
+        <a href="configurator.html" class="reveal-scale btn-shine inline-block bg-brand-ivory text-brand-ebony border border-brand-mist px-16 py-6 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-brand-sand transition-all duration-500" style="transition-delay: 100ms;">
+            Konfiguruj Enzo
+        </a>
+    </section>
+
+    <footer class="bg-brand-ivory py-32 px-12 border-t border-brand-ebony/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+            <div>
+                <div class="text-4xl font-display font-medium tracking-tighter uppercase mb-8">Enzo<span class="opacity-30">Campers</span></div>
+                <p class="text-sm text-brand-ebony/60 font-light leading-loose mb-12 italic font-serif max-w-sm">
+                    "Zaprojektowane, by zachwycać. Zbudowane, by odkrywać. Twoja droga w stronę słońca zaczyna się tutaj."
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-24">
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Manufaktura</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium">
+                        <li><a href="home.html" class="hover:text-brand-brass transition-colors">Start</a></li>
+                        <li><a href="models.html" class="hover:text-brand-brass transition-colors">Modele</a></li>
+                        <li><a href="nasza-historia.html" class="hover:text-brand-brass transition-colors">Nasza historia</a></li>
+                        <li><a href="configurator.html" class="hover:text-brand-brass transition-colors">Konfigurator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-30">Kontakt</h6>
+                    <ul class="space-y-6 text-[11px] uppercase tracking-widest font-medium text-brand-brass">
+                        <li><a href="configurator.html" class="hover:underline">Rezerwacje 2026</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-32 pt-12 border-t border-brand-ebony/10 text-[9px] uppercase tracking-[0.4em] opacity-30 text-center">
+            &copy; 2026 Enzo Campers - Manufaktura w budowie.
+        </div>
+    </footer>
+
+<script>
+    // Scroll reveal (all directional variants)
+    (function () {
+        const selectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children';
+        const elements = Array.from(document.querySelectorAll(selectors));
+        if (!('IntersectionObserver' in window)) {
+            elements.forEach(el => el.classList.add('in-view'));
+            return;
+        }
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+        elements.forEach(el => io.observe(el));
+    })();
+
+    // Navbar shrink on scroll
+    (function () {
+        const header = document.querySelector('header');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    header.classList.toggle('nav-scrolled', window.scrollY > 60);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    })();
+
+    // Counter animation for stats
+    (function () {
+        const counters = document.querySelectorAll('[data-count]');
+        if (!counters.length) return;
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count, 10);
+                    const prefix = el.dataset.prefix || '';
+                    const suffix = el.dataset.suffix || '';
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(target / 40));
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = prefix + current + suffix;
+                    }, 30);
+                    io.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => io.observe(c));
+    })();
+</script>
+
+</body>
+</html>
