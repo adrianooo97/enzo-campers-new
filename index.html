@@ -259,7 +259,7 @@
                 <span class="font-serif italic lowercase opacity-80 text-4xl md:text-[6rem]">dom na kółkach</span>
             </h1>
 
-            <p class="text-[11px] tracking-[0.4em] uppercase opacity-60 mb-12 max-w-2xl leading-relaxed">
+            <p class="text-sm tracking-wide opacity-60 mb-12 max-w-2xl leading-relaxed">
                 Zbuduj swojego vana razem z nami. Jasne wnętrza, naturalny dąb, rattan i złote detale — dobierz wyposażenie do swoich potrzeb i poczuj się jak w domu.
             </p>
 
@@ -273,21 +273,9 @@
             </div>
         </div>
 
-        <!-- Scroll indicator (osobny, nie podlega parallax) -->
-        <div id="scroll-indicator" class="hidden lg:flex flex-col items-center absolute bottom-10 left-1/2 -translate-x-1/2 z-30 opacity-40 transition-opacity duration-500">
-            <p class="text-[8px] tracking-[0.5em] uppercase mb-4">Przewiń</p>
-            <div class="w-px h-12 bg-brand-ebony/20 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full bg-brand-brass -translate-y-full animate-scroll"></div>
-            </div>
-        </div>
-
         <!-- Stopka Hero -->
-        <div class="absolute bottom-12 w-full px-16 flex justify-between items-end z-20">
+        <div class="absolute bottom-12 w-full px-16 flex justify-end items-end z-20">
             <div class="flex gap-20">
-                <div class="group cursor-default">
-                    <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Lokalizacja</p>
-                    <p class="font-display text-2xl uppercase group-hover:text-brand-brass transition-colors">Warsztat / Polska</p>
-                </div>
                 <div class="group cursor-default">
                     <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Etap</p>
                     <div class="flex items-center gap-3">
@@ -295,10 +283,7 @@
                         <p class="font-display text-2xl uppercase">Budowa prototypów</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="flex gap-20 text-right">
-                <div class="group cursor-default">
+                <div class="group cursor-default text-right">
                     <p class="text-[9px] tracking-widest uppercase opacity-40 mb-2">Dostępność</p>
                     <p class="font-display text-2xl uppercase text-brand-brass italic font-serif lowercase">sezon 2026</p>
                 </div>
@@ -796,22 +781,17 @@
             });
         })();
 
-        // Parallax on hero footer + scroll indicator fade
+        // Parallax on hero footer
         (function () {
             const hero = document.querySelector('.hero-gradient');
             if (!hero) return;
             const footer = hero.querySelector('.absolute.bottom-12');
-            const scrollInd = document.getElementById('scroll-indicator');
+            if (!footer) return;
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY;
                 if (scrolled < window.innerHeight) {
-                    if (footer) {
-                        footer.style.transform = `translateY(${scrolled * 0.15}px)`;
-                        footer.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.6));
-                    }
-                    if (scrollInd) {
-                        scrollInd.style.opacity = Math.max(0, 0.4 - scrolled / (window.innerHeight * 0.3));
-                    }
+                    footer.style.transform = `translateY(${scrolled * 0.15}px)`;
+                    footer.style.opacity = Math.max(0, 1 - scrolled / (window.innerHeight * 0.6));
                 }
             });
         })();
