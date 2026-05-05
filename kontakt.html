@@ -140,7 +140,7 @@
     </div>
 
     <!-- Hero -->
-    <section class="min-h-[60vh] flex items-center justify-center px-4 md:px-8 bg-brand-linen/30 relative overflow-hidden">
+    <section class="min-h-screen flex items-center justify-center px-4 md:px-8 bg-brand-linen/30 relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.03]">
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[25vw] uppercase select-none whitespace-nowrap">Kontakt</div>
         </div>
@@ -184,7 +184,7 @@
 
                     <div>
                         <label class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-2 block">Telefon (opcjonalnie)</label>
-                        <input type="tel" name="phone" class="form-input" placeholder="+48 123 456 789">
+                        <input type="tel" name="phone" class="form-input" placeholder="+48 000 000 000">
                     </div>
 
                     <div>
@@ -230,7 +230,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-brand-ebony/50 mb-1">Email</p>
-                                <a href="mailto:kontakt@enzocampers.pl" class="text-sm font-medium hover:text-brand-brass transition-colors">kontakt@enzocampers.pl</a>
+                                <a href="mailto:info@enzocampers.com" class="text-sm font-medium hover:text-brand-brass transition-colors">info@enzocampers.com</a>
                             </div>
                         </div>
 
@@ -240,7 +240,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-brand-ebony/50 mb-1">Telefon</p>
-                                <a href="tel:+48123456789" class="text-sm font-medium hover:text-brand-brass transition-colors">+48 123 456 789</a>
+                                <a href="tel:+48571092400" class="text-sm font-medium hover:text-brand-brass transition-colors">+48 571 092 400</a>
                             </div>
                         </div>
 
@@ -250,7 +250,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-brand-ebony/50 mb-1">Manufaktura</p>
-                                <p class="text-sm font-medium">Polska</p>
+                                <p class="text-sm font-medium">Warszawa, Polska</p>
                                 <p class="text-xs text-brand-ebony/50 mt-1">Dokładny adres podamy przy umówieniu wizyty</p>
                             </div>
                         </div>
@@ -261,7 +261,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] uppercase tracking-widest text-brand-ebony/50 mb-1">Czas odpowiedzi</p>
-                                <p class="text-sm font-medium">Do 24 godzin</p>
+                                <p class="text-sm font-medium">Odpowiadamy jak najszybciej</p>
                                 <p class="text-xs text-brand-ebony/50 mt-1">Pon-Pt, 9:00-17:00</p>
                             </div>
                         </div>
@@ -276,7 +276,84 @@
                             <a href="#" class="w-10 h-10 rounded-full border border-brand-ebony/15 flex items-center justify-center hover:border-brand-brass hover:text-brand-brass transition-colors">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                             </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-brand-ebony/15 flex items-center justify-center hover:border-brand-brass hover:text-brand-brass transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 md:py-32 px-4 md:px-8 bg-brand-linen/30">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 md:mb-20 reveal">
+                <span class="text-brand-brass text-[10px] font-bold tracking-[0.5em] uppercase mb-6 block">FAQ</span>
+                <h2 class="font-display text-3xl md:text-5xl uppercase leading-[0.9]">Najczęściej zadawane<br>
+                    <span class="font-serif italic lowercase text-2xl md:text-4xl opacity-80">pytania</span>
+                </h2>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Jak długo trwa realizacja zamówienia?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Czas realizacji zależy od wybranego modelu i stopnia personalizacji. Standardowo proces trwa od 8 do 14 tygodni od momentu potwierdzenia zamówienia. Dokładny harmonogram ustalamy indywidualnie.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Czy mogę odwiedzić warsztat i zobaczyć vana na żywo?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Tak! Zapraszamy do umówienia wizyty w naszym warsztacie w Warszawie. Wystarczy skontaktować się z nami telefonicznie lub przez formularz — ustalimy termin, który Ci odpowiada.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Jaka jest wymagana zaliczka?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Aby zarezerwować termin realizacji, wymagamy zaliczki w wysokości 30% wartości zamówienia. Pozostała kwota płatna jest przy odbiorze gotowego vana. Szczegóły ustalamy indywidualnie.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Czy muszę dostarczyć własne auto bazowe?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Nie — możemy pomóc w doborze i zakupie odpowiedniego auta bazowego. Możesz też dostarczyć własny pojazd, o ile spełnia nasze wymagania techniczne. Wszystko omówimy na etapie konsultacji.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Czy udzielacie gwarancji na zabudowę?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Tak, na każdą zabudowę udzielamy gwarancji. Zakres i warunki gwarancji omawiamy szczegółowo przy podpisywaniu umowy. Zależy nam na długoterminowej relacji z każdym klientem.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-brand-ebony/10 bg-white">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center px-6 md:px-8 py-5 md:py-6 text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">Czy mogę w pełni spersonalizować układ wnętrza?</span>
+                        <svg class="faq-icon w-4 h-4 shrink-0 text-brand-brass transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="faq-answer hidden px-6 md:px-8 pb-6 md:pb-8">
+                        <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Absolutnie. Nasze modele to punkt wyjścia — każdy element, od układu mebli po materiały wykończeniowe, możemy dostosować do Twoich potrzeb. Konfigurator online pozwala wstępnie zaplanować zabudowę, a resztę dopracujemy razem.</p>
                     </div>
                 </div>
             </div>
@@ -329,8 +406,8 @@
                 <div class="md:col-span-3">
                     <h6 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-brand-brass">Kontakt</h6>
                     <ul class="space-y-4 text-sm font-light">
-                        <li><a href="mailto:kontakt@enzocampers.pl" class="text-brand-ivory/60 hover:text-brand-brass transition-colors">kontakt@enzocampers.pl</a></li>
-                        <li><a href="tel:+48123456789" class="text-brand-ivory/60 hover:text-brand-brass transition-colors">+48 123 456 789</a></li>
+                        <li><a href="mailto:info@enzocampers.com" class="text-brand-ivory/60 hover:text-brand-brass transition-colors">info@enzocampers.com</a></li>
+                        <li><a href="tel:+48571092400" class="text-brand-ivory/60 hover:text-brand-brass transition-colors">+48 571 092 400</a></li>
                     </ul>
                 </div>
             </div>
@@ -342,6 +419,23 @@
     </footer>
 
     <script>
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+            const isOpen = !answer.classList.contains('hidden');
+
+            document.querySelectorAll('.faq-item').forEach(function(el) {
+                el.querySelector('.faq-answer').classList.add('hidden');
+                el.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+            });
+
+            if (!isOpen) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
         function handleSubmit(e) {
             e.preventDefault();
             document.getElementById('contact-form').classList.add('hidden');
