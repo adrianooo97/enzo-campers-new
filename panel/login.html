@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Enzo — Logowanie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['DM Serif Display', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#3D3A36', brass: '#C4A46B', ivory: '#FDFBF7',
+                            linen: '#F0E8DD', sage: '#B5C4B1', blush: '#E8CFC4',
+                            sand: '#F5EDE3', mist: '#E2D8CC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/panel.css">
+</head>
+<body class="antialiased min-h-screen login-gradient flex flex-col">
+
+    <div class="panel-prototype-banner">Prototyp UI — dane przykładowe</div>
+
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md fade-in">
+            <div class="text-center mb-10">
+                <a href="../index.html" class="inline-block text-2xl font-display tracking-[0.2em] uppercase mb-3">
+                    Enzo<span class="opacity-40 font-light">Campers</span>
+                </a>
+                <p class="text-[10px] uppercase tracking-[0.4em] text-brand-brass font-bold mb-4">Panel klienta</p>
+                <h1 class="font-display text-4xl uppercase leading-tight mb-3">Moje Enzo</h1>
+                <p class="text-brand-ebony/55 font-light text-sm leading-relaxed">
+                    Śledź budowę swojego campervana,<br>
+                    <span class="font-serif italic">terminy i ustalenia w jednym miejscu.</span>
+                </p>
+            </div>
+
+            <!-- Formularz logowania -->
+            <div id="login-form" class="panel-card p-8 md:p-10">
+                <label for="email" class="block text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/50 mb-3">Adres e-mail</label>
+                <input type="email" id="email" value="anna.kowalska@example.com"
+                    class="w-full px-5 py-4 bg-brand-ivory border border-brand-ebony/10 rounded-xl text-sm focus:outline-none focus:border-brand-brass transition-colors mb-2"
+                    placeholder="twoj@email.pl">
+                <p class="text-xs text-brand-ebony/40 font-light mb-8">Wyślemy Ci bezpieczny link do logowania — bez hasła.</p>
+                <button type="button" onclick="showSent()" class="btn-shine w-full bg-brand-brass text-white py-4 rounded-full text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                    Wyślij link logowania
+                </button>
+            </div>
+
+            <!-- Potwierdzenie wysłania -->
+            <div id="login-sent" class="panel-card p-8 md:p-10 hidden text-center">
+                <div class="w-14 h-14 rounded-full bg-brand-sage/30 flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-7 h-7 text-brand-ebony/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <h2 class="font-display text-2xl uppercase mb-3">Sprawdź skrzynkę</h2>
+                <p class="text-sm text-brand-ebony/55 font-light mb-2">Wysłaliśmy link logowania na</p>
+                <p id="sent-email" class="text-sm font-medium mb-8">anna.kowalska@example.com</p>
+                <p class="text-xs text-brand-ebony/40 font-light mb-8">Link jest ważny 15 minut. Sprawdź też folder spam.</p>
+                <a href="dashboard.html" class="btn-shine block w-full bg-brand-brass text-white py-4 rounded-full text-[10px] uppercase tracking-[0.35em] font-bold hover:bg-brand-brass/85 transition-all">
+                    Otwórz panel (prototyp)
+                </a>
+                <button type="button" onclick="showForm()" class="mt-4 text-[10px] uppercase tracking-widest text-brand-ebony/40 hover:text-brand-brass transition-colors">
+                    Wyślij ponownie
+                </button>
+            </div>
+
+            <p class="text-center text-xs text-brand-ebony/35 font-light mt-8">
+                Masz pytania? <a href="../kontakt.html" class="text-brand-brass hover:underline">Skontaktuj się z nami</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        function showSent() {
+            const email = document.getElementById('email').value || 'anna.kowalska@example.com';
+            document.getElementById('sent-email').textContent = email;
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('login-sent').classList.remove('hidden');
+        }
+        function showForm() {
+            document.getElementById('login-sent').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

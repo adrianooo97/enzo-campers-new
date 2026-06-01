@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Enzo — Dokumenty i płatności</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['DM Serif Display', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#3D3A36', brass: '#C4A46B', ivory: '#FDFBF7',
+                            linen: '#F0E8DD', sage: '#B5C4B1', blush: '#E8CFC4',
+                            sand: '#F5EDE3', mist: '#E2D8CC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/panel.css">
+</head>
+<body class="antialiased min-h-screen bg-brand-ivory">
+
+    <div class="panel-prototype-banner">Prototyp UI — dane przykładowe</div>
+
+    <div class="flex min-h-[calc(100vh-32px)]">
+        <aside class="hidden lg:flex flex-col w-64 xl:w-72 border-r border-brand-ebony/8 bg-white/60 backdrop-blur-sm p-6 shrink-0">
+            <a href="../index.html" class="text-xl font-display tracking-[0.15em] uppercase mb-1">Enzo<span class="opacity-40 font-light">Campers</span></a>
+            <p class="text-[9px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-10">Moje Enzo</p>
+            <nav class="space-y-1 flex-1">
+                <a href="dashboard.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>Przegląd</a>
+                <a href="konfiguracja.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Konfiguracja</a>
+                <a href="postep.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Postęp prac</a>
+                <a href="dokumenty.html" class="panel-sidebar-link active"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Dokumenty i płatności</a>
+                <a href="wiadomosci.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Wiadomości</a>
+            </nav>
+            <div class="pt-6 border-t border-brand-ebony/8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-brand-linen flex items-center justify-center text-xs font-medium">AK</div>
+                    <div><p class="text-sm font-medium">Anna Kowalska</p><p class="text-[10px] text-brand-ebony/40 uppercase tracking-wider">ENZ-2026-003</p></div>
+                </div>
+                <a href="login.html" class="text-[10px] uppercase tracking-widest text-brand-ebony/40 hover:text-brand-brass">Wyloguj</a>
+            </div>
+        </aside>
+
+        <main class="flex-1 min-w-0 pb-24 lg:pb-8">
+            <header class="px-4 md:px-8 lg:px-10 py-5 md:py-8 border-b border-brand-ebony/5 bg-white/40 backdrop-blur-sm sticky top-0 z-30">
+                <h1 class="font-display text-3xl md:text-4xl uppercase">Dokumenty i płatności</h1>
+                <p class="text-sm text-brand-ebony/50 font-light mt-1">Umowy, faktury i harmonogram przelewów</p>
+            </header>
+
+            <div class="px-4 md:px-8 lg:px-10 py-8 space-y-6 fade-in max-w-4xl">
+
+                <!-- Harmonogram płatności -->
+                <div class="panel-card p-6 md:p-8">
+                    <h2 class="font-display text-2xl uppercase mb-2">Harmonogram płatności</h2>
+                    <p class="text-sm text-brand-ebony/50 font-light mb-8">Płatności realizowane przelewem tradycyjnym. W tytule przelewu podaj numer zamówienia.</p>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-brand-sage/15 border border-brand-sage/25">
+                            <div>
+                                <p class="text-sm font-medium">Zaliczka 30%</p>
+                                <p class="text-xs text-brand-ebony/50">Termin: 5 marca 2026</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <p class="text-lg font-medium">69 741 zł</p>
+                                <span class="panel-badge panel-badge-done">Opłacone</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-brand-linen/50 border border-brand-brass/20">
+                            <div>
+                                <p class="text-sm font-medium">Transza 2 — 30%</p>
+                                <p class="text-xs text-brand-ebony/50">Termin: do 15 czerwca 2026</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <p class="text-lg font-medium text-brand-brass">69 741 zł</p>
+                                <span class="panel-badge panel-badge-waiting">Oczekuje</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8">
+                            <div>
+                                <p class="text-sm font-medium">Transza 3 — 30%</p>
+                                <p class="text-xs text-brand-ebony/50">Termin: przy odbiorze · 15 września 2026</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <p class="text-lg font-medium">69 741 zł</p>
+                                <span class="panel-badge panel-badge-pending">Planowane</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8">
+                            <div>
+                                <p class="text-sm font-medium">Rata końcowa 10%</p>
+                                <p class="text-xs text-brand-ebony/50">Po odbiorze · do 30 dni</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <p class="text-lg font-medium">23 247 zł</p>
+                                <span class="panel-badge panel-badge-pending">Planowane</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dane do przelewu -->
+                <div class="panel-card p-6 md:p-8 border-brand-brass/25 bg-brand-linen/20">
+                    <h2 class="font-display text-xl uppercase mb-6">Dane do przelewu</h2>
+                    <dl class="space-y-4 text-sm">
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 pb-4 border-b border-brand-ebony/8">
+                            <dt class="text-brand-ebony/50">Odbiorca</dt>
+                            <dd class="font-medium sm:text-right">Enzo Campers Sp. z o.o.</dd>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 pb-4 border-b border-brand-ebony/8">
+                            <dt class="text-brand-ebony/50">Nr konta (IBAN)</dt>
+                            <dd class="font-medium sm:text-right font-mono text-xs sm:text-sm">PL 12 3456 7890 1234 5678 9012 3456</dd>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 pb-4 border-b border-brand-ebony/8">
+                            <dt class="text-brand-ebony/50">Bank</dt>
+                            <dd class="font-medium sm:text-right">mBank S.A.</dd>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                            <dt class="text-brand-ebony/50">Tytuł przelewu</dt>
+                            <dd class="font-medium sm:text-right">ENZ-2026-003 / Transza 2 / Anna Kowalska</dd>
+                        </div>
+                    </dl>
+                    <p class="text-xs text-brand-ebony/40 font-light mt-6">Po zaksięgowaniu przelewu status płatności zaktualizujemy w panelu — zwykle w ciągu 1–2 dni roboczych.</p>
+                </div>
+
+                <!-- Dokumenty -->
+                <div class="panel-card p-6 md:p-8">
+                    <h2 class="font-display text-2xl uppercase mb-6">Dokumenty</h2>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8 hover:border-brand-brass/40 hover:bg-brand-sand/30 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-linen flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium group-hover:text-brand-brass transition-colors">Umowa zabudowy ENZ-2026-003</p>
+                                    <p class="text-xs text-brand-ebony/40">Podpisana · 5 marca 2026 · PDF</p>
+                                </div>
+                            </div>
+                            <svg class="w-4 h-4 text-brand-ebony/30 group-hover:text-brand-brass shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                        <a href="#" class="flex items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8 hover:border-brand-brass/40 hover:bg-brand-sand/30 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-linen flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium group-hover:text-brand-brass transition-colors">Faktura zaliczkowa FV/2026/03/012</p>
+                                    <p class="text-xs text-brand-ebony/40">69 741 zł brutto · PDF</p>
+                                </div>
+                            </div>
+                            <svg class="w-4 h-4 text-brand-ebony/30 group-hover:text-brand-brass shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                        <a href="#" class="flex items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8 hover:border-brand-brass/40 hover:bg-brand-sand/30 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-linen flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium group-hover:text-brand-brass transition-colors">Specyfikacja techniczna v1.2</p>
+                                    <p class="text-xs text-brand-ebony/40">Zatwierdzona · 22 kwietnia 2026 · PDF</p>
+                                </div>
+                            </div>
+                            <svg class="w-4 h-4 text-brand-ebony/30 group-hover:text-brand-brass shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                        <a href="#" class="flex items-center justify-between gap-4 p-4 rounded-xl border border-brand-ebony/8 hover:border-brand-brass/40 hover:bg-brand-sand/30 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-linen flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-brand-brass" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium group-hover:text-brand-brass transition-colors">Notatka ze spotkania projektowego</p>
+                                    <p class="text-xs text-brand-ebony/40">12 marca 2026 · Alex & Adrian · PDF</p>
+                                </div>
+                            </div>
+                            <svg class="w-4 h-4 text-brand-ebony/30 group-hover:text-brand-brass shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ustalenia -->
+                <div class="panel-card p-6 md:p-8">
+                    <h2 class="font-display text-2xl uppercase mb-6">Ustalenia</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/40 mb-2">22 kwietnia 2026 · Alex</p>
+                            <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Tapicerka foteli: skóra naturalna, kolor kości słoniowej. Klient potwierdził w panelu.</p>
+                        </div>
+                        <div class="border-t border-brand-ebony/6 pt-6">
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/40 mb-2">12 marca 2026 · Adrian</p>
+                            <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Blat kuchenny: dąb szczotkowany, olejowany. Uchwyty: mosiądz matowy (wariant B — oczekuje akceptacji).</p>
+                        </div>
+                        <div class="border-t border-brand-ebony/6 pt-6">
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/40 mb-2">5 marca 2026 · Alex</p>
+                            <p class="text-sm text-brand-ebony/70 font-light leading-relaxed">Termin odbioru: 15 września 2026. Klient dostarcza własną bazę Sprinter L4H2 do 1 kwietnia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="panel-mobile-nav lg:hidden grid grid-cols-5">
+        <a href="dashboard.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/></svg>Start</a>
+        <a href="postep.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>Postęp</a>
+        <a href="konfiguracja.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Config</a>
+        <a href="dokumenty.html" class="active"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Docs</a>
+        <a href="wiadomosci.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Czat</a>
+    </nav>
+</body>
+</html>

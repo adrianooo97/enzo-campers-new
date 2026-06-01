@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Enzo — Postęp prac</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['DM Serif Display', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#3D3A36', brass: '#C4A46B', ivory: '#FDFBF7',
+                            linen: '#F0E8DD', sage: '#B5C4B1', blush: '#E8CFC4',
+                            sand: '#F5EDE3', mist: '#E2D8CC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/panel.css">
+</head>
+<body class="antialiased min-h-screen bg-brand-ivory">
+
+    <div class="panel-prototype-banner">Prototyp UI — dane przykładowe</div>
+
+    <div class="flex min-h-[calc(100vh-32px)]">
+        <aside class="hidden lg:flex flex-col w-64 xl:w-72 border-r border-brand-ebony/8 bg-white/60 backdrop-blur-sm p-6 shrink-0">
+            <a href="../index.html" class="text-xl font-display tracking-[0.15em] uppercase mb-1">Enzo<span class="opacity-40 font-light">Campers</span></a>
+            <p class="text-[9px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-10">Moje Enzo</p>
+            <nav class="space-y-1 flex-1">
+                <a href="dashboard.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>Przegląd</a>
+                <a href="konfiguracja.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Konfiguracja</a>
+                <a href="postep.html" class="panel-sidebar-link active"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>Postęp prac</a>
+                <a href="dokumenty.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Dokumenty i płatności</a>
+                <a href="wiadomosci.html" class="panel-sidebar-link"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Wiadomości</a>
+            </nav>
+            <div class="pt-6 border-t border-brand-ebony/8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-brand-linen flex items-center justify-center text-xs font-medium">AK</div>
+                    <div><p class="text-sm font-medium">Anna Kowalska</p><p class="text-[10px] text-brand-ebony/40 uppercase tracking-wider">ENZ-2026-003</p></div>
+                </div>
+                <a href="login.html" class="text-[10px] uppercase tracking-widest text-brand-ebony/40 hover:text-brand-brass">Wyloguj</a>
+            </div>
+        </aside>
+
+        <main class="flex-1 min-w-0 pb-24 lg:pb-8">
+            <header class="px-4 md:px-8 lg:px-10 py-5 md:py-8 border-b border-brand-ebony/5 bg-white/40 backdrop-blur-sm sticky top-0 z-30">
+                <h1 class="font-display text-3xl md:text-4xl uppercase">Postęp prac</h1>
+                <p class="text-sm text-brand-ebony/50 font-light mt-1">Budowa Twojego Enzo Original · planowany odbiór 15 września 2026</p>
+            </header>
+
+            <div class="px-4 md:px-8 lg:px-10 py-8 max-w-3xl fade-in">
+                <div class="panel-timeline">
+
+                    <!-- Etap 6 -->
+                    <div class="panel-timeline-item">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-pending mb-2">Oczekuje</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Odbiór gotowego Enzo</h3>
+                        <p class="text-sm text-brand-ebony/50 font-light">Przekazanie pojazdu, instruktaż, dokumentacja gwarancyjna.</p>
+                    </div>
+
+                    <!-- Etap 5 -->
+                    <div class="panel-timeline-item">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-pending mb-2">Planowane · lipiec–sierpień</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Wykończenie i testy</h3>
+                        <p class="text-sm text-brand-ebony/50 font-light mb-3">Tapicerka, detale, test instalacji elektrycznej i wodnej.</p>
+                    </div>
+
+                    <!-- Etap 4 - active -->
+                    <div class="panel-timeline-item active">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-active mb-2">W toku · od 12 maja</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Stolarka i zabudowa</h3>
+                        <p class="text-sm text-brand-ebony/55 font-light mb-4">Montaż mebli, kuchni, łazienki. Naturalny dąb i detale mosiężne.</p>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div class="aspect-[4/3] rounded-xl overflow-hidden">
+                                <img src="../images/1000010157.jpg" alt="Montaż kuchni" class="w-full h-full object-cover">
+                            </div>
+                            <div class="aspect-[4/3] rounded-xl overflow-hidden">
+                                <img src="../images/1000010158.jpg" alt="Detal blatu dębowego" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35">28 maja 2026 · Alex dodał 2 zdjęcia</p>
+                    </div>
+
+                    <!-- Etap 3 -->
+                    <div class="panel-timeline-item done">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-done mb-2">Ukończone · 11 maja</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Przygotowanie bazy</h3>
+                        <p class="text-sm text-brand-ebony/50 font-light mb-3">Izolacja, okablowanie, instalacja wodna i ogrzewania podłogowego.</p>
+                        <div class="aspect-[16/9] rounded-xl overflow-hidden max-w-sm">
+                            <img src="../images/1000010155.jpg" alt="Instalacja bazowa" class="w-full h-full object-cover opacity-90">
+                        </div>
+                    </div>
+
+                    <!-- Etap 2 -->
+                    <div class="panel-timeline-item done">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-done mb-2">Ukończone · 28 marca</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Projekt i materiały</h3>
+                        <p class="text-sm text-brand-ebony/50 font-light">Spotkanie projektowe, wybór materiałów, zatwierdzenie specyfikacji v1.0.</p>
+                    </div>
+
+                    <!-- Etap 1 -->
+                    <div class="panel-timeline-item done">
+                        <div class="panel-timeline-dot"></div>
+                        <span class="panel-badge panel-badge-done mb-2">Ukończone · 5 marca</span>
+                        <h3 class="font-display text-xl uppercase mb-1">Rezerwacja potwierdzona</h3>
+                        <p class="text-sm text-brand-ebony/50 font-light">Zaliczka wpłacona, termin w kolejce produkcyjnej na Q2–Q3 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="panel-mobile-nav lg:hidden grid grid-cols-5">
+        <a href="dashboard.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/></svg>Start</a>
+        <a href="postep.html" class="active"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>Postęp</a>
+        <a href="konfiguracja.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Config</a>
+        <a href="dokumenty.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Docs</a>
+        <a href="wiadomosci.html"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Czat</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Enzo — Przegląd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['DM Serif Display', 'serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ebony: '#3D3A36', brass: '#C4A46B', ivory: '#FDFBF7',
+                            linen: '#F0E8DD', sage: '#B5C4B1', blush: '#E8CFC4',
+                            sand: '#F5EDE3', mist: '#E2D8CC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/panel.css">
+</head>
+<body class="antialiased min-h-screen bg-brand-ivory">
+
+    <div class="panel-prototype-banner">Prototyp UI — dane przykładowe</div>
+
+    <div class="flex min-h-[calc(100vh-32px)]">
+        <!-- Sidebar -->
+        <aside class="hidden lg:flex flex-col w-64 xl:w-72 border-r border-brand-ebony/8 bg-white/60 backdrop-blur-sm p-6 shrink-0">
+            <a href="../index.html" class="text-xl font-display tracking-[0.15em] uppercase mb-1">Enzo<span class="opacity-40 font-light">Campers</span></a>
+            <p class="text-[9px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-10">Moje Enzo</p>
+
+            <nav class="space-y-1 flex-1">
+                <a href="dashboard.html" class="panel-sidebar-link active">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                    Przegląd
+                </a>
+                <a href="konfiguracja.html" class="panel-sidebar-link">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Konfiguracja
+                </a>
+                <a href="postep.html" class="panel-sidebar-link">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    Postęp prac
+                </a>
+                <a href="dokumenty.html" class="panel-sidebar-link">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Dokumenty i płatności
+                </a>
+                <a href="wiadomosci.html" class="panel-sidebar-link">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    Wiadomości
+                    <span class="ml-auto w-5 h-5 rounded-full bg-brand-brass text-white text-[9px] flex items-center justify-center font-bold">1</span>
+                </a>
+            </nav>
+
+            <div class="pt-6 border-t border-brand-ebony/8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-brand-linen flex items-center justify-center text-xs font-medium text-brand-ebony/70">AK</div>
+                    <div>
+                        <p class="text-sm font-medium">Anna Kowalska</p>
+                        <p class="text-[10px] text-brand-ebony/40 uppercase tracking-wider">ENZ-2026-003</p>
+                    </div>
+                </div>
+                <a href="login.html" class="text-[10px] uppercase tracking-widest text-brand-ebony/40 hover:text-brand-brass transition-colors">Wyloguj</a>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 min-w-0 pb-24 lg:pb-8">
+            <header class="px-4 md:px-8 lg:px-10 py-5 md:py-8 border-b border-brand-ebony/5 bg-white/40 backdrop-blur-sm sticky top-0 z-30">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-2 lg:hidden">Moje Enzo</p>
+                        <h1 class="font-display text-3xl md:text-4xl uppercase leading-tight">
+                            Cześć, <span class="font-serif italic lowercase">Anno</span>
+                        </h1>
+                        <p class="text-sm text-brand-ebony/50 font-light mt-1">Twój Enzo Original jest w budowie</p>
+                    </div>
+                    <div class="hidden sm:block text-right shrink-0">
+                        <p class="text-[10px] uppercase tracking-widest text-brand-ebony/40 mb-1">Opiekunowie</p>
+                        <p class="text-sm font-medium">Alex & Adrian</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="px-4 md:px-8 lg:px-10 py-8 space-y-6 fade-in">
+
+                <!-- Termin odbioru -->
+                <div class="panel-card overflow-hidden">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-6 md:p-8 flex flex-col justify-center">
+                            <span class="panel-badge panel-badge-active w-fit mb-4">Etap 4 z 6 — w toku</span>
+                            <h2 class="font-display text-2xl md:text-3xl uppercase mb-2">Planowany odbiór</h2>
+                            <p class="font-display text-4xl md:text-5xl text-brand-brass mb-3">15 września 2026</p>
+                            <p class="text-sm text-brand-ebony/55 font-light">105 dni do przekazania gotowego Enzo</p>
+                            <div class="mt-6 panel-step-track">
+                                <div class="panel-step-dot done"></div>
+                                <div class="panel-step-dot done"></div>
+                                <div class="panel-step-dot done"></div>
+                                <div class="panel-step-dot active"></div>
+                                <div class="panel-step-dot"></div>
+                                <div class="panel-step-dot"></div>
+                            </div>
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35 mt-3">Rezerwacja · Projekt · Baza · Zabudowa · Wykończenie · Odbiór</p>
+                        </div>
+                        <div class="relative aspect-[4/3] md:aspect-auto min-h-[200px]">
+                            <img src="../images/1000010154.jpg" alt="Postęp budowy Enzo" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-ebony/40 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <p class="text-white text-[10px] uppercase tracking-widest opacity-80">Ostatnie zdjęcie · 28 maja 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Aktualny etap -->
+                    <div class="panel-card p-6 md:col-span-1">
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-brand-ebony/40 mb-3">Teraz pracujemy nad</p>
+                        <h3 class="font-display text-xl uppercase mb-2">Stolarka i zabudowa</h3>
+                        <p class="text-sm text-brand-ebony/55 font-light leading-relaxed mb-4">Montaż szafek kuchennych i blatu dębowego. W tym tygodniu kończymy strefę dzienną.</p>
+                        <a href="postep.html" class="text-[10px] uppercase tracking-widest text-brand-brass font-bold hover:underline">Zobacz pełny postęp →</a>
+                    </div>
+
+                    <!-- Ostatnia wiadomość -->
+                    <div class="panel-card p-6 md:col-span-1">
+                        <div class="flex items-center justify-between mb-3">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-brand-ebony/40">Ostatnia wiadomość</p>
+                            <span class="panel-badge panel-badge-active">Nowa</span>
+                        </div>
+                        <p class="text-sm font-medium mb-1">Alex</p>
+                        <p class="text-sm text-brand-ebony/55 font-light leading-relaxed mb-4">„Dodaliśmy zdjęcia z montażu kuchni — blat dębowy wygląda dokładnie tak, jak ustaliliśmy na spotkaniu."</p>
+                        <a href="wiadomosci.html" class="text-[10px] uppercase tracking-widest text-brand-brass font-bold hover:underline">Odpowiedz →</a>
+                    </div>
+
+                    <!-- Płatność -->
+                    <div class="panel-card p-6 md:col-span-1">
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-brand-ebony/40 mb-3">Następna płatność</p>
+                        <h3 class="font-display text-xl uppercase mb-1">Transza 2</h3>
+                        <p class="text-2xl font-medium text-brand-brass mb-1">56 700 zł</p>
+                        <p class="text-xs text-brand-ebony/45 font-light mb-4">Termin: do 15 czerwca 2026 · przelew tradycyjny</p>
+                        <span class="panel-badge panel-badge-waiting">Oczekuje</span>
+                        <a href="dokumenty.html" class="block mt-4 text-[10px] uppercase tracking-widest text-brand-brass font-bold hover:underline">Dane do przelewu →</a>
+                    </div>
+                </div>
+
+                <!-- Szybki podgląd konfiguracji -->
+                <div class="panel-card p-6 md:p-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-brand-brass font-bold mb-2">Twoja konfiguracja</p>
+                            <h3 class="font-display text-2xl uppercase">Enzo Original · Luksusowe</h3>
+                        </div>
+                        <p class="text-sm text-brand-ebony/50">Wycena: <strong class="text-brand-ebony font-medium">232 470 zł brutto</strong></p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div><p class="text-brand-ebony/40 text-xs mb-1">Układ</p><p class="font-medium">Stałe łóżko + łazienka</p></div>
+                        <div><p class="text-brand-ebony/40 text-xs mb-1">Kuchnia</p><p class="font-medium">Pełna z lodówką</p></div>
+                        <div><p class="text-brand-ebony/40 text-xs mb-1">Elektryka</p><p class="font-medium">LiFePO4 400Ah</p></div>
+                        <div><p class="text-brand-ebony/40 text-xs mb-1">Panele</p><p class="font-medium">400W + MPPT</p></div>
+                    </div>
+                    <a href="konfiguracja.html" class="inline-block mt-6 text-[10px] uppercase tracking-widest text-brand-brass font-bold hover:underline">Pełna specyfikacja →</a>
+                </div>
+
+                <!-- Do akceptacji -->
+                <div class="panel-card p-6 border-brand-brass/30 bg-brand-linen/30">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="panel-badge panel-badge-waiting mb-3">Wymaga Twojej akceptacji</span>
+                            <h3 class="font-display text-xl uppercase">Wybór uchwytów — wariant B</h3>
+                            <p class="text-sm text-brand-ebony/55 font-light mt-1">Alex prosi o potwierdzenie złotych uchwytów w wersji matowej.</p>
+                        </div>
+                        <div class="flex gap-3 shrink-0">
+                            <button type="button" class="px-6 py-3 rounded-full border border-brand-ebony/15 text-[10px] uppercase tracking-widest font-medium hover:border-brand-brass transition-colors">Zobacz szczegóły</button>
+                            <button type="button" class="btn-shine px-6 py-3 rounded-full bg-brand-brass text-white text-[10px] uppercase tracking-widest font-bold hover:bg-brand-brass/85 transition-all">Akceptuję</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="panel-mobile-nav lg:hidden grid grid-cols-5">
+        <a href="dashboard.html" class="active">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z"/></svg>
+            Start
+        </a>
+        <a href="postep.html">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg>
+            Postęp
+        </a>
+        <a href="konfiguracja.html">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Config
+        </a>
+        <a href="dokumenty.html">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Docs
+        </a>
+        <a href="wiadomosci.html" class="relative">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            Czat
+            <span class="absolute top-0 right-2 w-2 h-2 bg-brand-brass rounded-full"></span>
+        </a>
+    </nav>
+</body>
+</html>
