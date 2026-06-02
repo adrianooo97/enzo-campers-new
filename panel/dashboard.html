@@ -76,18 +76,19 @@
 
         <!-- Main -->
         <main class="flex-1 min-w-0 pb-24 lg:pb-8">
-            <header class="px-4 md:px-8 lg:px-10 py-5 md:py-8 border-b border-brand-ebony/5 bg-white/40 backdrop-blur-sm sticky top-0 z-30">
+            <header class="px-4 md:px-8 lg:px-10 py-5 md:py-8 border-b border-brand-ebony/5 bg-white/70 backdrop-blur-sm sticky top-0 z-30">
                 <div class="flex items-start justify-between gap-4">
                     <div>
                         <p class="text-[10px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-2 lg:hidden">Moje Enzo</p>
                         <h1 class="font-display text-3xl md:text-4xl uppercase leading-tight">
                             Cześć, <span class="font-serif italic lowercase">Anno</span>
                         </h1>
-                        <p class="text-sm text-brand-ebony/50 font-light mt-1">Twój Enzo Original jest w budowie</p>
+                        <p class="text-sm text-brand-ebony/55 font-light mt-1">Twój Enzo Original jest budowany ręcznie w manufakturze Enzo</p>
                     </div>
-                    <div class="hidden sm:block text-right shrink-0">
+                    <div class="hidden sm:block text-right shrink-0 panel-card px-4 py-3">
                         <p class="text-[10px] uppercase tracking-widest text-brand-ebony/40 mb-1">Opiekunowie</p>
                         <p class="text-sm font-medium">Alex & Adrian</p>
+                        <p class="text-[11px] text-brand-ebony/45 font-light mt-1">odpowiedź zwykle w 2h</p>
                     </div>
                 </div>
             </header>
@@ -95,13 +96,13 @@
             <div class="px-4 md:px-8 lg:px-10 py-8 space-y-6 fade-in">
 
                 <!-- Termin odbioru -->
-                <div class="panel-card overflow-hidden">
+                <div class="panel-card overflow-hidden shadow-[0_12px_45px_rgba(61,58,54,0.08)]">
                     <div class="grid md:grid-cols-2">
                         <div class="p-6 md:p-8 flex flex-col justify-center">
                             <span class="panel-badge panel-badge-active w-fit mb-4">Etap 4 z 6 — w toku</span>
-                            <h2 class="font-display text-2xl md:text-3xl uppercase mb-2">Planowany odbiór</h2>
+                            <h2 class="font-display text-2xl md:text-3xl uppercase mb-2">Planowany odbiór Twojego Enzo</h2>
                             <p class="font-display text-4xl md:text-5xl text-brand-brass mb-3">15 września 2026</p>
-                            <p class="text-sm text-brand-ebony/55 font-light">105 dni do przekazania gotowego Enzo</p>
+                            <p class="text-sm text-brand-ebony/55 font-light">105 dni do przekazania gotowego campervana</p>
                             <div class="mt-6 panel-step-track">
                                 <div class="panel-step-dot done"></div>
                                 <div class="panel-step-dot done"></div>
@@ -111,6 +112,10 @@
                                 <div class="panel-step-dot"></div>
                             </div>
                             <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35 mt-3">Rezerwacja · Projekt · Baza · Zabudowa · Wykończenie · Odbiór</p>
+                            <div class="mt-7 flex flex-wrap gap-3">
+                                <a href="postep.html" class="btn-shine rounded-full bg-brand-brass text-white px-6 py-3 text-[10px] uppercase tracking-[0.25em] font-bold hover:bg-brand-brass/85 transition-all">Zobacz postęp</a>
+                                <a href="wiadomosci.html" class="rounded-full border border-brand-ebony/15 px-6 py-3 text-[10px] uppercase tracking-[0.25em] font-medium hover:border-brand-brass hover:text-brand-brass transition-all">Napisz do opiekuna</a>
+                            </div>
                         </div>
                         <div class="relative aspect-[4/3] md:aspect-auto min-h-[200px]">
                             <img src="../images/1000010154.jpg" alt="Postęp budowy Enzo" class="absolute inset-0 w-full h-full object-cover">
@@ -146,10 +151,31 @@
                     <div class="panel-card p-6 md:col-span-1">
                         <p class="text-[10px] uppercase tracking-[0.3em] text-brand-ebony/40 mb-3">Następna płatność</p>
                         <h3 class="font-display text-xl uppercase mb-1">Transza 2</h3>
-                        <p class="text-2xl font-medium text-brand-brass mb-1">56 700 zł</p>
+                        <p class="text-2xl font-medium text-brand-brass mb-1">69 741 zł</p>
                         <p class="text-xs text-brand-ebony/45 font-light mb-4">Termin: do 15 czerwca 2026 · przelew tradycyjny</p>
                         <span class="panel-badge panel-badge-waiting">Oczekuje</span>
                         <a href="dokumenty.html" class="block mt-4 text-[10px] uppercase tracking-widest text-brand-brass font-bold hover:underline">Dane do przelewu →</a>
+                    </div>
+                </div>
+
+                <!-- Concierge -->
+                <div class="panel-card p-6 md:p-8 bg-gradient-to-r from-white to-brand-linen/35 border-brand-brass/20">
+                    <div class="grid lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-8">
+                            <p class="text-[10px] uppercase tracking-[0.35em] text-brand-brass font-bold mb-3">Enzo Concierge</p>
+                            <h3 class="font-display text-2xl md:text-3xl uppercase leading-tight mb-2">
+                                Wszystkie ustalenia <span class="font-serif italic lowercase">prowadzimy za Ciebie</span>
+                            </h3>
+                            <p class="text-sm text-brand-ebony/55 font-light leading-relaxed">
+                                Chcesz zmienić detal, zapytać o etap lub potwierdzić termin? Napisz jedną wiadomość.
+                                Opiekunowie pilnują całego procesu od projektu po odbiór.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-4 flex lg:justify-end">
+                            <a href="wiadomosci.html" class="btn-shine w-full lg:w-auto text-center rounded-full bg-brand-brass text-white px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-brass/85 transition-all">
+                                Skontaktuj się teraz
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -182,6 +208,28 @@
                         <div class="flex gap-3 shrink-0">
                             <button type="button" class="px-6 py-3 rounded-full border border-brand-ebony/15 text-[10px] uppercase tracking-widest font-medium hover:border-brand-brass transition-colors">Zobacz szczegóły</button>
                             <button type="button" class="btn-shine px-6 py-3 rounded-full bg-brand-brass text-white text-[10px] uppercase tracking-widest font-bold hover:bg-brand-brass/85 transition-all">Akceptuję</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Następne kroki -->
+                <div class="panel-card p-6 md:p-8">
+                    <p class="text-[10px] uppercase tracking-[0.35em] text-brand-ebony/40 mb-4">Najbliższe kroki</p>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div class="rounded-xl border border-brand-ebony/10 p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35 mb-2">Dziś</p>
+                            <p class="font-medium mb-1">Akceptacja uchwytów</p>
+                            <p class="text-brand-ebony/55 font-light">Potwierdź wariant B, aby nie opóźniać montażu frontów.</p>
+                        </div>
+                        <div class="rounded-xl border border-brand-ebony/10 p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35 mb-2">Do 15 czerwca</p>
+                            <p class="font-medium mb-1">Transza 2 — przelew</p>
+                            <p class="text-brand-ebony/55 font-light">Kwota 69 741 zł, dane i tytuł przelewu w sekcji Dokumenty.</p>
+                        </div>
+                        <div class="rounded-xl border border-brand-ebony/10 p-4">
+                            <p class="text-[10px] uppercase tracking-widest text-brand-ebony/35 mb-2">W tym tygodniu</p>
+                            <p class="font-medium mb-1">Nowa galeria zdjęć</p>
+                            <p class="text-brand-ebony/55 font-light">Alex doda zdjęcia ukończonej strefy dziennej i kuchni.</p>
                         </div>
                     </div>
                 </div>
