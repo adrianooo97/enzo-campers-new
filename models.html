@@ -5,37 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modele Enzo - Porównanie i Specyfikacja</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        display: ['DM Serif Display', 'serif'],
                         serif: ['Cormorant Garamond', 'serif'],
                     },
                     colors: {
                         brand: {
-                            white: '#FFFFFF',
-                            ebony: '#1A1814',
-                            oak: '#CBA55A',
-                            walnut: '#3D3830',
-                            butter: '#E8D5A3',
-                            teal: '#3D9E90',
-                            brass: '#B8963E',
-                            stone: '#D9CEB8',
-                            ivory: '#F9F6F1',
-                            linen: '#EDE7DB',
-                            sage: '#8BA888',
-                            taupe: '#998B7B',
-                            cement: '#E5E0DA',
-                            blush: '#E8D5A3',
-                            peach: '#E8D5A3',
-                            lavender: '#D9CEB8',
-                            wood: '#3D3830',
-                            sand: '#D9CEB8',
-                            mist: '#E5E0DA'
+                            ebony: '#3D3A36',
+                            brass: '#C4A46B',
+                            ivory: '#FDFBF7',
+                            linen: '#F0E8DD',
+                            sage: '#B5C4B1',
+                            blush: '#E8CFC4',
+                            peach: '#F2D9C7',
+                            lavender: '#C9BDD4',
+                            wood: '#7A6B5A',
+                            sand: '#F5EDE3',
+                            mist: '#E2D8CC'
                         }
                     }
                 }
@@ -44,13 +36,13 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { background-color: #FFFFFF; color: #1A1814; }
+        body { background-color: #FDFBF7; color: #3D3A36; }
         .hero-gradient {
-            background: radial-gradient(circle at 50% 45%, #F9F6F1 0%, #EDE7DB 100%);
+            background: radial-gradient(circle at 50% 45%, #FDFBF7 0%, #F0E8DD 100%);
         }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F9F6F1; }
-        ::-webkit-scrollbar-thumb { background: #B8963E; border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: #FDFBF7; }
+        ::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
 
         /* FAQ Accordion Styles */
         .faq-content {
@@ -92,7 +84,7 @@
 
         .accordion-item.active .arrow-icon { transform: rotate(180deg); }
         
-        .check-mark { color: #B8963E; font-size: 1.2rem; }
+        .check-mark { color: #C4A46B; font-size: 1.2rem; }
         .cross-mark { color: #D1D1D1; font-size: 1.1rem; }
 
         @media (max-width: 768px) {
@@ -150,7 +142,7 @@
             left: 50%;
             width: 0;
             height: 1px;
-            background: #B8963E;
+            background: #C4A46B;
             transition: width 0.3s ease, left 0.3s ease;
         }
         .nav-link:hover::after {
