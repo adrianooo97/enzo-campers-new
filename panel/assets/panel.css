@@ -1,14 +1,14 @@
 html { scroll-behavior: smooth; }
 body {
-    background-color: #FDFBF7;
-    color: #3D3A36;
+    background-color: #F9F6F1;
+    color: #1A1814;
 }
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #FDFBF7; }
-::-webkit-scrollbar-thumb { background: #C4A46B; border-radius: 10px; }
+::-webkit-scrollbar-track { background: #F9F6F1; }
+::-webkit-scrollbar-thumb { background: #B8963E; border-radius: 10px; }
 
 .panel-prototype-banner {
-    background: linear-gradient(90deg, #3D3A36, #5a564f);
+    background: linear-gradient(90deg, #1A1814, #5a564f);
     color: rgba(253, 251, 247, 0.85);
     font-size: 10px;
     letter-spacing: 0.25em;
@@ -30,14 +30,14 @@ body {
 }
 .panel-sidebar-link:hover {
     background: rgba(240, 232, 221, 0.6);
-    color: #3D3A36;
+    color: #1A1814;
 }
 .panel-sidebar-link.active {
-    background: #F0E8DD;
-    color: #3D3A36;
+    background: #EDE7DB;
+    color: #1A1814;
 }
 .panel-sidebar-link.active svg {
-    color: #C4A46B;
+    color: #B8963E;
 }
 
 .panel-card {
@@ -76,9 +76,9 @@ body {
     background: rgba(61, 58, 54, 0.1);
     transition: background 0.3s;
 }
-.panel-step-dot.done { background: #C4A46B; }
+.panel-step-dot.done { background: #B8963E; }
 .panel-step-dot.active {
-    background: linear-gradient(90deg, #C4A46B 50%, rgba(61, 58, 54, 0.1) 50%);
+    background: linear-gradient(90deg, #B8963E 50%, rgba(61, 58, 54, 0.1) 50%);
     animation: stepPulse 2s ease-in-out infinite;
 }
 @keyframes stepPulse {
@@ -94,7 +94,7 @@ body {
     top: 0.5rem;
     bottom: 0.5rem;
     width: 2px;
-    background: linear-gradient(to bottom, #C4A46B, rgba(61, 58, 54, 0.08));
+    background: linear-gradient(to bottom, #B8963E, rgba(61, 58, 54, 0.08));
 }
 .panel-timeline-item { position: relative; padding-bottom: 2.5rem; }
 .panel-timeline-item:last-child { padding-bottom: 0; }
@@ -110,16 +110,16 @@ body {
     background: rgba(61, 58, 54, 0.12);
 }
 .panel-timeline-item.done .panel-timeline-dot {
-    background: #C4A46B;
-    box-shadow: 0 0 0 2px #C4A46B;
+    background: #B8963E;
+    box-shadow: 0 0 0 2px #B8963E;
 }
 .panel-timeline-item.active .panel-timeline-dot {
     background: white;
-    box-shadow: 0 0 0 2px #C4A46B;
+    box-shadow: 0 0 0 2px #B8963E;
     animation: dotPulse 2s ease-in-out infinite;
 }
 @keyframes dotPulse {
-    0%, 100% { box-shadow: 0 0 0 2px #C4A46B; }
+    0%, 100% { box-shadow: 0 0 0 2px #B8963E; }
     50% { box-shadow: 0 0 0 4px rgba(196, 164, 107, 0.35); }
 }
 
@@ -132,7 +132,7 @@ body {
     font-weight: 300;
 }
 .panel-message-in {
-    background: #F0E8DD;
+    background: #EDE7DB;
     border-bottom-left-radius: 0.25rem;
 }
 .panel-message-out {
@@ -164,7 +164,7 @@ body {
     text-transform: uppercase;
     color: rgba(61, 58, 54, 0.45);
 }
-.panel-mobile-nav a.active { color: #C4A46B; }
+.panel-mobile-nav a.active { color: #B8963E; }
 
 .btn-shine { position: relative; overflow: hidden; }
 .btn-shine::before {
@@ -178,7 +178,7 @@ body {
 .btn-shine:hover::before { left: 100%; }
 
 .login-gradient {
-    background: radial-gradient(ellipse 80% 60% at 50% 20%, #FDFBF7 0%, #F0E8DD 55%, #E2D8CC 100%);
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, #F9F6F1 0%, #EDE7DB 55%, #E5E0DA 100%);
 }
 
 .fade-in { animation: fadeIn 0.6s ease-out; }
