@@ -355,23 +355,62 @@
                 original: [
                     { id: 'original-a', name: 'Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A',
                       sleepingTitle: 'Łóżko stałe 190×125',
-                      sleepingDesc: 'Stałe łóżko z tyłu vana. Pod stelażem miejsce bagażowe. Sprawdzone rozwiązanie dla pary lub solo — bez konieczności rozkładania na noc.' },
+                      sleepingDesc: 'Stałe łóżko z tyłu vana. Pod stelażem miejsce bagażowe. Sprawdzone rozwiązanie dla pary lub solo — bez konieczności rozkładania na noc.',
+                      seats: {
+                          mode: 'choice',
+                          factory: {
+                              title: 'Oryginalne — 1 fotel + ławka (3 miejsca)',
+                              desc: 'Oryginalny fotel kierowcy plus ławka dla 2 pasażerów. Konfiguracja seryjna, 3 miejsca do jazdy.'
+                          },
+                          premium: {
+                              title: 'Premium — 2 fotele (2 miejsca)',
+                              desc: 'Wyjmujemy ławkę i wstawiamy fotel Premium. Fotel kierowcy + fotel pasażera z pięknym wykończeniem. 2 miejsca do jazdy.',
+                              price: 6000
+                          }
+                      } },
                     { id: 'original-b', name: 'Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B',
                       sleepingTitle: 'Rozsuwane łóżko 190×125 → 190×200',
-                      sleepingDesc: 'W dzień zwężone do 125 cm — więcej miejsca w środku vana. Na noc rozsuwane do 200 cm — szerokość king-size dla wygody snu we dwoje.' },
+                      sleepingDesc: 'W dzień zwężone do 125 cm — więcej miejsca w środku vana. Na noc rozsuwane do 200 cm — szerokość king-size dla wygody snu we dwoje.',
+                      seats: {
+                          mode: 'choice',
+                          factory: {
+                              title: 'Oryginalne — 1 fotel + ławka (3 miejsca)',
+                              desc: 'Oryginalny fotel kierowcy plus ławka dla 2 pasażerów. Konfiguracja seryjna, 3 miejsca do jazdy.'
+                          },
+                          premium: {
+                              title: 'Premium — 2 fotele (2 miejsca)',
+                              desc: 'Wyjmujemy ławkę i wstawiamy fotel Premium. Fotel kierowcy + fotel pasażera z pięknym wykończeniem. 2 miejsca do jazdy.',
+                              price: 6000
+                          }
+                      } },
                     { id: 'original-c', name: 'Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C',
                       sleepingTitle: 'Sofa-łóżko rozkładana',
-                      sleepingDesc: 'W dzień sofa z jadalnią, na noc rozkłada się w łóżko. Otwarta strefa dzienna dzięki przesuwnym drzwiczkom do szoferki.' }
+                      sleepingDesc: 'W dzień sofa z jadalnią, na noc rozkłada się w łóżko. Otwarta strefa dzienna dzięki przesuwnym drzwiczkom do szoferki.',
+                      seats: {
+                          mode: 'fixed',
+                          title: '2 fotele obracane (2 miejsca)',
+                          desc: 'Ze względu na przesuwne drzwiczki do szoferki — 2 fotele obracane z pięknym wykończeniem. Otwarta strefa dzienna, bez opcji ławki.'
+                      } }
                 ],
                 family: [
                     { id: 'family-a', name: 'Rodzinny', desc: 'Obracane fotele kabiny + 2 dodatkowe z pasami, sofa ze stolikiem → łóżko na noc, dachowy namiot z materacem — sypiają 4 osoby', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+Rodzinny',
                       sleepingTitle: 'Sofa-łóżko + dachowy namiot (4 osoby)',
-                      sleepingDesc: 'Wewnątrz: sofa ze stolikiem → łóżko dwuosobowe na noc. Na dachu: otwierany namiot z materacem dla 2 osób. Łącznie 4 miejsca do spania.' }
+                      sleepingDesc: 'Wewnątrz: sofa ze stolikiem → łóżko dwuosobowe na noc. Na dachu: otwierany namiot z materacem dla 2 osób. Łącznie 4 miejsca do spania.',
+                      seats: {
+                          mode: 'fixed',
+                          title: '2 obracane + 2 pasażerskie (4 miejsca)',
+                          desc: '2 fotele obracane w kabinie z pięknym wykończeniem + 2 dodatkowe fotele pasażerskie z pasami w części hotelowej. Łącznie 4 miejsca do jazdy.'
+                      } }
                 ],
                 mini: [
                     { id: 'mini-a', name: 'Kompakt', desc: 'Optymalny rozkład na krótszej bazie L2H2', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Mini+A',
                       sleepingTitle: 'Łóżko poprzeczne z tyłu',
-                      sleepingDesc: 'Kompaktowe łóżko poprzeczne z tyłu vana, zoptymalizowane pod krótszą bazę L2H2. Szczegółowa specyfikacja w opracowaniu.' }
+                      sleepingDesc: 'Kompaktowe łóżko poprzeczne z tyłu vana, zoptymalizowane pod krótszą bazę L2H2. Szczegółowa specyfikacja w opracowaniu.',
+                      seats: {
+                          mode: 'fixed',
+                          title: '2 fotele (2 miejsca)',
+                          desc: 'Ze względu na przejście z szoferki do części hotelowej — 2 fotele. Szczegółowa specyfikacja w opracowaniu.'
+                      } }
                 ]
             },
             finishes: [
@@ -401,11 +440,6 @@
                   ] },
                 { id: 'offroad', name: 'Terenowe', price: 15000, available: false, label: 'wkrótce',
                   features: ['Specyfikacja pakietu w opracowaniu'] }
-            ],
-            seats: [
-                { id: 'factory', name: 'Oryginalne fotele', price: 0, available: true, label: '(standard)' },
-                { id: 'swivel', name: 'Fotele obrotowe', price: 4500, available: true, label: '(+ 4 500 zł)' },
-                { id: 'captain', name: 'Fotele kapitańskie (Premium)', price: 9800, available: true, label: '(+ 9 800 zł)' }
             ],
             kitchens: [
                 { id: 'basic', name: 'Kuchnia Standard', price: 0, available: true, label: '(standard)' },
@@ -456,7 +490,7 @@
         };
 
         const luxuryPresets = {
-            seat: 'captain',
+            seat: 'premium',
             kitchen: 'full',
             electrical: 'lifepo400',
             solar: 'solar440',
@@ -624,10 +658,54 @@
                     <p class="text-sm text-brand-ebony/60 italic">Chcesz inny układ spania? Wróć do kroku 1 i wybierz inny układ wnętrza.</p>
                 `;
             } else if (currentStep === 4) {
+                const layouts4 = configData.layouts[selection.model] || [];
+                const activeLayout4 = layouts4.find(l => l.id === selection.layout);
+                const seats4 = activeLayout4 ? activeLayout4.seats : null;
+
+                let seatsContent = '';
+                let subtitle = 'Wybierz konfigurację foteli dla wybranego układu.';
+
+                if (!seats4) {
+                    seatsContent = '<p class="text-brand-ebony/60">Brak danych o fotelach dla tego układu.</p>';
+                } else if (seats4.mode === 'fixed') {
+                    subtitle = 'Konfiguracja foteli jest dobrana do wybranego układu.';
+                    seatsContent = `
+                        <div class="border border-brand-ebony/10 rounded-2xl bg-brand-linen/30 p-8 mb-6">
+                            <h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Układ ${activeLayout4.name}</h3>
+                            <h2 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-brand-ebony mb-4">${seats4.title}</h2>
+                            <p class="text-brand-ebony/70 font-light leading-relaxed">${seats4.desc}</p>
+                        </div>
+                        <p class="text-sm text-brand-ebony/60 italic">Chcesz inną konfigurację foteli? Wróć do kroku 1 i wybierz inny układ wnętrza.</p>
+                    `;
+                } else if (seats4.mode === 'choice') {
+                    const cards = ['factory', 'premium'].map(key => {
+                        const opt = seats4[key];
+                        const isActive = selection.seat === key;
+                        const isLuxury = selection.finish === 'luxury';
+                        let priceLabel;
+                        if (key === 'factory') {
+                            priceLabel = isLuxury ? '(- ' + formatPrice(seats4.premium.price) + ')' : '(w cenie)';
+                        } else {
+                            priceLabel = isLuxury ? '(w pakiecie Luksusowe)' : '+ ' + formatPrice(opt.price);
+                        }
+                        return `
+                            <div class="option-card border rounded-xl ${isActive ? 'border-brand-brass bg-brand-linen/50' : 'border-brand-ebony/15 hover:border-brand-brass'} cursor-pointer transition-all duration-200 p-6" onclick="selectOption('seat', '${key}')">
+                                <div class="flex items-start justify-between mb-3">
+                                    <h4 class="font-display text-lg uppercase tracking-wide">${opt.title}</h4>
+                                    <span class="text-xs ${isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${priceLabel}</span>
+                                </div>
+                                <p class="text-sm text-brand-ebony/70 font-light">${opt.desc}</p>
+                                ${isActive ? '<div class="mt-3 text-[10px] uppercase tracking-widest text-brand-brass font-bold">Wybrany</div>' : ''}
+                            </div>
+                        `;
+                    }).join('');
+                    seatsContent = `<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">${cards}</div>`;
+                }
+
                 content.innerHTML = `
-                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Fotele i tapicerka</h1>
-                    <p class="text-brand-ebony/60 mb-10">Wygoda podczas jazdy i postoju.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Fotele przednie</h3><div class="flex flex-wrap gap-4">${generateOptions('seat', configData.seats, selection.seat)}</div></div>
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Fotele</h1>
+                    <p class="text-brand-ebony/60 mb-10">${subtitle}</p>
+                    ${seatsContent}
                 `;
             } else if (currentStep === 5) {
                 content.innerHTML = `
@@ -727,7 +805,6 @@
         const renderSummary = () => {
             const activeModel = configData.models.find(m => m.id === selection.model);
             const activeFinish = configData.finishes.find(f => f.id === selection.finish);
-            const activeSeat = configData.seats.find(s => s.id === selection.seat) || { price: 0 };
             const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
             const activeElectrical = configData.electrical.find(e => e.id === selection.electrical) || { price: 0 };
             const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
@@ -736,17 +813,31 @@
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
 
-            const netto = activeModel.price + activeFinish.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
+            const netto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
             const brutto = netto * 1.23;
 
             const allLayouts = configData.layouts[selection.model] || [];
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
 
+            let seatsPrice = 0;
+            let seatsSummaryLabel = '-';
+            if (activeLayout && activeLayout.seats) {
+                if (activeLayout.seats.mode === 'fixed') {
+                    seatsSummaryLabel = activeLayout.seats.title;
+                } else if (activeLayout.seats.mode === 'choice') {
+                    const chosen = activeLayout.seats[selection.seat] || activeLayout.seats.factory;
+                    seatsSummaryLabel = chosen.title;
+                    if (selection.seat === 'premium') {
+                        seatsPrice = activeLayout.seats.premium.price;
+                    }
+                }
+            }
+
             document.getElementById('summary-model-name').textContent = activeModel.name;
             document.getElementById('summary-layout-name').textContent = activeLayout ? activeLayout.name : '-';
             document.getElementById('summary-finish-name').textContent = activeFinish.name;
             document.getElementById('summary-beds-type').textContent = activeLayout ? activeLayout.sleepingTitle : '-';
-            document.getElementById('summary-seats-type').textContent = activeSeat.name;
+            document.getElementById('summary-seats-type').textContent = seatsSummaryLabel;
             document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
             document.getElementById('summary-electrical-type').textContent = activeElectrical.name;
             document.getElementById('summary-solar-type').textContent = activeSolar.name;
