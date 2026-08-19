@@ -260,10 +260,6 @@
                         <span class="text-brand-ebony/60">Okna</span>
                         <span class="font-medium text-brand-ebony" id="summary-window-type">-</span>
                     </div>
-                    <div class="flex justify-between">
-                        <span class="text-brand-ebony/60">Rolety</span>
-                        <span class="font-medium text-brand-ebony" id="summary-blind-type">-</span>
-                    </div>
                 </div>
 
                 <div class="space-y-3 mb-8">
@@ -345,7 +341,8 @@
             { id: 5, name: 'Kuchnia' },
             { id: 6, name: 'Instalacje' },
             { id: 7, name: 'Łazienka' },
-            { id: 8, name: 'Okna' }
+            { id: 8, name: 'Okna' },
+            { id: 9, name: 'W cenie' }
         ];
 
         const configData = {
@@ -356,9 +353,9 @@
             ],
             layouts: {
                 original: [
-                    { id: 'original-a', name: 'Układ A — Klasyczny', desc: 'Łóżko stałe tył, kuchnia boczna, duża łazienka', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A' },
-                    { id: 'original-b', name: 'Układ B — Otwarty', desc: 'Łóżko podnoszone, przestronna strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B' },
-                    { id: 'original-c', name: 'Układ C — Biurowy', desc: 'Stałe biurko do pracy, łóżko składane', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C' }
+                    { id: 'original-a', name: 'Układ A — Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A' },
+                    { id: 'original-b', name: 'Układ B — Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B' },
+                    { id: 'original-c', name: 'Układ C — Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C' }
                 ],
                 family: [
                     { id: 'family-a', name: 'Układ A — Piętrowy', desc: 'Łóżka piętrowe z tyłu, dinette z przodu', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+A' },
@@ -417,14 +414,8 @@
                 { id: 'both', name: 'Wewnętrzny + zewnętrzny', price: 2800, available: true, label: '(+ 2 800 zł)' }
             ],
             windows: [
-                { id: 'standard', name: '3 okna boczne + 1 dachowe', price: 0, available: true, label: '(standard)' },
-                { id: 'extra', name: '5 okien bocznych + 1 dachowe', price: 4200, available: true, label: '(+ 4 200 zł)' },
-                { id: 'panorama', name: '5 okien bocznych + 2 dachowe panoramiczne', price: 8500, available: true, label: '(+ 8 500 zł)' }
-            ],
-            blinds: [
-                { id: 'basic', name: 'Rolety zaciemniające', price: 0, available: true, label: '(standard)' },
-                { id: 'blackout', name: 'Rolety blackout + moskitiery', price: 2400, available: true, label: '(+ 2 400 zł)' },
-                { id: 'electric', name: 'Rolety elektryczne + moskitiery', price: 5200, available: true, label: '(+ 5 200 zł)' }
+                { id: 'standard', name: 'Standardowy pakiet okien', price: 0, available: true, label: '(w cenie)' },
+                { id: 'rear-extra', name: 'Standard + para okien w drzwiach tylnych', price: 3500, available: true, label: '(+ 3 500 zł)' }
             ]
         };
 
@@ -441,8 +432,7 @@
             heating: 'diesel2',
             toilet: 'cassette',
             shower: 'indoor',
-            window: 'standard',
-            blind: 'basic'
+            window: 'standard'
         };
 
         const luxuryPresets = {
@@ -454,8 +444,7 @@
             heating: 'combi',
             toilet: 'compost',
             shower: 'both',
-            window: 'panorama',
-            blind: 'electric'
+            window: 'rear-extra'
         };
 
         const standardPresets = {
@@ -467,8 +456,7 @@
             heating: 'diesel2',
             toilet: 'cassette',
             shower: 'indoor',
-            window: 'standard',
-            blind: 'basic'
+            window: 'standard'
         };
 
         const applyPresets = (presets) => {
@@ -600,7 +588,7 @@
 
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Pakiet wykończeniowy</h1>
-                    <p class="text-brand-ebony/60 mb-10">Wybierz poziom materiałów i detali wykończenia.</p>
+                    <p class="text-brand-ebony/60 mb-10">Wybierz punkt wyjścia — w kolejnych krokach dopracujesz każdy element osobno.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">${finishCards}</div>
                 `;
             } else if (currentStep === 3) {
@@ -638,10 +626,35 @@
                 `;
             } else if (currentStep === 8) {
                 content.innerHTML = `
-                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Okna i rolety</h1>
-                    <p class="text-brand-ebony/60 mb-10">Światło, wentylacja i prywatność.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Przeszklenie</h3><div class="flex flex-wrap gap-4">${generateOptions('window', configData.windows, selection.window)}</div></div>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Rolety</h3><div class="flex flex-wrap gap-4">${generateOptions('blind', configData.blinds, selection.blind)}</div></div>
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Okna</h1>
+                    <p class="text-brand-ebony/60 mb-10">Wszystkie okna Polyblend z moskitierą i roletą w standardzie. Możesz dodać ekstra parę okien w drzwiach tylnych dla pełnej wentylacji krzyżowej.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Konfiguracja okien</h3><div class="flex flex-wrap gap-4">${generateOptions('window', configData.windows, selection.window)}</div></div>
+                `;
+            } else if (currentStep === 9) {
+                const included = [
+                    { title: 'Pełna izolacja termiczna i akustyczna', desc: 'Mata butylowa + kauczukowa 25 mm + Styrodur XPS na podłodze' },
+                    { title: 'Duże okno w drzwiach bocznych', desc: 'Polyblend 985×465 mm z moskitierą i roletą' },
+                    { title: 'Okno dachowe z LED', desc: 'Polyblend 700×500 mm z moskitierą, roletą i oświetleniem' },
+                    { title: 'Wentylator dachowy Plus Fan 4.0', desc: 'Cicha wentylacja mechaniczna sterowana z wnętrza' },
+                    { title: 'Wybrane wykończenie wnętrza', desc: 'Wg pakietu z kroku 2 — Standardowe lub Luksusowe' },
+                    { title: 'Instalacja elektryczna, ogrzewanie i kuchnia', desc: 'Wg konfiguracji z kroków 5–6' },
+                    { title: 'Łazienka — toaleta i prysznic', desc: 'Wg konfiguracji z kroku 7' },
+                    { title: 'Kompletny montaż i testy szczelności', desc: 'Odbiór z pełną dokumentacją i gwarancją producenta' }
+                ];
+                const cards = included.map(i => `
+                    <div class="p-5 border border-brand-ebony/10 rounded-xl bg-brand-linen/30 flex items-start gap-3">
+                        <svg class="w-5 h-5 text-brand-brass shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <div>
+                            <h4 class="font-medium text-brand-ebony mb-1">${i.title}</h4>
+                            <p class="text-sm text-brand-ebony/60 font-light">${i.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+                content.innerHTML = `
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">W cenie bazowej</h1>
+                    <p class="text-brand-ebony/60 mb-10">Nasze standardy to nie „podstawa" — to fundament, na którym budujesz kolejne warstwy komfortu.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">${cards}</div>
+                    <p class="text-sm text-brand-ebony/60 italic">Każda konfiguracja Enzo zawiera powyższe bez dopłat.</p>
                 `;
             }
 
@@ -697,9 +710,8 @@
             const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
-            const activeBlind = configData.blinds.find(b => b.id === selection.blind) || { price: 0 };
 
-            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price + activeBlind.price;
+            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
             const brutto = netto * 1.23;
 
             const allLayouts = configData.layouts[selection.model] || [];
@@ -717,7 +729,6 @@
             document.getElementById('summary-toilet-type').textContent = activeToilet.name;
             document.getElementById('summary-shower-type').textContent = activeShower.name;
             document.getElementById('summary-window-type').textContent = activeWindow.name;
-            document.getElementById('summary-blind-type').textContent = activeBlind.name;
             
             document.getElementById('summary-netto').textContent = formatPrice(netto);
             document.getElementById('summary-brutto').textContent = formatPrice(brutto);
