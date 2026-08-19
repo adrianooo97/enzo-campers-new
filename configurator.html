@@ -353,15 +353,25 @@
             ],
             layouts: {
                 original: [
-                    { id: 'original-a', name: 'Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A' },
-                    { id: 'original-b', name: 'Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B' },
-                    { id: 'original-c', name: 'Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C' }
+                    { id: 'original-a', name: 'Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A',
+                      sleepingTitle: 'Łóżko stałe 190×125',
+                      sleepingDesc: 'Stałe łóżko z tyłu vana. Pod stelażem miejsce bagażowe. Sprawdzone rozwiązanie dla pary lub solo — bez konieczności rozkładania na noc.' },
+                    { id: 'original-b', name: 'Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B',
+                      sleepingTitle: 'Rozsuwane łóżko 190×125 → 190×200',
+                      sleepingDesc: 'W dzień zwężone do 125 cm — więcej miejsca w środku vana. Na noc rozsuwane do 200 cm — szerokość king-size dla wygody snu we dwoje.' },
+                    { id: 'original-c', name: 'Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C',
+                      sleepingTitle: 'Sofa-łóżko rozkładana',
+                      sleepingDesc: 'W dzień sofa z jadalnią, na noc rozkłada się w łóżko. Otwarta strefa dzienna dzięki przesuwnym drzwiczkom do szoferki.' }
                 ],
                 family: [
-                    { id: 'family-a', name: 'Rodzinny', desc: 'Obracane fotele kabiny + 2 dodatkowe z pasami, sofa ze stolikiem → łóżko na noc, dachowy namiot z materacem — sypiają 4 osoby', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+Rodzinny' }
+                    { id: 'family-a', name: 'Rodzinny', desc: 'Obracane fotele kabiny + 2 dodatkowe z pasami, sofa ze stolikiem → łóżko na noc, dachowy namiot z materacem — sypiają 4 osoby', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+Rodzinny',
+                      sleepingTitle: 'Sofa-łóżko + dachowy namiot (4 osoby)',
+                      sleepingDesc: 'Wewnątrz: sofa ze stolikiem → łóżko dwuosobowe na noc. Na dachu: otwierany namiot z materacem dla 2 osób. Łącznie 4 miejsca do spania.' }
                 ],
                 mini: [
-                    { id: 'mini-a', name: 'Kompakt', desc: 'Optymalny rozkład na krótszej bazie L2H2', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Mini+A' }
+                    { id: 'mini-a', name: 'Kompakt', desc: 'Optymalny rozkład na krótszej bazie L2H2', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Mini+A',
+                      sleepingTitle: 'Łóżko poprzeczne z tyłu',
+                      sleepingDesc: 'Kompaktowe łóżko poprzeczne z tyłu vana, zoptymalizowane pod krótszą bazę L2H2. Szczegółowa specyfikacja w opracowaniu.' }
                 ]
             },
             finishes: [
@@ -391,11 +401,6 @@
                   ] },
                 { id: 'offroad', name: 'Terenowe', price: 15000, available: false, label: 'wkrótce',
                   features: ['Specyfikacja pakietu w opracowaniu'] }
-            ],
-            beds: [
-                { id: 'fixed', name: 'Łóżko stałe tył', price: 0, available: true, label: '(standard)' },
-                { id: 'lift', name: 'Łóżko opuszczane elektrycznie', price: 12500, available: true, label: '(+ 12 500 zł)' },
-                { id: 'bunk', name: 'Łóżka piętrowe', price: 8000, available: true, label: '(+ 8 000 zł)' }
             ],
             seats: [
                 { id: 'factory', name: 'Oryginalne fotele', price: 0, available: true, label: '(standard)' },
@@ -440,7 +445,6 @@
             model: 'original',
             layout: 'original-a',
             finish: 'standard',
-            bed: 'fixed',
             seat: 'factory',
             kitchen: 'basic',
             electrical: 'lifepo200',
@@ -452,7 +456,6 @@
         };
 
         const luxuryPresets = {
-            bed: 'lift',
             seat: 'captain',
             kitchen: 'full',
             electrical: 'lifepo400',
@@ -464,7 +467,6 @@
         };
 
         const standardPresets = {
-            bed: 'fixed',
             seat: 'factory',
             kitchen: 'basic',
             electrical: 'lifepo200',
@@ -609,10 +611,17 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">${finishCards}</div>
                 `;
             } else if (currentStep === 3) {
+                const layouts3 = configData.layouts[selection.model] || [];
+                const activeLayout3 = layouts3.find(l => l.id === selection.layout);
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Konfiguracja sypialni</h1>
-                    <p class="text-brand-ebony/60 mb-10">Dostosuj sposób spania do swoich potrzeb.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Rodzaj łóżka</h3><div class="flex flex-wrap gap-4">${generateOptions('bed', configData.beds, selection.bed)}</div></div>
+                    <p class="text-brand-ebony/60 mb-10">Sposób spania jest częścią wybranego układu wnętrza — dobrany tak, żeby najlepiej wykorzystać przestrzeń.</p>
+                    <div class="border border-brand-ebony/10 rounded-2xl bg-brand-linen/30 p-8 mb-6">
+                        <h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Układ ${activeLayout3 ? activeLayout3.name : ''}</h3>
+                        <h2 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-brand-ebony mb-4">${activeLayout3 ? activeLayout3.sleepingTitle : '-'}</h2>
+                        <p class="text-brand-ebony/70 font-light leading-relaxed">${activeLayout3 ? activeLayout3.sleepingDesc : ''}</p>
+                    </div>
+                    <p class="text-sm text-brand-ebony/60 italic">Chcesz inny układ spania? Wróć do kroku 1 i wybierz inny układ wnętrza.</p>
                 `;
             } else if (currentStep === 4) {
                 content.innerHTML = `
@@ -718,7 +727,6 @@
         const renderSummary = () => {
             const activeModel = configData.models.find(m => m.id === selection.model);
             const activeFinish = configData.finishes.find(f => f.id === selection.finish);
-            const activeBed = configData.beds.find(b => b.id === selection.bed) || { price: 0 };
             const activeSeat = configData.seats.find(s => s.id === selection.seat) || { price: 0 };
             const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
             const activeElectrical = configData.electrical.find(e => e.id === selection.electrical) || { price: 0 };
@@ -728,7 +736,7 @@
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
 
-            const netto = activeModel.price + activeFinish.price + activeBed.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
+            const netto = activeModel.price + activeFinish.price + activeSeat.price + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
             const brutto = netto * 1.23;
 
             const allLayouts = configData.layouts[selection.model] || [];
@@ -737,7 +745,7 @@
             document.getElementById('summary-model-name').textContent = activeModel.name;
             document.getElementById('summary-layout-name').textContent = activeLayout ? activeLayout.name : '-';
             document.getElementById('summary-finish-name').textContent = activeFinish.name;
-            document.getElementById('summary-beds-type').textContent = activeBed.name;
+            document.getElementById('summary-beds-type').textContent = activeLayout ? activeLayout.sleepingTitle : '-';
             document.getElementById('summary-seats-type').textContent = activeSeat.name;
             document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
             document.getElementById('summary-electrical-type').textContent = activeElectrical.name;
