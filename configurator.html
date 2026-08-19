@@ -366,11 +366,31 @@
             },
             finishes: [
                 { id: 'standard', name: 'Standardowe', price: 0, available: true, label: '(w cenie)',
-                  features: ['Drewno sosnowe olejowane', 'Tapicerka tkaninowa', 'Blat laminowany', 'Oświetlenie LED ciepłe', 'Podłoga winylowa'] },
+                  features: [
+                      'Blat laminowany HPL — wzór biały marmur',
+                      'Złoty kran i zlew',
+                      'Łazienka malowana biało + ściana główna z płyty MODEE',
+                      'LiFePO4 200Ah + Multiplus 1600W',
+                      'MPPT 30 + Orion XS 50A + Smart Shunt',
+                      'Panele solarne 220W',
+                      'Ogrzewanie Autoterm Air 2D + Comfort Control',
+                      'Bojler gazowy Truma BGF 10',
+                      'Wskaźniki wody Votronic (czysta + brudna)'
+                  ] },
                 { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)',
-                  features: ['Drewno dębowe szczotkowane', 'Tapicerka skóra naturalna', 'Blat z kamienia kompozytowego', 'Oświetlenie LED z dimmerem', 'Podłoga dębowa', 'Detale mosiężne', 'Lustra powiększające'] },
+                  features: [
+                      'Blat Slim Line Carrara K551 (Kronospan)',
+                      'Złoty podwieszany kran i zlew',
+                      'Łazienka w mikrocemencie + ściana główna z płyty MODEE',
+                      'LiFePO4 400Ah + Multiplus 3000W',
+                      'MPPT 50 + Orion XS 50A + Victron Lynx Distributor',
+                      'Panele solarne 440W',
+                      'Truma Combi D4 (grzanie + ciepła woda)',
+                      'Monitoring Victron Cerbo GX + GX Touch 50',
+                      'Wskaźniki wody Votronic (czysta + brudna)'
+                  ] },
                 { id: 'offroad', name: 'Terenowe', price: 15000, available: false, label: 'wkrótce',
-                  features: ['Drewno sosnowe olejowane', 'Tapicerka wodoodporna Cordura', 'Blat odporny na uderzenia', 'Oświetlenie LED ciepłe', 'Podłoga antypoślizgowa', 'Wzmocnione zawiasy i zamki', 'Zabezpieczenie antykorozyjne'] }
+                  features: ['Specyfikacja pakietu w opracowaniu'] }
             ],
             beds: [
                 { id: 'fixed', name: 'Łóżko stałe tył', price: 0, available: true, label: '(standard)' },
@@ -388,19 +408,16 @@
                 { id: 'outside', name: 'Wysuwana kuchnia zewnętrzna', price: 5400, available: true, label: '(+ 5 400 zł)' }
             ],
             electrical: [
-                { id: 'agm100', name: 'AGM 100Ah + ładowarka', price: 0, available: true, label: '(standard)' },
-                { id: 'lifepo200', name: 'LiFePO4 200Ah + MPPT', price: 8500, available: true, label: '(+ 8 500 zł)' },
-                { id: 'lifepo400', name: 'LiFePO4 400Ah + falownik 3000W', price: 18000, available: true, label: '(+ 18 000 zł)' }
+                { id: 'lifepo200', name: 'LiFePO4 200Ah + Multiplus 1600W + MPPT 30', price: 0, available: true, label: '(w cenie)' },
+                { id: 'lifepo400', name: 'LiFePO4 400Ah + Multiplus wysokiej mocy + MPPT 50 + Cerbo GX', price: 12000, available: true, label: '(+ 12 000 zł)' }
             ],
             solar: [
-                { id: 'none', name: 'Brak paneli', price: 0, available: true, label: '(standard)' },
-                { id: 'solar200', name: 'Panel 200W na dachu', price: 3200, available: true, label: '(+ 3 200 zł)' },
-                { id: 'solar400', name: '2x Panel 200W na dachu', price: 5800, available: true, label: '(+ 5 800 zł)' }
+                { id: 'solar220', name: 'Panele solarne 220W', price: 0, available: true, label: '(w cenie)' },
+                { id: 'solar440', name: 'Panele solarne 440W', price: 3000, available: true, label: '(+ 3 000 zł)' }
             ],
             heating: [
-                { id: 'diesel2', name: 'Webasto 2kW', price: 0, available: true, label: '(standard)' },
-                { id: 'diesel4', name: 'Webasto 4kW', price: 3500, available: true, label: '(+ 3 500 zł)' },
-                { id: 'combi', name: 'Webasto Combi (ogrzewanie + ciepła woda)', price: 7200, available: true, label: '(+ 7 200 zł)' }
+                { id: 'autoterm', name: 'Autoterm Air 2D + Comfort Control + bojler Truma BGF 10', price: 0, available: true, label: '(w cenie)' },
+                { id: 'combi', name: 'Truma Combi D4 (grzanie + ciepła woda)', price: 5000, available: true, label: '(+ 5 000 zł)' }
             ],
             toilets: [
                 { id: 'cassette', name: 'Toaleta kasetowa', price: 0, available: true, label: '(standard)' },
@@ -426,9 +443,9 @@
             bed: 'fixed',
             seat: 'factory',
             kitchen: 'basic',
-            electrical: 'agm100',
-            solar: 'none',
-            heating: 'diesel2',
+            electrical: 'lifepo200',
+            solar: 'solar220',
+            heating: 'autoterm',
             toilet: 'cassette',
             shower: 'indoor',
             window: 'standard'
@@ -439,7 +456,7 @@
             seat: 'captain',
             kitchen: 'full',
             electrical: 'lifepo400',
-            solar: 'solar400',
+            solar: 'solar440',
             heating: 'combi',
             toilet: 'compost',
             shower: 'both',
@@ -450,9 +467,9 @@
             bed: 'fixed',
             seat: 'factory',
             kitchen: 'basic',
-            electrical: 'agm100',
-            solar: 'none',
-            heating: 'diesel2',
+            electrical: 'lifepo200',
+            solar: 'solar220',
+            heating: 'autoterm',
             toilet: 'cassette',
             shower: 'indoor',
             window: 'standard'
