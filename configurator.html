@@ -212,51 +212,51 @@
                 <h2 class="text-3xl font-display uppercase mb-6">Twoja konfiguracja</h2>
                 
                 <div class="space-y-4 text-sm mb-6 border-b border-brand-ebony/10 pb-6">
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-model">
                         <span class="text-brand-ebony/60">Model</span>
                         <span class="font-medium text-brand-ebony" id="summary-model-name">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-layout">
                         <span class="text-brand-ebony/60">Układ</span>
                         <span class="font-medium text-brand-ebony" id="summary-layout-name">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-finish">
                         <span class="text-brand-ebony/60">Wykończenie</span>
                         <span class="font-medium text-brand-ebony" id="summary-finish-name">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-bed">
                         <span class="text-brand-ebony/60">Spanie</span>
                         <span class="font-medium text-brand-ebony" id="summary-beds-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-seat">
                         <span class="text-brand-ebony/60">Fotele</span>
                         <span class="font-medium text-brand-ebony" id="summary-seats-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-kitchen">
                         <span class="text-brand-ebony/60">Kuchnia</span>
                         <span class="font-medium text-brand-ebony" id="summary-kitchen-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-electrical">
                         <span class="text-brand-ebony/60">Elektryka</span>
                         <span class="font-medium text-brand-ebony" id="summary-electrical-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-solar">
                         <span class="text-brand-ebony/60">Solar</span>
                         <span class="font-medium text-brand-ebony" id="summary-solar-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-heating">
                         <span class="text-brand-ebony/60">Ogrzewanie</span>
                         <span class="font-medium text-brand-ebony" id="summary-heating-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-toilet">
                         <span class="text-brand-ebony/60">Toaleta</span>
                         <span class="font-medium text-brand-ebony" id="summary-toilet-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-shower">
                         <span class="text-brand-ebony/60">Prysznic</span>
                         <span class="font-medium text-brand-ebony" id="summary-shower-type">-</span>
                     </div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between" id="summary-row-window">
                         <span class="text-brand-ebony/60">Okna</span>
                         <span class="font-medium text-brand-ebony" id="summary-window-type">-</span>
                     </div>
@@ -348,21 +348,20 @@
         const configData = {
             models: [
                 { id: 'mini', name: 'Enzo Mini', price: 139000, available: true, desc: 'Kompaktowy — miasto + weekendowe wypady' },
-                { id: 'original', name: 'Enzo Original', price: 189000, available: true, desc: 'Nasz oryginał — dla par i solo podróżników' },
-                { id: 'family', name: 'Enzo Family', price: 245000, available: true, desc: 'Przestrzeń dla rodziny z dziećmi' }
+                { id: 'original', name: 'Enzo Original', price: 142276, available: true, desc: 'Nasz oryginał — dla par i solo podróżników' },
+                { id: 'family', name: 'Enzo Family', price: 245000, available: false, desc: 'Przestrzeń dla rodziny lub grupy — nocleg dla 4 osób' }
             ],
             layouts: {
                 original: [
-                    { id: 'original-a', name: 'Układ A — Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A' },
-                    { id: 'original-b', name: 'Układ B — Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B' },
-                    { id: 'original-c', name: 'Układ C — Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C' }
+                    { id: 'original-a', name: 'Klasyczny', desc: 'Łóżko stałe, dodatkowe okno boczne — sprawdzone rozwiązanie dla par i solo podróżników', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+A' },
+                    { id: 'original-b', name: 'Komfortowy', desc: 'Rozsuwane łóżko 190×125 → 190×200 — szerokość king-size dla wygody snu we dwoje', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+B' },
+                    { id: 'original-c', name: 'Salonowy', desc: 'Rozkładana sofa z przesuwnymi drzwiczkami do szoferki — otwarta strefa dzienna', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Original+C' }
                 ],
                 family: [
-                    { id: 'family-a', name: 'Układ A — Piętrowy', desc: 'Łóżka piętrowe z tyłu, dinette z przodu', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+A' },
-                    { id: 'family-b', name: 'Układ B — Alkowa', desc: 'Łóżko rodziców na dole, łóżko dzieci na górze', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+B' }
+                    { id: 'family-a', name: 'Rodzinny', desc: 'Obracane fotele kabiny + 2 dodatkowe z pasami, sofa ze stolikiem → łóżko na noc, dachowy namiot z materacem — sypiają 4 osoby', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Family+Rodzinny' }
                 ],
                 mini: [
-                    { id: 'mini-a', name: 'Układ A — Kompakt', desc: 'Optymalny rozkład na krótszej bazie L2H2', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Mini+A' }
+                    { id: 'mini-a', name: 'Kompakt', desc: 'Optymalny rozkład na krótszej bazie L2H2', img: 'https://placehold.co/600x400/F5EDE3/3D3A36?text=Mini+A' }
                 ]
             },
             finishes: [
@@ -516,11 +515,12 @@
                 // Model cards
                 const modelCards = configData.models.map(m => {
                     const isActive = selection.model === m.id;
+                    const isDisabled = !m.available;
                     return `
-                        <div class="option-card border rounded-xl ${isActive ? 'border-brand-brass bg-brand-linen/50' : 'border-brand-ebony/15 hover:border-brand-brass'} p-6 cursor-pointer transition-all duration-200" onclick="selectOption('model', '${m.id}')">
+                        <div class="option-card border rounded-xl ${isDisabled ? 'border-brand-ebony/10 opacity-50 cursor-not-allowed' : isActive ? 'border-brand-brass bg-brand-linen/50 cursor-pointer' : 'border-brand-ebony/15 hover:border-brand-brass cursor-pointer'} p-6 transition-all duration-200" ${isDisabled ? '' : `onclick="selectOption('model', '${m.id}')"`}>
                             <div class="flex items-start justify-between mb-2">
                                 <h4 class="font-display text-xl uppercase tracking-wide">${m.name}</h4>
-                                <span class="text-xs ${isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">od ${formatPrice(m.price)}</span>
+                                <span class="text-xs ${isDisabled ? 'text-brand-ebony/40 italic' : isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">${isDisabled ? 'wkrótce' : 'od ' + formatPrice(m.price)}</span>
                             </div>
                             <p class="text-sm text-brand-ebony/60 font-light">${m.desc}</p>
                         </div>
@@ -718,7 +718,7 @@
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
-            document.getElementById('summary-layout-name').textContent = activeLayout ? activeLayout.name.replace(/^Układ [A-Z] — /, '') : '-';
+            document.getElementById('summary-layout-name').textContent = activeLayout ? activeLayout.name : '-';
             document.getElementById('summary-finish-name').textContent = activeFinish.name;
             document.getElementById('summary-beds-type').textContent = activeBed.name;
             document.getElementById('summary-seats-type').textContent = activeSeat.name;
@@ -729,7 +729,26 @@
             document.getElementById('summary-toilet-type').textContent = activeToilet.name;
             document.getElementById('summary-shower-type').textContent = activeShower.name;
             document.getElementById('summary-window-type').textContent = activeWindow.name;
-            
+
+            const rowSteps = {
+                'summary-row-model': 1,
+                'summary-row-layout': 1,
+                'summary-row-finish': 2,
+                'summary-row-bed': 3,
+                'summary-row-seat': 4,
+                'summary-row-kitchen': 5,
+                'summary-row-electrical': 6,
+                'summary-row-solar': 6,
+                'summary-row-heating': 6,
+                'summary-row-toilet': 7,
+                'summary-row-shower': 7,
+                'summary-row-window': 8
+            };
+            Object.entries(rowSteps).forEach(([id, minStep]) => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = currentStep >= minStep ? 'flex' : 'none';
+            });
+
             document.getElementById('summary-netto').textContent = formatPrice(netto);
             document.getElementById('summary-brutto').textContent = formatPrice(brutto);
             const mobileB = document.getElementById('mobile-brutto');
