@@ -335,14 +335,14 @@
     <script>
         const steps = [
             { id: 1, name: 'Model' },
-            { id: 2, name: 'Wykończenie' },
-            { id: 3, name: 'Spanie' },
-            { id: 4, name: 'Fotele' },
-            { id: 5, name: 'Kuchnia' },
-            { id: 6, name: 'Instalacje' },
-            { id: 7, name: 'Łazienka' },
-            { id: 8, name: 'Okna' },
-            { id: 9, name: 'W cenie' }
+            { id: 2, name: 'W cenie' },
+            { id: 3, name: 'Wykończenie' },
+            { id: 4, name: 'Spanie' },
+            { id: 5, name: 'Fotele' },
+            { id: 6, name: 'Kuchnia' },
+            { id: 7, name: 'Instalacje' },
+            { id: 8, name: 'Łazienka' },
+            { id: 9, name: 'Okna' }
         ];
 
         const configData = {
@@ -613,7 +613,7 @@
                         <div class="grid grid-cols-1 ${layoutColClass} gap-5">${layoutCards}</div>
                     </div>
                 `;
-            } else if (currentStep === 2) {
+            } else if (currentStep === 3) {
                 // Finish cards with comparison
                 const finishCards = configData.finishes.map(f => {
                     const isActive = selection.finish === f.id;
@@ -644,7 +644,7 @@
                     <p class="text-brand-ebony/60 mb-10">Wybierz punkt wyjścia — w kolejnych krokach dopracujesz każdy element osobno.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">${finishCards}</div>
                 `;
-            } else if (currentStep === 3) {
+            } else if (currentStep === 4) {
                 const layouts3 = configData.layouts[selection.model] || [];
                 const activeLayout3 = layouts3.find(l => l.id === selection.layout);
                 content.innerHTML = `
@@ -657,7 +657,7 @@
                     </div>
                     <p class="text-sm text-brand-ebony/60 italic">Chcesz inny układ spania? Wróć do kroku 1 i wybierz inny układ wnętrza.</p>
                 `;
-            } else if (currentStep === 4) {
+            } else if (currentStep === 5) {
                 const layouts4 = configData.layouts[selection.model] || [];
                 const activeLayout4 = layouts4.find(l => l.id === selection.layout);
                 const seats4 = activeLayout4 ? activeLayout4.seats : null;
@@ -707,13 +707,13 @@
                     <p class="text-brand-ebony/60 mb-10">${subtitle}</p>
                     ${seatsContent}
                 `;
-            } else if (currentStep === 5) {
+            } else if (currentStep === 6) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Wyposażenie kuchni</h1>
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wariant kuchni</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
                 `;
-            } else if (currentStep === 6) {
+            } else if (currentStep === 7) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Instalacje</h1>
                     <p class="text-brand-ebony/60 mb-10">Elektryka, panele solarne i ogrzewanie.</p>
@@ -721,20 +721,20 @@
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="flex flex-wrap gap-4">${generateOptions('solar', configData.solar, selection.solar)}</div></div>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie</h3><div class="flex flex-wrap gap-4">${generateOptions('heating', configData.heating, selection.heating)}</div></div>
                 `;
-            } else if (currentStep === 7) {
+            } else if (currentStep === 8) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Toaleta i prysznic</h1>
                     <p class="text-brand-ebony/60 mb-10">Komfort higieny w trasie.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Toaleta</h3><div class="flex flex-wrap gap-4">${generateOptions('toilet', configData.toilets, selection.toilet)}</div></div>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="flex flex-wrap gap-4">${generateOptions('shower', configData.showers, selection.shower)}</div></div>
                 `;
-            } else if (currentStep === 8) {
+            } else if (currentStep === 9) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Okna</h1>
                     <p class="text-brand-ebony/60 mb-10">Wszystkie okna Polyblend z moskitierą i roletą w standardzie. Możesz dodać ekstra parę okien w drzwiach tylnych dla pełnej wentylacji krzyżowej.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Konfiguracja okien</h3><div class="flex flex-wrap gap-4">${generateOptions('window', configData.windows, selection.window)}</div></div>
                 `;
-            } else if (currentStep === 9) {
+            } else if (currentStep === 2) {
                 const included = [
                     { title: 'Pełna izolacja termiczna i akustyczna', desc: 'Mata butylowa + kauczukowa 25 mm + Styrodur XPS na podłodze' },
                     { title: 'Duże okno w drzwiach bocznych', desc: 'Polyblend 985×465 mm z moskitierą i roletą' },
@@ -849,16 +849,16 @@
             const rowSteps = {
                 'summary-row-model': 1,
                 'summary-row-layout': 1,
-                'summary-row-finish': 2,
-                'summary-row-bed': 3,
-                'summary-row-seat': 4,
-                'summary-row-kitchen': 5,
-                'summary-row-electrical': 6,
-                'summary-row-solar': 6,
-                'summary-row-heating': 6,
-                'summary-row-toilet': 7,
-                'summary-row-shower': 7,
-                'summary-row-window': 8
+                'summary-row-finish': 3,
+                'summary-row-bed': 4,
+                'summary-row-seat': 5,
+                'summary-row-kitchen': 6,
+                'summary-row-electrical': 7,
+                'summary-row-solar': 7,
+                'summary-row-heating': 7,
+                'summary-row-toilet': 8,
+                'summary-row-shower': 8,
+                'summary-row-window': 9
             };
             Object.entries(rowSteps).forEach(([id, minStep]) => {
                 const el = document.getElementById(id);
