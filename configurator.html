@@ -233,8 +233,12 @@
                         <span class="font-medium text-brand-ebony" id="summary-seats-type">-</span>
                     </div>
                     <div class="flex justify-between" id="summary-row-kitchen">
-                        <span class="text-brand-ebony/60">Kuchnia</span>
+                        <span class="text-brand-ebony/60">Płyta</span>
                         <span class="font-medium text-brand-ebony" id="summary-kitchen-type">-</span>
+                    </div>
+                    <div class="flex justify-between" id="summary-row-oven">
+                        <span class="text-brand-ebony/60">Piekarnik</span>
+                        <span class="font-medium text-brand-ebony" id="summary-oven-type">-</span>
                     </div>
                     <div class="flex justify-between" id="summary-row-electrical">
                         <span class="text-brand-ebony/60">Elektryka</span>
@@ -424,6 +428,7 @@
                       'Panele solarne 220W',
                       'Ogrzewanie Autoterm Air 2D + Comfort Control',
                       'Bojler gazowy Truma BGF 10',
+                      'Płyta gazowa Thetford Topline 922',
                       'Wskaźniki wody Votronic (czysta + brudna)'
                   ] },
                 { id: 'luxury', name: 'Luksusowe', price: 35000, available: true, label: '(+ 35 000 zł)',
@@ -435,16 +440,20 @@
                       'MPPT 50 + Orion XS 50A + Victron Lynx Distributor',
                       'Panele solarne 440W',
                       'Truma Combi D4 (grzanie + ciepła woda)',
-                      'Monitoring Victron Cerbo GX + GX Touch 50',
-                      'Wskaźniki wody Votronic (czysta + brudna)'
+                      'Płyta gazowa pod szkłem Dynaxo DynaCook X2 mini',
+                      'Piekarnik Thetford Duplex',
+                      'Monitoring Victron Cerbo GX + GX Touch 50 (baterie, panele, poziomy wody)'
                   ] },
                 { id: 'offroad', name: 'Terenowe', price: 15000, available: false, label: 'wkrótce',
                   features: ['Specyfikacja pakietu w opracowaniu'] }
             ],
             kitchens: [
-                { id: 'basic', name: 'Kuchnia Standard', price: 0, available: true, label: '(standard)' },
-                { id: 'full', name: 'Kuchnia Pełnowymiarowa (Piekarnik)', price: 7200, available: true, label: '(+ 7 200 zł)' },
-                { id: 'outside', name: 'Wysuwana kuchnia zewnętrzna', price: 5400, available: true, label: '(+ 5 400 zł)' }
+                { id: 'thetford', name: 'Płyta gazowa Thetford Topline 922', price: 0, available: true, label: '(w cenie)' },
+                { id: 'dynacook', name: 'Płyta gazowa pod szkłem Dynaxo DynaCook X2 mini', price: 2500, available: true, label: '(+ 2 500 zł)' }
+            ],
+            ovens: [
+                { id: 'none', name: 'Bez piekarnika', price: 0, available: true, label: '(w cenie)' },
+                { id: 'thetford_duplex', name: 'Piekarnik Thetford Duplex', price: 2500, available: true, label: '(+ 2 500 zł)' }
             ],
             electrical: [
                 { id: 'lifepo200', name: 'LiFePO4 200Ah + Multiplus 1600W + MPPT 30', price: 0, available: true, label: '(w cenie)' },
@@ -480,7 +489,8 @@
             layout: 'original-a',
             finish: 'standard',
             seat: 'factory',
-            kitchen: 'basic',
+            kitchen: 'thetford',
+            oven: 'none',
             electrical: 'lifepo200',
             solar: 'solar220',
             heating: 'autoterm',
@@ -491,7 +501,8 @@
 
         const luxuryPresets = {
             seat: 'premium',
-            kitchen: 'full',
+            kitchen: 'dynacook',
+            oven: 'thetford_duplex',
             electrical: 'lifepo400',
             solar: 'solar440',
             heating: 'combi',
@@ -502,7 +513,8 @@
 
         const standardPresets = {
             seat: 'factory',
-            kitchen: 'basic',
+            kitchen: 'thetford',
+            oven: 'none',
             electrical: 'lifepo200',
             solar: 'solar220',
             heating: 'autoterm',
@@ -711,7 +723,8 @@
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Wyposażenie kuchni</h1>
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wariant kuchni</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Płyta gazowa</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Piekarnik</h3><div class="flex flex-wrap gap-4">${generateOptions('oven', configData.ovens, selection.oven)}</div></div>
                 `;
             } else if (currentStep === 7) {
                 content.innerHTML = `
@@ -741,7 +754,7 @@
                     { title: 'Okno dachowe', desc: 'Dodatkowe światło i naturalna wentylacja z góry. Polyblend 700×500 z moskitierą i roletą.' },
                     { title: 'Wentylator dachowy Plus Fan 4.0', desc: 'Cicha wymiana powietrza także przy zamkniętych oknach.' },
                     { title: 'Wybrane wykończenie wnętrza', desc: 'Pełne wykończenie wnętrza. Fronty, kolory, blat i tkaniny siedzisk dobierasz w kroku Wykończenie.' },
-                    { title: 'Instalacja elektryczna, ogrzewanie i kuchnia', desc: 'Pełne systemy elektryki, ogrzewania i kuchni. Konfigurację wybierasz w kolejnych krokach.' },
+                    { title: 'Instalacja elektryczna, wodna, gazowa oraz ogrzewanie', desc: 'Pełne instalacje w każdej konfiguracji. Wariant elektryki i ogrzewania wybierasz w kroku Instalacje.' },
                     { title: 'Łazienka — toaleta i prysznic', desc: 'Zabudowana łazienka w każdej konfiguracji — pełna prywatność, niezależnie od kempingu. Toaletę i prysznic wybierasz w kroku Łazienka.' },
                     { title: 'Kompletny montaż i testy szczelności', desc: 'Testowana szczelność zabudowy. Pełna dokumentacja techniczna i gwarancja producenta.' }
                 ];
@@ -806,15 +819,13 @@
             const activeModel = configData.models.find(m => m.id === selection.model);
             const activeFinish = configData.finishes.find(f => f.id === selection.finish);
             const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
+            const activeOven = configData.ovens.find(o => o.id === selection.oven) || { price: 0, name: '-' };
             const activeElectrical = configData.electrical.find(e => e.id === selection.electrical) || { price: 0 };
             const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
             const activeHeating = configData.heating.find(h => h.id === selection.heating) || { price: 0 };
             const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
-
-            const netto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
-            const brutto = netto * 1.23;
 
             const allLayouts = configData.layouts[selection.model] || [];
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
@@ -833,12 +844,16 @@
                 }
             }
 
+            const netto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
+            const brutto = netto * 1.23;
+
             document.getElementById('summary-model-name').textContent = activeModel.name;
             document.getElementById('summary-layout-name').textContent = activeLayout ? activeLayout.name : '-';
             document.getElementById('summary-finish-name').textContent = activeFinish.name;
             document.getElementById('summary-beds-type').textContent = activeLayout ? activeLayout.sleepingTitle : '-';
             document.getElementById('summary-seats-type').textContent = seatsSummaryLabel;
             document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
+            document.getElementById('summary-oven-type').textContent = activeOven.name;
             document.getElementById('summary-electrical-type').textContent = activeElectrical.name;
             document.getElementById('summary-solar-type').textContent = activeSolar.name;
             document.getElementById('summary-heating-type').textContent = activeHeating.name;
@@ -853,6 +868,7 @@
                 'summary-row-bed': 4,
                 'summary-row-seat': 5,
                 'summary-row-kitchen': 6,
+                'summary-row-oven': 6,
                 'summary-row-electrical': 7,
                 'summary-row-solar': 7,
                 'summary-row-heating': 7,
