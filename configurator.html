@@ -516,8 +516,10 @@
                   desc: 'Dwukrotnie więcej mocy solarnej — szybsze ładowanie, wystarczające także w chmurne dni i zimą. W komplecie regulator Victron MPPT 50A.' }
             ],
             heating: [
+                { id: 'none', name: 'Bez ogrzewania postojowego + bojler Truma BGF 10', price: -2500, available: true, label: '(- 2 500 zł)',
+                  desc: 'Tylko bojler gazowy Truma BGF 10 do ciepłej wody, bez nagrzewnicy powietrza. Rozwiązanie dla klientów jeżdżących wyłącznie w cieplejszej porze roku lub w ciepłych krajach. Uwaga: dodanie ogrzewania później to znacznie droższa instalacja niż od razu.' },
                 { id: 'autoterm', name: 'Autoterm Air 2D + bojler Truma BGF 10', price: 0, available: true, label: '(w cenie)',
-                  desc: 'Nagrzewnica powietrza Autoterm Air 2D z panelem Comfort Control (grzanie wnętrza) + bojler gazowy Truma BGF 10 (ciepła woda). Klasyczna konfiguracja z instalacją gazową.' },
+                  desc: 'Nagrzewnica powietrza Autoterm Air 2D z panelem Comfort Control (grzanie wnętrza) + bojler gazowy Truma BGF 10 (ciepła woda). Klasyczna konfiguracja z instalacją gazową — komfort całoroczny.' },
                 { id: 'combi', name: 'Truma Combi D4 diesel', price: 6000, available: true, label: '(+ 6 000 zł)',
                   desc: 'Grzanie wnętrza i ciepła woda w jednym urządzeniu na olej napędowy. Bez instalacji gazowej. Wymagane przy konfiguracji z płytą indukcyjną.' }
             ],
@@ -674,7 +676,7 @@
                 if (category === 'battery' && itemId === '200ah') return true;
                 if (category === 'inverter' && itemId === 'mp1600') return true;
                 if (category === 'oven' && itemId === 'thetford_duplex') return true;
-                if (category === 'heating' && itemId === 'autoterm') return true;
+                if (category === 'heating' && (itemId === 'autoterm' || itemId === 'none')) return true;
                 if (category === 'gas' && itemId !== 'none') return true;
             } else {
                 if (category === 'gas' && itemId === 'none') return true;
