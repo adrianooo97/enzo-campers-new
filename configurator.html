@@ -264,6 +264,10 @@
                         <span class="text-brand-ebony/60">Ogrzewanie</span>
                         <span class="font-medium text-brand-ebony" id="summary-heating-type">-</span>
                     </div>
+                    <div class="flex justify-between" id="summary-row-bathroom-finish">
+                        <span class="text-brand-ebony/60">Wykończenie łazienki</span>
+                        <span class="font-medium text-brand-ebony" id="summary-bathroom-finish-type">-</span>
+                    </div>
                     <div class="flex justify-between" id="summary-row-toilet">
                         <span class="text-brand-ebony/60">Toaleta</span>
                         <span class="font-medium text-brand-ebony" id="summary-toilet-type">-</span>
@@ -434,8 +438,8 @@
                   features: [
                       'Blat laminowany HPL 15mm',
                       'Złoty kran i zlew',
-                      'Łazienka malowana + ściana główna z płyty MODEE',
-                      'LiFePO4 200Ah + Multiplus 1600W',
+                      'Łazienka: ściany malowane + główna ściana z płyty wieloformatowej, toaleta kompostująca Trelino Timber M',
+                      'LiFePO4 200Ah + Multiplus 1600VA',
                       'MPPT 30 + Orion XS 50A + Smart Shunt',
                       'Panele solarne 220W',
                       'Ogrzewanie Autoterm Air 2D + Comfort Control',
@@ -447,8 +451,8 @@
                   features: [
                       'Blat kompozytowy Slim Line 12mm',
                       'Złoty podwieszany kran i zlew',
-                      'Łazienka w mikrocemencie + ściana główna z płyty MODEE',
-                      'LiFePO4 400Ah + Multiplus 3000W',
+                      'Łazienka: mikrocement (brodzik + 3 ściany) + główna ściana z płyty wieloformatowej, toaleta kompostująca Trelino Timber M',
+                      'LiFePO4 400Ah + Multiplus 3000VA',
                       'MPPT 50 + Orion XS 50A + Victron Lynx Distributor',
                       'Panele solarne 440W',
                       'Truma Combi D4 (grzanie + ciepła woda)',
@@ -466,7 +470,7 @@
             ],
             ovens: [
                 { id: 'none', name: 'Bez piekarnika', price: 0, available: true, label: '(w cenie)' },
-                { id: 'thetford_duplex', name: 'Piekarnik Thetford Duplex', price: 3999, available: true, label: '(+ 3 999 zł)' }
+                { id: 'thetford_duplex', name: 'Piekarnik Thetford Duplex', price: 4000, available: true, label: '(+ 4 000 zł)' }
             ],
             countertops: [
                 { id: 'standard', name: 'Blat laminat 15mm + złoty zlew montowany na wierzch', price: 0, available: true, label: '(w cenie)' },
@@ -479,14 +483,14 @@
                   desc: 'Dwukrotnie większa pojemność. Niezbędna przy płycie indukcyjnej i dłuższych postojach bez ładowania zewnętrznego. W komplecie Smart Shunt, Orion XS 50A oraz Victron Lynx Distributor (centralny rozdzielacz mocy).' }
             ],
             inverters: [
-                { id: 'mp1600', name: 'Victron Multiplus 1600W', price: 0, available: true, label: '(w cenie)',
-                  desc: 'Falownik i ładowarka 1600W w jednym. Zasili typowe urządzenia 230V: telefon, laptop, kawiarka, mała mikrofalówka.' },
-                { id: 'mp3000', name: 'Victron Multiplus 3000W', price: 3500, available: true, label: '(+ 3 500 zł)',
-                  desc: 'Falownik i ładowarka 3000W. Do większych obciążeń: płyta indukcyjna, mikrofalówka, suszarka do włosów. Wymagany przy indukcji.' }
+                { id: 'mp1600', name: 'Victron Multiplus 1600VA', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Przetwornica napięcia z ładowarką 1600VA. Zasili typowe urządzenia 230V: telefon, laptop, kawiarka, mała mikrofalówka.' },
+                { id: 'mp3000', name: 'Victron Multiplus 3000VA', price: 3500, available: true, label: '(+ 3 500 zł)',
+                  desc: 'Przetwornica napięcia z ładowarką 3000VA. Do większych obciążeń: płyta indukcyjna, mikrofalówka, suszarka do włosów. Wymagana przy indukcji.' }
             ],
             monitoring: [
                 { id: 'votronic', name: 'Wskaźniki Votronic', price: 0, available: true, label: '(w cenie)',
-                  desc: 'Analogowe wskaźniki na panelu w środku vana: poziom wody czystej, poziom wody szarej, stan naładowania baterii. Sprawdzona klasyka.' },
+                  desc: 'Analogowe wskaźniki na panelu w środku vana: poziom wody czystej i poziom wody szarej. Sprawdzona klasyka.' },
                 { id: 'cerbo', name: 'Victron Cerbo GX + GX Touch 50', price: 3500, available: true, label: '(+ 3 500 zł)',
                   desc: 'Ekran dotykowy 5" z pełnym monitoringiem: baterie, panele solarne, poziomy wody, ogrzewanie w jednym miejscu. Zdalny podgląd z telefonu przez Victron VRM. Zastępuje wskaźniki Votronic.' }
             ],
@@ -503,9 +507,16 @@
                   desc: 'Grzanie wnętrza i ciepła woda w jednym urządzeniu na olej napędowy. Bez instalacji gazowej. Wymagane przy konfiguracji z płytą indukcyjną.' }
             ],
             toilets: [
-                { id: 'cassette', name: 'Toaleta kasetowa', price: 0, available: true, label: '(standard)' },
-                { id: 'compost', name: 'Toaleta kompostowa', price: 5500, available: true, label: '(+ 5 500 zł)' },
-                { id: 'none', name: 'Bez toalety (więcej miejsca)', price: -2500, available: true, label: '(- 2 500 zł)' }
+                { id: 'trelino', name: 'Toaleta kompostująca Trelino Timber M', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Kompaktowa, bezzapachowa toaleta kompostująca zamontowana na wysuwanej szufladzie w łazience — chowana pod wysokość szafki gdy nieużywana. Bez wody i chemii, kompostowalne wkłady, drewniana obudowa z certyfikowanego materiału FSC.' }
+            ],
+            bathroomFinishes: [
+                { id: 'standard', name: 'Ściany malowane + główna ściana z płyty wieloformatowej', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Trwałe malowanie ścian w wybranym kolorze oraz jedna ściana główna w płycie wieloformatowej z wybranym wzorem. Klasyczna, czysta estetyka.' },
+                { id: 'mikro_mix', name: 'Mikrocement (brodzik + 3 ściany) + główna ściana z płyty wieloformatowej', price: 2500, available: true, label: '(+ 2 500 zł)',
+                  desc: 'Ciągła, hydrofobowa powłoka z mikrocementu na brodziku i trzech ścianach — spójne, monolityczne wykończenie bez fug. Główna ściana z płyty wieloformatowej stanowi charakterny akcent designu.' },
+                { id: 'mikro_full', name: 'Mikrocement w całej łazience', price: 3500, available: true, label: '(+ 3 500 zł)',
+                  desc: 'Pełne wykończenie mikrocementem — brodzik, wszystkie ściany, sufit. Bezszwowa powierzchnia, minimalistyczna estetyka gabinet-spa. Odporne na wodę, łatwe w utrzymaniu.' }
             ],
             showers: [
                 { id: 'indoor', name: 'Prysznic wewnętrzny z brodzikiem', price: 0, available: true, label: '(standard)' },
@@ -532,7 +543,8 @@
             monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
-            toilet: 'cassette',
+            toilet: 'trelino',
+            bathroomFinish: 'standard',
             shower: 'indoor',
             window: 'standard'
         };
@@ -547,7 +559,8 @@
             monitoring: 'cerbo',
             solar: 'solar440',
             heating: 'combi',
-            toilet: 'compost',
+            toilet: 'trelino',
+            bathroomFinish: 'mikro_mix',
             shower: 'both',
             window: 'rear-extra'
         };
@@ -562,7 +575,8 @@
             monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
-            toilet: 'cassette',
+            toilet: 'trelino',
+            bathroomFinish: 'standard',
             shower: 'indoor',
             window: 'standard'
         };
@@ -798,7 +812,7 @@
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Blat i zlew</h3><div class="flex flex-wrap gap-4">${generateOptions('countertop', configData.countertops, selection.countertop)}</div></div>
                     <div class="mb-4"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Płyta</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
-                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000W, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy).</p>
+                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000VA, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy).</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Piekarnik</h3><div class="flex flex-wrap gap-4">${generateOptions('oven', configData.ovens, selection.oven)}</div></div>
                     <p class="text-sm text-brand-ebony/60 italic">Konkretny wzór blatu, kolor kranu/zlewu i pozostałe wybory estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
@@ -807,17 +821,19 @@
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Instalacje</h1>
                     <p class="text-brand-ebony/60 mb-10">Akumulator, przetwornica, monitoring, panele solarne, ogrzewanie. Każdy element wybierasz osobno.</p>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Akumulator</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('battery', configData.batteries, selection.battery)}</div></div>
-                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Przetwornica / falownik</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('inverter', configData.inverters, selection.inverter)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Przetwornica napięcia z ładowarką</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('inverter', configData.inverters, selection.inverter)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Monitoring</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('monitoring', configData.monitoring, selection.monitoring)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('solar', configData.solar, selection.solar)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie i ciepła woda</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('heating', configData.heating, selection.heating)}</div></div>
                 `;
             } else if (currentStep === 8) {
                 content.innerHTML = `
-                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Toaleta i prysznic</h1>
-                    <p class="text-brand-ebony/60 mb-10">Komfort higieny w trasie.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Toaleta</h3><div class="flex flex-wrap gap-4">${generateOptions('toilet', configData.toilets, selection.toilet)}</div></div>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="flex flex-wrap gap-4">${generateOptions('shower', configData.showers, selection.shower)}</div></div>
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Łazienka</h1>
+                    <p class="text-brand-ebony/60 mb-10">Zabudowana łazienka w każdej konfiguracji — pełna prywatność niezależnie od kempingu.</p>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wykończenie łazienki</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('bathroomFinish', configData.bathroomFinishes, selection.bathroomFinish)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Toaleta</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('toilet', configData.toilets, selection.toilet)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="flex flex-wrap gap-4">${generateOptions('shower', configData.showers, selection.shower)}</div></div>
+                    <p class="text-sm text-brand-ebony/60 italic">Kolory ścian malowanych, wzór płyty wieloformatowej i pozostałe detale estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
             } else if (currentStep === 9) {
                 content.innerHTML = `
@@ -833,7 +849,7 @@
                     { title: 'Wentylator dachowy Plus Fan 4.0', desc: 'Cicha wymiana powietrza także przy zamkniętych oknach.' },
                     { title: 'Wybrane wykończenie wnętrza', desc: 'Pełne wykończenie wnętrza. Poziom (Standardowy lub Luksusowy) wybierasz w kroku Wykończenie — kolory frontów, szafek, ścian, łazienki i tkanin siedzisk ustalamy razem podczas konsultacji projektowej.' },
                     { title: 'Instalacja elektryczna, wodna, gazowa oraz ogrzewanie', desc: 'Pełne instalacje w każdej konfiguracji. Wariant elektryki i ogrzewania wybierasz w kroku Instalacje.' },
-                    { title: 'Łazienka — toaleta i prysznic', desc: 'Zabudowana łazienka w każdej konfiguracji — pełna prywatność, niezależnie od kempingu. Toaletę i prysznic wybierasz w kroku Łazienka.' },
+                    { title: 'Łazienka — toaleta i prysznic', desc: 'Zabudowana łazienka z toaletą kompostującą Trelino Timber M i wewnętrznym prysznicem. Wykończenie ścian (malowane / mikrocement) i prysznic zewnętrzny konfigurujesz w kroku Łazienka.' },
                     { title: 'Kompletny montaż i testy szczelności', desc: 'Testowana szczelność zabudowy. Pełna dokumentacja techniczna i gwarancja producenta.' }
                 ];
                 const cards = included.map(i => `
@@ -948,6 +964,7 @@
             const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
             const activeHeating = configData.heating.find(h => h.id === selection.heating) || { price: 0 };
             const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
+            const activeBathroomFinish = configData.bathroomFinishes.find(b => b.id === selection.bathroomFinish) || { price: 0, name: '-' };
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
 
@@ -968,7 +985,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -985,6 +1002,7 @@
             document.getElementById('summary-solar-type').textContent = activeSolar.name;
             document.getElementById('summary-heating-type').textContent = activeHeating.name;
             document.getElementById('summary-toilet-type').textContent = activeToilet.name;
+            document.getElementById('summary-bathroom-finish-type').textContent = activeBathroomFinish.name;
             document.getElementById('summary-shower-type').textContent = activeShower.name;
             document.getElementById('summary-window-type').textContent = activeWindow.name;
 
@@ -1002,6 +1020,7 @@
                 'summary-row-monitoring': 7,
                 'summary-row-solar': 7,
                 'summary-row-heating': 7,
+                'summary-row-bathroom-finish': 8,
                 'summary-row-toilet': 8,
                 'summary-row-shower': 8,
                 'summary-row-window': 9
