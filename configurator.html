@@ -323,8 +323,8 @@
             <p class="text-[9px] uppercase tracking-widest text-brand-ebony/50">Brutto (VAT 23%)</p>
             <p class="font-display text-xl text-brand-brass" id="mobile-brutto">0 zł</p>
         </div>
-        <button onclick="alert('Dziękujemy! Otrzymaliśmy Twoją konfigurację.')" class="btn-shine bg-brand-brass text-brand-ebony px-6 py-3 text-[9px] uppercase tracking-widest font-bold rounded-full">
-            Wyślij
+        <button id="mobileActionBtn" onclick="mobileAction()" class="btn-shine bg-brand-brass text-brand-ebony px-6 py-3 text-[9px] uppercase tracking-widest font-bold rounded-full">
+            Dalej
         </button>
     </div>
 
@@ -621,8 +621,16 @@
             }).format(price);
         };
 
-        const nextStep = () => { if (currentStep < steps.length) { currentStep++; render(true); } };
+        const nextStep = () => {
+            if (currentStep < steps.length) { currentStep++; render(true); }
+            else { sendInquiry(); }
+        };
         const prevStep = () => { if (currentStep > 1) { currentStep--; render(true); } };
+        const sendInquiry = () => alert('Dziękujemy! Otrzymaliśmy Twoją konfigurację.');
+        window.mobileAction = () => {
+            if (currentStep === steps.length) sendInquiry();
+            else nextStep();
+        };
 
         window.selectOption = (category, id) => {
             const oldKitchen = selection.kitchen;
@@ -918,7 +926,9 @@
             }
 
             document.getElementById('prevBtn').style.display = currentStep > 1 ? 'block' : 'none';
-            document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Zakończ' : 'Dalej';
+            document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Wyślij zapytanie' : 'Dalej';
+            const mobileBtn = document.getElementById('mobileActionBtn');
+            if (mobileBtn) mobileBtn.textContent = currentStep === steps.length ? 'Wyślij' : 'Dalej';
         };
 
         const generateOptionCards = (category, data, selectedId) => {
