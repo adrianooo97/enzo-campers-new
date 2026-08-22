@@ -519,9 +519,8 @@
                   desc: 'Pełne wykończenie mikrocementem — brodzik, wszystkie ściany, sufit. Bezszwowa powierzchnia, minimalistyczna estetyka gabinet-spa. Odporne na wodę, łatwe w utrzymaniu.' }
             ],
             showers: [
-                { id: 'indoor', name: 'Prysznic wewnętrzny z brodzikiem', price: 0, available: true, label: '(standard)' },
-                { id: 'outdoor', name: 'Prysznic zewnętrzny', price: 1500, available: true, label: '(+ 1 500 zł)' },
-                { id: 'both', name: 'Wewnętrzny + zewnętrzny', price: 3500, available: true, label: '(+ 3 500 zł)' }
+                { id: 'both', name: 'Prysznic wewnętrzny + zewnętrzny', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Wewnątrz: prysznic z brodzikiem w zabudowanej łazience. Na zewnątrz: prysznic zewnętrzny do spłukiwania piasku, mycia rowerów, sprzątania po plaży. Oba systemy w standardzie.' }
             ],
             windows: [
                 { id: 'standard', name: 'Standardowy pakiet okien', price: 0, available: true, label: '(w cenie)' },
@@ -545,7 +544,7 @@
             heating: 'autoterm',
             toilet: 'trelino',
             bathroomFinish: 'standard',
-            shower: 'indoor',
+            shower: 'both',
             window: 'standard'
         };
 
@@ -561,7 +560,6 @@
             heating: 'combi',
             toilet: 'trelino',
             bathroomFinish: 'mikro_mix',
-            shower: 'both',
             window: 'rear-extra'
         };
 
@@ -577,7 +575,7 @@
             heating: 'autoterm',
             toilet: 'trelino',
             bathroomFinish: 'standard',
-            shower: 'indoor',
+            shower: 'both',
             window: 'standard'
         };
 
@@ -832,7 +830,7 @@
                     <p class="text-brand-ebony/60 mb-10">Zabudowana łazienka w każdej konfiguracji — pełna prywatność niezależnie od kempingu.</p>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Wykończenie łazienki</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('bathroomFinish', configData.bathroomFinishes, selection.bathroomFinish)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Toaleta</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('toilet', configData.toilets, selection.toilet)}</div></div>
-                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="flex flex-wrap gap-4">${generateOptions('shower', configData.showers, selection.shower)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Prysznic</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('shower', configData.showers, selection.shower)}</div></div>
                     <p class="text-sm text-brand-ebony/60 italic">Kolory ścian malowanych, wzór płyty wieloformatowej i pozostałe detale estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
             } else if (currentStep === 9) {
@@ -849,7 +847,7 @@
                     { title: 'Wentylator dachowy Plus Fan 4.0', desc: 'Cicha wymiana powietrza także przy zamkniętych oknach.' },
                     { title: 'Wybrane wykończenie wnętrza', desc: 'Pełne wykończenie wnętrza. Poziom (Standardowy lub Luksusowy) wybierasz w kroku Wykończenie — kolory frontów, szafek, ścian, łazienki i tkanin siedzisk ustalamy razem podczas konsultacji projektowej.' },
                     { title: 'Instalacja elektryczna, wodna, gazowa oraz ogrzewanie', desc: 'Pełne instalacje w każdej konfiguracji. Wariant elektryki i ogrzewania wybierasz w kroku Instalacje.' },
-                    { title: 'Łazienka — toaleta i prysznic', desc: 'Zabudowana łazienka z toaletą kompostującą Trelino Timber M i wewnętrznym prysznicem. Wykończenie ścian (malowane / mikrocement) i prysznic zewnętrzny konfigurujesz w kroku Łazienka.' },
+                    { title: 'Łazienka — toaleta i prysznic', desc: 'Zabudowana łazienka z toaletą kompostującą Trelino Timber M, prysznicem wewnętrznym i prysznicem zewnętrznym. Wykończenie ścian (malowane lub mikrocement) konfigurujesz w kroku Łazienka.' },
                     { title: 'Kompletny montaż i testy szczelności', desc: 'Testowana szczelność zabudowy. Pełna dokumentacja techniczna i gwarancja producenta.' }
                 ];
                 const cards = included.map(i => `
