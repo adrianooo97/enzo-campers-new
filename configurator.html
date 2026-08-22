@@ -462,7 +462,7 @@
             kitchens: [
                 { id: 'thetford', name: 'Płyta gazowa Thetford Topline 922', price: 0, available: true, label: '(w cenie)' },
                 { id: 'dynacook', name: 'Płyta gazowa pod szkłem Dynaxo DynaCook X2 mini', price: 3000, available: true, label: '(+ 3 000 zł)' },
-                { id: 'induction', name: 'Płyta indukcyjna Dometic CVI1525 (2 palniki, bez gazu)', price: 3500, available: true, label: '(+ 3 500 zł)' }
+                { id: 'induction', name: 'Płyta indukcyjna Dometic CVI1525 (2 palniki, bez gazu)', price: 1500, available: true, label: '(+ 1 500 zł)' }
             ],
             ovens: [
                 { id: 'none', name: 'Bez piekarnika', price: 0, available: true, label: '(w cenie)' },
@@ -475,7 +475,7 @@
             batteries: [
                 { id: '200ah', name: 'LiFePO4 200Ah', price: 0, available: true, label: '(w cenie)',
                   desc: 'Wystarczająca pojemność do codziennego użytku: oświetlenie LED, ładowarki, lodówka, wentylacja, wodne pompy. W komplecie Smart Shunt (monitor stanu baterii) i Orion XS 50A (ładowanie z alternatora podczas jazdy).' },
-                { id: '400ah', name: 'LiFePO4 400Ah', price: 8000, available: true, label: '(+ 8 000 zł)',
+                { id: '400ah', name: 'LiFePO4 400Ah', price: 5500, available: true, label: '(+ 5 500 zł)',
                   desc: 'Dwukrotnie większa pojemność. Niezbędna przy płycie indukcyjnej i dłuższych postojach bez ładowania zewnętrznego. W komplecie Smart Shunt, Orion XS 50A oraz Victron Lynx Distributor (centralny rozdzielacz mocy).' }
             ],
             inverters: [
@@ -493,7 +493,7 @@
             solar: [
                 { id: 'solar220', name: 'Panele solarne 220W', price: 0, available: true, label: '(w cenie)',
                   desc: 'Wystarczające na doładowanie baterii w słoneczne dni. W komplecie regulator ładowania Victron MPPT 30A.' },
-                { id: 'solar440', name: 'Panele solarne 440W', price: 3700, available: true, label: '(+ 3 700 zł)',
+                { id: 'solar440', name: 'Panele solarne 440W', price: 3000, available: true, label: '(+ 3 000 zł)',
                   desc: 'Dwukrotnie więcej mocy solarnej — szybsze ładowanie, wystarczające także w chmurne dni i zimą. W komplecie regulator Victron MPPT 50A.' }
             ],
             heating: [
@@ -585,6 +585,8 @@
         const prevStep = () => { if (currentStep > 1) { currentStep--; render(true); } };
 
         window.selectOption = (category, id) => {
+            const oldKitchen = selection.kitchen;
+
             if (category === 'model' && id !== selection.model) {
                 selection.model = id;
                 const layouts = configData.layouts[id];
@@ -597,25 +599,34 @@
                 selection[category] = id;
             }
 
-            // Zależność: indukcja = konfiguracja bez gazu (cascade)
+            // Cascade INTO indukcja: konfiguracja bez gazu
             if (category === 'kitchen' && selection.kitchen === 'induction') {
                 selection.battery = '400ah';
                 selection.inverter = 'mp3000';
                 selection.oven = 'none';
                 selection.heating = 'combi';
             }
-            // Reverse: element wymagający gazu lub słabsza elektryka → cofnij indukcję
-            if (selection.kitchen === 'induction') {
-                if ((category === 'battery' && id === '200ah') ||
-                    (category === 'inverter' && id === 'mp1600') ||
-                    (category === 'oven' && id === 'thetford_duplex') ||
-                    (category === 'heating' && id === 'autoterm')) {
-                    selection.kitchen = 'thetford';
-                }
+            // Cascade OUT of indukcja: powrót do presetu pakietu (aby cena wróciła)
+            else if (category === 'kitchen' && oldKitchen === 'induction' && selection.kitchen !== 'induction') {
+                const preset = selection.finish === 'luxury' ? luxuryPresets : standardPresets;
+                selection.battery = preset.battery;
+                selection.inverter = preset.inverter;
+                selection.oven = preset.oven;
+                selection.heating = preset.heating;
             }
 
             renderStepContent();
             renderSummary();
+        };
+
+        const isContextuallyDisabled = (category, itemId) => {
+            if (selection.kitchen === 'induction') {
+                if (category === 'battery' && itemId === '200ah') return true;
+                if (category === 'inverter' && itemId === 'mp1600') return true;
+                if (category === 'oven' && itemId === 'thetford_duplex') return true;
+                if (category === 'heating' && itemId === 'autoterm') return true;
+            }
+            return false;
         };
 
         const renderHeader = () => {
@@ -853,7 +864,8 @@
 
             return data.map(item => {
                 const isActive = selectedId === item.id;
-                const isDisabled = !item.available;
+                const contextDisabled = isContextuallyDisabled(category, item.id);
+                const isDisabled = !item.available || contextDisabled;
 
                 let priceLabel = item.label || '';
                 if (isLuxury && luxDefaultItem) {
@@ -881,6 +893,7 @@
                             <span class="text-xs shrink-0 ${isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${priceLabel}</span>
                         </div>
                         ${item.desc ? `<p class="text-sm text-brand-ebony/60 font-light">${item.desc}</p>` : ''}
+                        ${contextDisabled ? '<p class="text-xs text-brand-brass italic mt-2">Niedostępne z płytą indukcyjną — wróć do kroku Kuchnia, aby zmienić płytę.</p>' : ''}
                         ${isActive ? '<div class="mt-3 text-[10px] uppercase tracking-widest text-brand-brass font-bold">Wybrany</div>' : ''}
                     </div>
                 `;
@@ -894,7 +907,7 @@
 
             return data.map(item => {
                 const isActive = selectedId === item.id;
-                const isDisabled = !item.available;
+                const isDisabled = !item.available || isContextuallyDisabled(category, item.id);
                 let classes = "option-card border rounded-xl px-5 py-4 text-sm font-medium transition-all duration-200 flex items-center gap-2 ";
                 if (isDisabled) classes += "border-brand-ebony/10 text-brand-ebony/30 bg-brand-ebony/5 cursor-not-allowed";
                 else if (isActive) classes += "border-brand-brass bg-brand-linen/50 text-brand-ebony cursor-pointer";
@@ -915,7 +928,7 @@
                 }
 
                 return `
-                    <div class="${classes}" onclick="selectOption('${category}', '${item.id}')">
+                    <div class="${classes}" ${isDisabled ? '' : `onclick="selectOption('${category}', '${item.id}')"`}>
                         <span>${item.name}</span>
                         <span class="text-xs ${isActive ? 'text-brand-brass' : 'text-brand-ebony/40'}">${priceLabel}</span>
                     </div>
