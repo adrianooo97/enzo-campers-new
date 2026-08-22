@@ -244,9 +244,17 @@
                         <span class="text-brand-ebony/60">Piekarnik</span>
                         <span class="font-medium text-brand-ebony" id="summary-oven-type">-</span>
                     </div>
-                    <div class="flex justify-between" id="summary-row-electrical">
-                        <span class="text-brand-ebony/60">Elektryka</span>
-                        <span class="font-medium text-brand-ebony" id="summary-electrical-type">-</span>
+                    <div class="flex justify-between" id="summary-row-battery">
+                        <span class="text-brand-ebony/60">Akumulator</span>
+                        <span class="font-medium text-brand-ebony" id="summary-battery-type">-</span>
+                    </div>
+                    <div class="flex justify-between" id="summary-row-inverter">
+                        <span class="text-brand-ebony/60">Przetwornica</span>
+                        <span class="font-medium text-brand-ebony" id="summary-inverter-type">-</span>
+                    </div>
+                    <div class="flex justify-between" id="summary-row-monitoring">
+                        <span class="text-brand-ebony/60">Monitoring</span>
+                        <span class="font-medium text-brand-ebony" id="summary-monitoring-type">-</span>
                     </div>
                     <div class="flex justify-between" id="summary-row-solar">
                         <span class="text-brand-ebony/60">Solar</span>
@@ -464,17 +472,35 @@
                 { id: 'standard', name: 'Blat laminat 15mm + złoty zlew montowany na wierzch', price: 0, available: true, label: '(w cenie)' },
                 { id: 'slimline', name: 'Blat kompozytowy Slim Line 12mm + złoty zlew podwieszany', price: 2500, available: true, label: '(+ 2 500 zł)' }
             ],
-            electrical: [
-                { id: 'lifepo200', name: 'LiFePO4 200Ah + Multiplus 1600W + MPPT 30', price: 0, available: true, label: '(w cenie)' },
-                { id: 'lifepo400', name: 'LiFePO4 400Ah + Multiplus wysokiej mocy + MPPT 50 + Cerbo GX', price: 15000, available: true, label: '(+ 15 000 zł)' }
+            batteries: [
+                { id: '200ah', name: 'LiFePO4 200Ah', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Wystarczająca pojemność do codziennego użytku: oświetlenie LED, ładowarki, lodówka, wentylacja, wodne pompy. W komplecie Smart Shunt (monitor stanu baterii) i Orion XS 50A (ładowanie z alternatora podczas jazdy).' },
+                { id: '400ah', name: 'LiFePO4 400Ah', price: 8000, available: true, label: '(+ 8 000 zł)',
+                  desc: 'Dwukrotnie większa pojemność. Niezbędna przy płycie indukcyjnej i dłuższych postojach bez ładowania zewnętrznego. W komplecie Smart Shunt, Orion XS 50A oraz Victron Lynx Distributor (centralny rozdzielacz mocy).' }
+            ],
+            inverters: [
+                { id: 'mp1600', name: 'Victron Multiplus 1600W', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Falownik i ładowarka 1600W w jednym. Zasili typowe urządzenia 230V: telefon, laptop, kawiarka, mała mikrofalówka.' },
+                { id: 'mp3000', name: 'Victron Multiplus 3000W', price: 3500, available: true, label: '(+ 3 500 zł)',
+                  desc: 'Falownik i ładowarka 3000W. Do większych obciążeń: płyta indukcyjna, mikrofalówka, suszarka do włosów. Wymagany przy indukcji.' }
+            ],
+            monitoring: [
+                { id: 'votronic', name: 'Wskaźniki Votronic', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Analogowe wskaźniki na panelu w środku vana: poziom wody czystej, poziom wody szarej, stan naładowania baterii. Sprawdzona klasyka.' },
+                { id: 'cerbo', name: 'Victron Cerbo GX + GX Touch 50', price: 3500, available: true, label: '(+ 3 500 zł)',
+                  desc: 'Ekran dotykowy 5" z pełnym monitoringiem: baterie, panele solarne, poziomy wody, ogrzewanie w jednym miejscu. Zdalny podgląd z telefonu przez Victron VRM. Zastępuje wskaźniki Votronic.' }
             ],
             solar: [
-                { id: 'solar220', name: 'Panele solarne 220W', price: 0, available: true, label: '(w cenie)' },
-                { id: 'solar440', name: 'Panele solarne 440W', price: 3700, available: true, label: '(+ 3 700 zł)' }
+                { id: 'solar220', name: 'Panele solarne 220W', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Wystarczające na doładowanie baterii w słoneczne dni. W komplecie regulator ładowania Victron MPPT 30A.' },
+                { id: 'solar440', name: 'Panele solarne 440W', price: 3700, available: true, label: '(+ 3 700 zł)',
+                  desc: 'Dwukrotnie więcej mocy solarnej — szybsze ładowanie, wystarczające także w chmurne dni i zimą. W komplecie regulator Victron MPPT 50A.' }
             ],
             heating: [
-                { id: 'autoterm', name: 'Autoterm Air 2D + Comfort Control + bojler Truma BGF 10', price: 0, available: true, label: '(w cenie)' },
-                { id: 'combi', name: 'Truma Combi D4 (grzanie + ciepła woda)', price: 6000, available: true, label: '(+ 6 000 zł)' }
+                { id: 'autoterm', name: 'Autoterm Air 2D + bojler Truma BGF 10', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Nagrzewnica powietrza Autoterm Air 2D z panelem Comfort Control (grzanie wnętrza) + bojler gazowy Truma BGF 10 (ciepła woda). Klasyczna konfiguracja z instalacją gazową.' },
+                { id: 'combi', name: 'Truma Combi D4 diesel', price: 6000, available: true, label: '(+ 6 000 zł)',
+                  desc: 'Grzanie wnętrza i ciepła woda w jednym urządzeniu na olej napędowy. Bez instalacji gazowej. Wymagane przy konfiguracji z płytą indukcyjną.' }
             ],
             toilets: [
                 { id: 'cassette', name: 'Toaleta kasetowa', price: 0, available: true, label: '(standard)' },
@@ -501,7 +527,9 @@
             kitchen: 'thetford',
             oven: 'none',
             countertop: 'standard',
-            electrical: 'lifepo200',
+            battery: '200ah',
+            inverter: 'mp1600',
+            monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
             toilet: 'cassette',
@@ -514,7 +542,9 @@
             kitchen: 'dynacook',
             oven: 'thetford_duplex',
             countertop: 'slimline',
-            electrical: 'lifepo400',
+            battery: '400ah',
+            inverter: 'mp3000',
+            monitoring: 'cerbo',
             solar: 'solar440',
             heating: 'combi',
             toilet: 'compost',
@@ -527,7 +557,9 @@
             kitchen: 'thetford',
             oven: 'none',
             countertop: 'standard',
-            electrical: 'lifepo200',
+            battery: '200ah',
+            inverter: 'mp1600',
+            monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
             toilet: 'cassette',
@@ -567,13 +599,15 @@
 
             // Zależność: indukcja = konfiguracja bez gazu (cascade)
             if (category === 'kitchen' && selection.kitchen === 'induction') {
-                selection.electrical = 'lifepo400';
+                selection.battery = '400ah';
+                selection.inverter = 'mp3000';
                 selection.oven = 'none';
                 selection.heating = 'combi';
             }
-            // Reverse: element wymagający gazu → cofnij indukcję
+            // Reverse: element wymagający gazu lub słabsza elektryka → cofnij indukcję
             if (selection.kitchen === 'induction') {
-                if ((category === 'electrical' && id === 'lifepo200') ||
+                if ((category === 'battery' && id === '200ah') ||
+                    (category === 'inverter' && id === 'mp1600') ||
                     (category === 'oven' && id === 'thetford_duplex') ||
                     (category === 'heating' && id === 'autoterm')) {
                     selection.kitchen = 'thetford';
@@ -753,17 +787,19 @@
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Blat i zlew</h3><div class="flex flex-wrap gap-4">${generateOptions('countertop', configData.countertops, selection.countertop)}</div></div>
                     <div class="mb-4"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Płyta</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
-                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie zostanie ustawione: elektryka LiFePO4 400Ah + Multiplus 3000W, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler), bez piekarnika (Thetford Duplex jest gazowy).</p>
+                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000W, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy).</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Piekarnik</h3><div class="flex flex-wrap gap-4">${generateOptions('oven', configData.ovens, selection.oven)}</div></div>
                     <p class="text-sm text-brand-ebony/60 italic">Konkretny wzór blatu, kolor kranu/zlewu i pozostałe wybory estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
             } else if (currentStep === 7) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Instalacje</h1>
-                    <p class="text-brand-ebony/60 mb-10">Elektryka, panele solarne i ogrzewanie.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Akumulator i elektryka</h3><div class="flex flex-wrap gap-4">${generateOptions('electrical', configData.electrical, selection.electrical)}</div></div>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="flex flex-wrap gap-4">${generateOptions('solar', configData.solar, selection.solar)}</div></div>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie</h3><div class="flex flex-wrap gap-4">${generateOptions('heating', configData.heating, selection.heating)}</div></div>
+                    <p class="text-brand-ebony/60 mb-10">Akumulator, przetwornica, monitoring, panele solarne, ogrzewanie. Każdy element wybierasz osobno.</p>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Akumulator</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('battery', configData.batteries, selection.battery)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Przetwornica / falownik</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('inverter', configData.inverters, selection.inverter)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Monitoring</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('monitoring', configData.monitoring, selection.monitoring)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('solar', configData.solar, selection.solar)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie i ciepła woda</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('heating', configData.heating, selection.heating)}</div></div>
                 `;
             } else if (currentStep === 8) {
                 content.innerHTML = `
@@ -810,6 +846,47 @@
             document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Zakończ' : 'Dalej';
         };
 
+        const generateOptionCards = (category, data, selectedId) => {
+            const isLuxury = selection.finish === 'luxury';
+            const luxDefault = luxuryPresets[category];
+            const luxDefaultItem = isLuxury && luxDefault ? data.find(d => d.id === luxDefault) : null;
+
+            return data.map(item => {
+                const isActive = selectedId === item.id;
+                const isDisabled = !item.available;
+
+                let priceLabel = item.label || '';
+                if (isLuxury && luxDefaultItem) {
+                    const diff = item.price - luxDefaultItem.price;
+                    if (item.id === luxDefault) {
+                        priceLabel = '(w pakiecie Luksusowe)';
+                    } else if (diff < 0) {
+                        priceLabel = `(${new Intl.NumberFormat('pl-PL').format(diff)} zł)`;
+                    } else if (diff > 0) {
+                        priceLabel = `(+ ${new Intl.NumberFormat('pl-PL').format(diff)} zł)`;
+                    } else {
+                        priceLabel = '(w cenie)';
+                    }
+                }
+
+                let classes = "option-card border rounded-xl p-5 transition-all duration-200 ";
+                if (isDisabled) classes += "border-brand-ebony/10 opacity-50 cursor-not-allowed";
+                else if (isActive) classes += "border-brand-brass bg-brand-linen/50 cursor-pointer";
+                else classes += "border-brand-ebony/15 hover:border-brand-brass cursor-pointer";
+
+                return `
+                    <div class="${classes}" ${isDisabled ? '' : `onclick="selectOption('${category}', '${item.id}')"`}>
+                        <div class="flex items-start justify-between mb-2 gap-3">
+                            <h4 class="font-medium text-brand-ebony">${item.name}</h4>
+                            <span class="text-xs shrink-0 ${isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${priceLabel}</span>
+                        </div>
+                        ${item.desc ? `<p class="text-sm text-brand-ebony/60 font-light">${item.desc}</p>` : ''}
+                        ${isActive ? '<div class="mt-3 text-[10px] uppercase tracking-widest text-brand-brass font-bold">Wybrany</div>' : ''}
+                    </div>
+                `;
+            }).join('');
+        };
+
         const generateOptions = (category, data, selectedId) => {
             const isLuxury = selection.finish === 'luxury';
             const luxDefault = luxuryPresets[category];
@@ -852,7 +929,9 @@
             const activeKitchen = configData.kitchens.find(k => k.id === selection.kitchen) || { price: 0 };
             const activeOven = configData.ovens.find(o => o.id === selection.oven) || { price: 0, name: '-' };
             const activeCountertop = configData.countertops.find(c => c.id === selection.countertop) || { price: 0, name: '-' };
-            const activeElectrical = configData.electrical.find(e => e.id === selection.electrical) || { price: 0 };
+            const activeBattery = configData.batteries.find(b => b.id === selection.battery) || { price: 0, name: '-' };
+            const activeInverter = configData.inverters.find(i => i.id === selection.inverter) || { price: 0, name: '-' };
+            const activeMonitoring = configData.monitoring.find(m => m.id === selection.monitoring) || { price: 0, name: '-' };
             const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
             const activeHeating = configData.heating.find(h => h.id === selection.heating) || { price: 0 };
             const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
@@ -876,7 +955,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeElectrical.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeToilet.price + activeShower.price + activeWindow.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -887,7 +966,9 @@
             document.getElementById('summary-kitchen-type').textContent = activeKitchen.name;
             document.getElementById('summary-oven-type').textContent = activeOven.name;
             document.getElementById('summary-countertop-type').textContent = activeCountertop.name;
-            document.getElementById('summary-electrical-type').textContent = activeElectrical.name;
+            document.getElementById('summary-battery-type').textContent = activeBattery.name;
+            document.getElementById('summary-inverter-type').textContent = activeInverter.name;
+            document.getElementById('summary-monitoring-type').textContent = activeMonitoring.name;
             document.getElementById('summary-solar-type').textContent = activeSolar.name;
             document.getElementById('summary-heating-type').textContent = activeHeating.name;
             document.getElementById('summary-toilet-type').textContent = activeToilet.name;
@@ -903,7 +984,9 @@
                 'summary-row-countertop': 6,
                 'summary-row-kitchen': 6,
                 'summary-row-oven': 6,
-                'summary-row-electrical': 7,
+                'summary-row-battery': 7,
+                'summary-row-inverter': 7,
+                'summary-row-monitoring': 7,
                 'summary-row-solar': 7,
                 'summary-row-heating': 7,
                 'summary-row-toilet': 8,
