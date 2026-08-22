@@ -516,15 +516,17 @@
                 { id: 'mikro_mix', name: 'Mikrocement (brodzik + 3 ściany) + główna ściana z płyty wieloformatowej', price: 2500, available: true, label: '(+ 2 500 zł)',
                   desc: 'Ciągła, hydrofobowa powłoka z mikrocementu na brodziku i trzech ścianach — spójne, monolityczne wykończenie bez fug. Główna ściana z płyty wieloformatowej stanowi charakterny akcent designu.' },
                 { id: 'mikro_full', name: 'Mikrocement w całej łazience', price: 3500, available: true, label: '(+ 3 500 zł)',
-                  desc: 'Pełne wykończenie mikrocementem — brodzik, wszystkie ściany, sufit. Bezszwowa powierzchnia, minimalistyczna estetyka gabinet-spa. Odporne na wodę, łatwe w utrzymaniu.' }
+                  desc: 'Pełne wykończenie mikrocementem — brodzik, wszystkie ściany, sufit. Bezszwowa powierzchnia, minimalistyczna estetyka gabinet-spa. Brak fug do szorowania — utrzymanie sprowadza się do przetarcia ściereczką, jak zwykły blat kuchenny.' }
             ],
             showers: [
                 { id: 'both', name: 'Prysznic wewnętrzny + zewnętrzny', price: 0, available: true, label: '(w cenie)',
                   desc: 'Wewnątrz: prysznic z brodzikiem w zabudowanej łazience. Na zewnątrz: prysznic zewnętrzny do spłukiwania piasku, mycia rowerów, sprzątania po plaży. Oba systemy w standardzie.' }
             ],
             windows: [
-                { id: 'standard', name: 'Standardowy pakiet okien', price: 0, available: true, label: '(w cenie)' },
-                { id: 'rear-extra', name: 'Standard + para okien w drzwiach tylnych', price: 4300, available: true, label: '(+ 4 300 zł)' }
+                { id: 'standard', name: 'Standardowy pakiet okien', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Duże okno w drzwiach bocznych Polyblend 985×465 mm, okno dachowe Polyblend 700×500 mm oraz wentylator dachowy Plus Fan 4.0. Wszystkie okna z moskitierą i roletą.' },
+                { id: 'rear-extra', name: 'Standard + para okien w drzwiach tylnych', price: 4300, available: true, label: '(+ 4 300 zł)',
+                  desc: 'Standardowy pakiet plus dwa dodatkowe okna Polyblend 490×500 mm w drzwiach tylnych (z moskitierą i roletą). Pełna wentylacja krzyżowa i naturalne światło z tyłu vana podczas postoju.' }
             ]
         };
 
@@ -836,8 +838,8 @@
             } else if (currentStep === 9) {
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Okna</h1>
-                    <p class="text-brand-ebony/60 mb-10">Wszystkie okna Polyblend z moskitierą i roletą w standardzie. Możesz dodać ekstra parę okien w drzwiach tylnych dla pełnej wentylacji krzyżowej.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Konfiguracja okien</h3><div class="flex flex-wrap gap-4">${generateOptions('window', configData.windows, selection.window)}</div></div>
+                    <p class="text-brand-ebony/60 mb-10">Wszystkie okna Polyblend — profesjonalne kamperowe z moskitierą i roletą w komplecie. Wybierz czy chcesz dodatkową parę okien w drzwiach tylnych.</p>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Konfiguracja okien</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('window', configData.windows, selection.window)}</div></div>
                 `;
             } else if (currentStep === 2) {
                 const included = [
