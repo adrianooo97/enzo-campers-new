@@ -48,6 +48,16 @@
             background-color: #FDFBF7;
             color: #3D3A36;
         }
+        [id^="summary-row-"] {
+            gap: 1rem;
+            align-items: baseline;
+        }
+        [id^="summary-row-"] > span:first-child {
+            flex-shrink: 0;
+        }
+        [id^="summary-row-"] > span:last-child {
+            text-align: right;
+        }
         .hero-gradient {
             background: radial-gradient(circle at 50% 45%, #FDFBF7 0%, #F0E8DD 100%);
         }
@@ -264,6 +274,10 @@
                         <span class="text-brand-ebony/60">Ogrzewanie</span>
                         <span class="font-medium text-brand-ebony" id="summary-heating-type">-</span>
                     </div>
+                    <div class="flex justify-between" id="summary-row-gas">
+                        <span class="text-brand-ebony/60">Instalacja gazowa</span>
+                        <span class="font-medium text-brand-ebony" id="summary-gas-type">-</span>
+                    </div>
                     <div class="flex justify-between" id="summary-row-bathroom-finish">
                         <span class="text-brand-ebony/60">Wykończenie łazienki</span>
                         <span class="font-medium text-brand-ebony" id="summary-bathroom-finish-type">-</span>
@@ -444,10 +458,11 @@
                       'Panele solarne 220W',
                       'Ogrzewanie Autoterm Air 2D + Comfort Control',
                       'Bojler gazowy Truma BGF 10',
+                      'Butla GasBank Duo 11 kg (lekka stal) + reduktor GOK DriveOne',
                       'Płyta gazowa Thetford Topline 922',
                       'Wskaźniki wody Votronic (czysta + brudna)'
                   ] },
-                { id: 'luxury', name: 'Luksusowe', price: 43000, available: true, label: '(+ 43 000 zł)',
+                { id: 'luxury', name: 'Luksusowe', price: 0, available: true, label: 'zestaw premium',
                   features: [
                       'Blat kompozytowy Slim Line 12mm',
                       'Złoty podwieszany kran i zlew',
@@ -456,11 +471,12 @@
                       'MPPT 50 + Orion XS 50A + Victron Lynx Distributor',
                       'Panele solarne 440W',
                       'Truma Combi D4 (grzanie + ciepła woda)',
+                      'Butla GasBank Duo 11 kg (kompozyt) + reduktor GOK DriveOne',
                       'Płyta gazowa pod szkłem Dynaxo DynaCook X2 mini',
                       'Piekarnik Thetford Duplex',
                       'Monitoring Victron Cerbo GX + GX Touch 50 (baterie, panele, poziomy wody)'
                   ] },
-                { id: 'offroad', name: 'Terenowe', price: 18000, available: false, label: 'wkrótce',
+                { id: 'offroad', name: 'Terenowe', price: 0, available: false, label: 'wkrótce',
                   features: ['Specyfikacja pakietu w opracowaniu'] }
             ],
             kitchens: [
@@ -506,6 +522,14 @@
                 { id: 'combi', name: 'Truma Combi D4 diesel', price: 6000, available: true, label: '(+ 6 000 zł)',
                   desc: 'Grzanie wnętrza i ciepła woda w jednym urządzeniu na olej napędowy. Bez instalacji gazowej. Wymagane przy konfiguracji z płytą indukcyjną.' }
             ],
+            gas: [
+                { id: 'steel', name: 'Butla GasBank Duo 11 kg (lekka stal) + reduktor GOK DriveOne', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Sprawdzona butla stalowa 11 kg z ergonomicznym uchwytem. Reduktor GOK DriveOne z systemem EFV (odcięcie przy nadmiernym przepływie) oraz czujnikiem wstrząsu — bezpieczne zasilanie podczas jazdy.' },
+                { id: 'composite', name: 'Butla GasBank Duo 11 kg (kompozyt) + reduktor GOK DriveOne', price: 800, available: true, label: '(+ 800 zł)',
+                  desc: 'Butla kompozytowa 11 kg — o połowę lżejsza od stalowej (pełna ~14 kg vs ~24 kg), przezroczysta ścianka umożliwia kontrolę poziomu gazu bez otwierania szafki. Odporna na korozję. Ten sam reduktor GOK DriveOne z EFV i czujnikiem wstrząsu.' },
+                { id: 'none', name: 'Brak instalacji gazowej', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Konfiguracja bez butli i reduktora — ustawiana automatycznie przy wyborze płyty indukcyjnej (grzanie + ciepła woda z Truma Combi D4 na diesel).' }
+            ]
             toilets: [
                 { id: 'trelino', name: 'Toaleta kompostująca Trelino Timber M', price: 0, available: true, label: '(w cenie)',
                   desc: 'Kompaktowa, bezzapachowa toaleta kompostująca zamontowana na wysuwanej szufladzie w łazience — chowana pod wysokość szafki gdy nieużywana. Bez wody i chemii, kompostowalne wkłady, drewniana obudowa z certyfikowanego materiału FSC.' }
@@ -544,6 +568,7 @@
             monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
+            gas: 'steel',
             toilet: 'trelino',
             bathroomFinish: 'standard',
             shower: 'both',
@@ -560,6 +585,7 @@
             monitoring: 'cerbo',
             solar: 'solar440',
             heating: 'combi',
+            gas: 'composite',
             toilet: 'trelino',
             bathroomFinish: 'mikro_mix',
             window: 'rear-extra'
@@ -575,6 +601,7 @@
             monitoring: 'votronic',
             solar: 'solar220',
             heating: 'autoterm',
+            gas: 'steel',
             toilet: 'trelino',
             bathroomFinish: 'standard',
             shower: 'both',
@@ -619,6 +646,7 @@
                 selection.inverter = 'mp3000';
                 selection.oven = 'none';
                 selection.heating = 'combi';
+                selection.gas = 'none';
             }
             // Cascade OUT of indukcja: powrót do presetu pakietu (aby cena wróciła)
             else if (category === 'kitchen' && oldKitchen === 'induction' && selection.kitchen !== 'induction') {
@@ -627,6 +655,7 @@
                 selection.inverter = preset.inverter;
                 selection.oven = preset.oven;
                 selection.heating = preset.heating;
+                selection.gas = preset.gas;
             }
 
             renderStepContent();
@@ -639,6 +668,9 @@
                 if (category === 'inverter' && itemId === 'mp1600') return true;
                 if (category === 'oven' && itemId === 'thetford_duplex') return true;
                 if (category === 'heating' && itemId === 'autoterm') return true;
+                if (category === 'gas' && itemId !== 'none') return true;
+            } else {
+                if (category === 'gas' && itemId === 'none') return true;
             }
             return false;
         };
@@ -649,7 +681,7 @@
                 const isActive = step.id === currentStep;
                 const isPast = step.id < currentStep;
                 return `
-                    <div class="flex items-center ${isActive ? 'text-brand-ebony' : isPast ? 'text-brand-ebony/70' : 'text-brand-ebony/30'} shrink-0">
+                    <div class="flex items-center ${isActive ? 'text-brand-ebony' : isPast ? 'text-brand-ebony/70' : 'text-brand-ebony/30'} shrink-0 cursor-pointer hover:text-brand-brass transition-colors" onclick="goToStep(${step.id})"${isActive ? ' id="active-step"' : ''}>
                         <div class="w-7 h-7 rounded-full ${isActive ? 'bg-brand-sand text-brand-ebony border border-brand-mist' : isPast ? 'bg-brand-brass text-brand-ivory' : 'border border-brand-ebony/20'} flex items-center justify-center mr-2 text-xs">
                             ${isPast ? '✓' : step.id}
                         </div>
@@ -658,6 +690,22 @@
                     ${index < steps.length - 1 ? '<div class="w-10 h-px bg-brand-ebony/15 mx-3 shrink-0"></div>' : ''}
                 `;
             }).join('');
+
+            const container = document.getElementById('steps-header');
+            const activeEl = document.getElementById('active-step');
+            if (activeEl && container) {
+                const containerRect = container.getBoundingClientRect();
+                const activeRect = activeEl.getBoundingClientRect();
+                const targetLeft = container.scrollLeft + (activeRect.left - containerRect.left) - (containerRect.width - activeRect.width) / 2;
+                container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+            }
+        };
+
+        window.goToStep = (id) => {
+            if (id >= 1 && id <= steps.length && id !== currentStep) {
+                currentStep = id;
+                render(true);
+            }
         };
 
         const renderStepContent = () => {
@@ -722,7 +770,7 @@
                             <div class="p-6">
                                 <div class="flex items-start justify-between mb-4">
                                     <h4 class="font-display text-xl uppercase tracking-wide">${f.name}</h4>
-                                    <span class="text-xs ${isDisabled ? 'text-brand-ebony/40 italic' : isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${isDisabled ? 'wkrótce' : f.price === 0 ? 'w cenie' : '+ ' + formatPrice(f.price)}</span>
+                                    <span class="text-xs ${isDisabled ? 'text-brand-ebony/40 italic' : isActive ? 'text-brand-brass font-bold' : 'text-brand-ebony/40'}">${f.label}</span>
                                 </div>
                                 <ul class="space-y-2">
                                     ${f.features.map(feat => `
@@ -812,7 +860,7 @@
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Blat i zlew</h3><div class="flex flex-wrap gap-4">${generateOptions('countertop', configData.countertops, selection.countertop)}</div></div>
                     <div class="mb-4"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Płyta</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
-                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000VA, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy).</p>
+                    <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000VA, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy), bez instalacji gazowej (butla + reduktor).</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Piekarnik</h3><div class="flex flex-wrap gap-4">${generateOptions('oven', configData.ovens, selection.oven)}</div></div>
                     <p class="text-sm text-brand-ebony/60 italic">Konkretny wzór blatu, kolor kranu/zlewu i pozostałe wybory estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
@@ -825,6 +873,7 @@
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Monitoring</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('monitoring', configData.monitoring, selection.monitoring)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Panele solarne</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('solar', configData.solar, selection.solar)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Ogrzewanie i ciepła woda</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('heating', configData.heating, selection.heating)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Instalacja gazowa</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('gas', configData.gas, selection.gas)}</div></div>
                 `;
             } else if (currentStep === 8) {
                 content.innerHTML = `
@@ -963,6 +1012,7 @@
             const activeMonitoring = configData.monitoring.find(m => m.id === selection.monitoring) || { price: 0, name: '-' };
             const activeSolar = configData.solar.find(s => s.id === selection.solar) || { price: 0 };
             const activeHeating = configData.heating.find(h => h.id === selection.heating) || { price: 0 };
+            const activeGas = configData.gas.find(g => g.id === selection.gas) || { price: 0, name: '-' };
             const activeToilet = configData.toilets.find(t => t.id === selection.toilet) || { price: 0 };
             const activeBathroomFinish = configData.bathroomFinishes.find(b => b.id === selection.bathroomFinish) || { price: 0, name: '-' };
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
@@ -985,7 +1035,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -1001,6 +1051,7 @@
             document.getElementById('summary-monitoring-type').textContent = activeMonitoring.name;
             document.getElementById('summary-solar-type').textContent = activeSolar.name;
             document.getElementById('summary-heating-type').textContent = activeHeating.name;
+            document.getElementById('summary-gas-type').textContent = activeGas.name;
             document.getElementById('summary-toilet-type').textContent = activeToilet.name;
             document.getElementById('summary-bathroom-finish-type').textContent = activeBathroomFinish.name;
             document.getElementById('summary-shower-type').textContent = activeShower.name;
@@ -1020,6 +1071,7 @@
                 'summary-row-monitoring': 7,
                 'summary-row-solar': 7,
                 'summary-row-heating': 7,
+                'summary-row-gas': 7,
                 'summary-row-bathroom-finish': 8,
                 'summary-row-toilet': 8,
                 'summary-row-shower': 8,
