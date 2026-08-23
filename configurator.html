@@ -452,7 +452,7 @@
                 { id: 'standard', name: 'Standardowe', price: 0, available: true, label: '(w cenie)',
                   features: [
                       'Blat laminowany HPL 15mm',
-                      'Złoty kran i zlew',
+                      'Kran ścienny i zlewozmywak nakładany',
                       'Łazienka: ściany malowane + główna ściana z płyty wieloformatowej, toaleta kompostująca Trelino Timber M',
                       'LiFePO4 200Ah + Multiplus 1600VA',
                       'MPPT 30 + Orion XS 50A + Smart Shunt',
@@ -466,7 +466,7 @@
                 { id: 'luxury', name: 'Luksusowe', price: 0, available: true, label: 'zestaw premium',
                   features: [
                       'Blat kompaktowy HPL 12mm',
-                      'Złoty podwieszany kran i zlew',
+                      'Kran ścienny i zlewozmywak podwieszany',
                       'Łazienka: mikrocement (brodzik + 3 ściany) + główna ściana z płyty wieloformatowej, toaleta kompostująca Trelino Timber M',
                       'LiFePO4 400Ah + Multiplus 3000VA',
                       'MPPT 50 + Orion XS 50A + Victron Lynx Distributor',
@@ -488,8 +488,8 @@
                 { id: 'thetford_duplex', name: 'Piekarnik Thetford Duplex', price: 4000, available: true, label: '(+ 4 000 zł)' }
             ],
             countertops: [
-                { id: 'standard', name: 'Blat laminat 15mm + złoty zlew montowany na wierzch', price: 0, available: true, label: '(w cenie)' },
-                { id: 'slimline', name: 'Blat kompaktowy HPL 12mm + złoty zlew podwieszany', price: 2500, available: true, label: '(+ 2 500 zł)' }
+                { id: 'standard', name: 'Blat laminat 15mm + zlewozmywak nakładany od góry', price: 0, available: true, label: '(w cenie)' },
+                { id: 'slimline', name: 'Blat kompaktowy HPL 12mm + zlewozmywak podwieszany', price: 2500, available: true, label: '(+ 2 500 zł)' }
             ],
             batteries: [
                 { id: '200ah', name: 'LiFePO4 200Ah', price: 0, available: true, label: '(w cenie)',
@@ -867,11 +867,11 @@
                 content.innerHTML = `
                     <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Wyposażenie kuchni</h1>
                     <p class="text-brand-ebony/60 mb-10">Zaprojektuj swoją przestrzeń do gotowania.</p>
-                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Blat i zlew</h3><div class="flex flex-wrap gap-4">${generateOptions('countertop', configData.countertops, selection.countertop)}</div></div>
+                    <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Blat i zlewozmywak</h3><div class="flex flex-wrap gap-4">${generateOptions('countertop', configData.countertops, selection.countertop)}</div></div>
                     <div class="mb-4"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Płyta</h3><div class="flex flex-wrap gap-4">${generateOptions('kitchen', configData.kitchens, selection.kitchen)}</div></div>
                     <p class="text-xs text-brand-ebony/50 italic mb-10">Płyta indukcyjna = konfiguracja bez gazu. Automatycznie: akumulator LiFePO4 400Ah, przetwornica Multiplus 3000VA, ogrzewanie Truma Combi D4 (zamiast Autoterm + bojler gazowy), bez piekarnika (Thetford Duplex jest gazowy), bez instalacji gazowej (butla + reduktor).</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Piekarnik</h3><div class="flex flex-wrap gap-4">${generateOptions('oven', configData.ovens, selection.oven)}</div></div>
-                    <p class="text-sm text-brand-ebony/60 italic">Konkretny wzór blatu, kolor kranu/zlewu i pozostałe wybory estetyczne dobieramy razem podczas konsultacji projektowej.</p>
+                    <p class="text-sm text-brand-ebony/60 italic">Konkretny wzór blatu, kolor kranu/zlewozmywaka i pozostałe wybory estetyczne dobieramy razem podczas konsultacji projektowej.</p>
                 `;
             } else if (currentStep === 7) {
                 content.innerHTML = `
