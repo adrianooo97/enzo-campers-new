@@ -295,6 +295,14 @@
                         <span class="text-brand-ebony/60">Okna</span>
                         <span class="font-medium text-brand-ebony" id="summary-window-type">-</span>
                     </div>
+                    <div class="flex justify-between" id="summary-row-sidestep">
+                        <span class="text-brand-ebony/60">Stopień boczny</span>
+                        <span class="font-medium text-brand-ebony" id="summary-sidestep-type">-</span>
+                    </div>
+                    <div class="flex justify-between" id="summary-row-roofterrace">
+                        <span class="text-brand-ebony/60">Taras dachowy</span>
+                        <span class="font-medium text-brand-ebony" id="summary-roofterrace-type">-</span>
+                    </div>
                 </div>
 
                 <div class="space-y-3 mb-8">
@@ -377,7 +385,8 @@
             { id: 6, name: 'Kuchnia' },
             { id: 7, name: 'Instalacje' },
             { id: 8, name: 'Łazienka' },
-            { id: 9, name: 'Okna' }
+            { id: 9, name: 'Okna' },
+            { id: 10, name: 'Dodatki' }
         ];
 
         const configData = {
@@ -461,7 +470,9 @@
                       'Bojler gazowy Truma BGF 10',
                       'Butla GasBank Duo 11 kg (lekka stal) + reduktor GOK DriveOne',
                       'Płyta gazowa Thetford Topline 922',
-                      'Wskaźniki wody Votronic (czysta + brudna)'
+                      'Wskaźniki wody Votronic (czysta + brudna)',
+                      'Zewnętrzna lampa LED wejściowa (automatyczna przy drzwiach bocznych)',
+                      'Zewnętrzne gniazdo 230V CEE (magnetyczne FAWO)'
                   ] },
                 { id: 'luxury', name: 'Luksusowe', price: 0, available: true, label: 'zestaw premium',
                   features: [
@@ -475,7 +486,9 @@
                       'Butla GasBank Duo 11 kg (kompozyt) + reduktor GOK DriveOne',
                       'Płyta gazowa pod szkłem Dynaxo DynaCook X2 mini',
                       'Piekarnik Thetford Duplex',
-                      'Monitoring Victron Cerbo GX + GX Touch 50 (baterie, panele, poziomy wody)'
+                      'Monitoring Victron Cerbo GX + GX Touch 50 (baterie, panele, poziomy wody)',
+                      'Zewnętrzna lampa LED wejściowa (automatyczna przy drzwiach bocznych)',
+                      'Zewnętrzne gniazdo 230V CEE (magnetyczne FAWO)'
                   ] }
             ],
             kitchens: [
@@ -552,6 +565,18 @@
                   desc: 'Duże okno w drzwiach bocznych Polyblend 985×465 mm, okno dachowe Polyblend 700×500 mm oraz wentylator dachowy Plus Fan 4.0. Wszystkie okna z moskitierą i roletą.' },
                 { id: 'rear-extra', name: 'Standard + para okien w drzwiach tylnych', price: 4300, available: true, label: '(+ 4 300 zł)',
                   desc: 'Standardowy pakiet plus dwa dodatkowe okna Polyblend 490×500 mm w drzwiach tylnych (z moskitierą i roletą). Pełna wentylacja krzyżowa i naturalne światło z tyłu vana podczas postoju.' }
+            ],
+            sidestep: [
+                { id: 'none', name: 'Bez stopnia bocznego', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Van bez elektrycznego stopnia — wejście bezpośrednio z ziemi.' },
+                { id: 'polyblend_700', name: 'Stopień boczny wysuwany elektrycznie Polyblend 700mm', price: 2900, available: true, label: '(+ 2 900 zł)',
+                  desc: 'Największa dostępna platforma (700mm) w kolorze czarnym. Wysuwa się elektrycznie przy otwieraniu drzwi bocznych, chowa automatycznie. Ergonomiczne wejście do vana — szczególnie wartościowe dla dzieci, seniorów lub przy załadunku bagażu.' }
+            ],
+            roofterrace: [
+                { id: 'none', name: 'Bez tarasu dachowego', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Van bez platformy na dachu.' },
+                { id: 'standard', name: 'Taras dachowy', price: 3500, available: true, label: '(+ 3 500 zł)',
+                  desc: 'Dostępna platforma na dachu vana z bezpiecznym dojściem. Miejsce na poranek z kawą, wieczorny relaks czy obserwację gwiazd. Konstrukcja odporna na warunki atmosferyczne.' }
             ]
         };
 
@@ -573,7 +598,9 @@
             toilet: 'trelino',
             bathroomFinish: 'standard',
             shower: 'both',
-            window: 'standard'
+            window: 'standard',
+            sidestep: 'none',
+            roofterrace: 'none'
         };
 
         const luxuryPresets = {
@@ -589,7 +616,9 @@
             gas: 'composite',
             toilet: 'trelino',
             bathroomFinish: 'mikro_mix',
-            window: 'rear-extra'
+            window: 'rear-extra',
+            sidestep: 'polyblend_700',
+            roofterrace: 'standard'
         };
 
         const standardPresets = {
@@ -606,7 +635,9 @@
             toilet: 'trelino',
             bathroomFinish: 'standard',
             shower: 'both',
-            window: 'standard'
+            window: 'standard',
+            sidestep: 'none',
+            roofterrace: 'none'
         };
 
         const applyPresets = (presets) => {
@@ -899,6 +930,13 @@
                     <p class="text-brand-ebony/60 mb-10">Wszystkie okna Polyblend — profesjonalne kamperowe z moskitierą i roletą w komplecie. Wybierz czy chcesz dodatkową parę okien w drzwiach tylnych.</p>
                     <div class="mb-10"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Konfiguracja okien</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('window', configData.windows, selection.window)}</div></div>
                 `;
+            } else if (currentStep === 10) {
+                content.innerHTML = `
+                    <h1 class="text-3xl md:text-5xl font-display uppercase tracking-tight mb-3">Dodatki</h1>
+                    <p class="text-brand-ebony/60 mb-10">Akcesoria zewnętrzne — opt-in. Dodaj to, czego naprawdę potrzebujesz.</p>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Stopień boczny</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('sidestep', configData.sidestep, selection.sidestep)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Taras dachowy</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('roofterrace', configData.roofterrace, selection.roofterrace)}</div></div>
+                `;
             } else if (currentStep === 2) {
                 const included = [
                     { title: 'Pełna izolacja termiczna i akustyczna', desc: 'Stabilna temperatura i ciche wnętrze przez cały rok. Mata butylowa + kauczuk 25 mm oraz Styrodur XPS.' },
@@ -1028,6 +1066,8 @@
             const activeBathroomFinish = configData.bathroomFinishes.find(b => b.id === selection.bathroomFinish) || { price: 0, name: '-' };
             const activeShower = configData.showers.find(s => s.id === selection.shower) || { price: 0 };
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
+            const activeSidestep = configData.sidestep.find(s => s.id === selection.sidestep) || { price: 0, name: '-' };
+            const activeRoofterrace = configData.roofterrace.find(r => r.id === selection.roofterrace) || { price: 0, name: '-' };
 
             const allLayouts = configData.layouts[selection.model] || [];
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
@@ -1046,7 +1086,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price + activeSidestep.price + activeRoofterrace.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -1067,6 +1107,8 @@
             document.getElementById('summary-bathroom-finish-type').textContent = activeBathroomFinish.name;
             document.getElementById('summary-shower-type').textContent = activeShower.name;
             document.getElementById('summary-window-type').textContent = activeWindow.name;
+            document.getElementById('summary-sidestep-type').textContent = activeSidestep.name;
+            document.getElementById('summary-roofterrace-type').textContent = activeRoofterrace.name;
 
             const rowSteps = {
                 'summary-row-model': 1,
@@ -1086,7 +1128,9 @@
                 'summary-row-bathroom-finish': 8,
                 'summary-row-toilet': 8,
                 'summary-row-shower': 8,
-                'summary-row-window': 9
+                'summary-row-window': 9,
+                'summary-row-sidestep': 10,
+                'summary-row-roofterrace': 10
             };
             Object.entries(rowSteps).forEach(([id, minStep]) => {
                 const el = document.getElementById(id);
