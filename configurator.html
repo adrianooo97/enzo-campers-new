@@ -589,16 +589,16 @@
             ac: [
                 { id: 'none', name: 'Bez klimatyzacji', price: 0, available: true, label: '(w cenie)',
                   desc: 'Wentylator dachowy Plus Fan 4.0 w standardzie (Original / Family) — cicha wymiana powietrza także przy zamkniętych oknach.' },
-                { id: 'motoblend_kfr2200', name: 'Klimatyzacja dachowa MotoBlend KFR2200 (chłodzenie 2200W + pompa ciepła)', price: 4499, available: true, label: '(+ 4 499 zł)',
+                { id: 'motoblend_kfr2200', name: 'Klimatyzacja dachowa MotoBlend KFR2200 (chłodzenie 2200W + pompa ciepła)', price: 4500, available: true, label: '(+ 4 500 zł)',
                   desc: 'Klimatyzacja dachowa 230V z inwerterowym kompresorem — chłodzenie 2200W i grzanie pompą ciepła. Zastępuje wentylator dachowy Plus Fan 4.0 (ten sam otwór 400×400 mm). Wymaga baterii LiFePO4 400Ah i przetwornicy Multiplus 3000W (auto-upgrade w Standardzie). Grzanie jako uzupełnienie do Truma Combi D4 / Autoterm.' }
             ],
             awning: [
                 { id: 'none', name: 'Bez markizy', price: 0, available: true, label: '(w cenie)',
                   desc: 'Van bez markizy zewnętrznej.' },
-                { id: 'f45s_300', name: 'Markiza Fiamma F45 S 300 cm', price: 3031, available: true, label: '(+ 3 031 zł)',
-                  desc: 'Markiza kasetowa Fiamma F45 S, długość 3 m. Obudowa Deep Black, tkanina szara. Rekomendowana dla Enzo Mini.' },
-                { id: 'f45s_400', name: 'Markiza Fiamma F45 S 400 cm', price: 3700, available: true, label: '(+ 3 700 zł)',
-                  desc: 'Markiza kasetowa Fiamma F45 S, długość 4 m. Obudowa Deep Black, tkanina szara. Rekomendowana dla Enzo Original i Family.' }
+                { id: 'f45s_300', name: 'Markiza kasetowa Fiamma F45 S', price: 4000, available: true, label: '(+ 4 000 zł)',
+                  desc: 'Markiza kasetowa Fiamma F45 S, długość 3 m. Obudowa Deep Black, tkanina szara. Rozmiar dopasowany do Enzo Mini.' },
+                { id: 'f45s_400', name: 'Markiza kasetowa Fiamma F45 S', price: 5000, available: true, label: '(+ 5 000 zł)',
+                  desc: 'Markiza kasetowa Fiamma F45 S, długość 4 m. Obudowa Deep Black, tkanina szara. Rozmiar dopasowany do Enzo Original i Family.' }
             ]
         };
 
@@ -705,6 +705,8 @@
                 selection.model = id;
                 const layouts = configData.layouts[id];
                 selection.layout = layouts[0].id;
+                if (selection.awning === 'f45s_400' && id === 'mini') selection.awning = 'f45s_300';
+                else if (selection.awning === 'f45s_300' && id !== 'mini') selection.awning = 'f45s_400';
             } else if (category === 'finish' && id !== selection.finish) {
                 selection.finish = id;
                 if (id === 'luxury') applyPresets(luxuryPresets);
@@ -986,7 +988,7 @@
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Stopień boczny</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('sidestep', configData.sidestep, selection.sidestep)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Taras dachowy</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('roofterrace', configData.roofterrace, selection.roofterrace)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Klimatyzacja dachowa</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('ac', configData.ac, selection.ac)}</div></div>
-                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Markiza zewnętrzna</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('awning', configData.awning, selection.awning)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Markiza zewnętrzna</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('awning', awningOptionsForModel(), selection.awning)}</div></div>
                 `;
             } else if (currentStep === 2) {
                 const included = [
@@ -1020,6 +1022,14 @@
             document.getElementById('nextBtn').textContent = currentStep === steps.length ? 'Wyślij zapytanie' : 'Dalej';
             const mobileBtn = document.getElementById('mobileActionBtn');
             if (mobileBtn) mobileBtn.textContent = currentStep === steps.length ? 'Wyślij' : 'Dalej';
+        };
+
+        const awningOptionsForModel = () => {
+            return configData.awning.filter(item => {
+                if (item.id === 'f45s_300') return selection.model === 'mini';
+                if (item.id === 'f45s_400') return selection.model !== 'mini';
+                return true;
+            });
         };
 
         const generateOptionCards = (category, data, selectedId) => {
