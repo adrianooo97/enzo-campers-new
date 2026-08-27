@@ -307,6 +307,10 @@
                         <span class="text-brand-ebony/60">Klimatyzacja</span>
                         <span class="font-medium text-brand-ebony" id="summary-ac-type">-</span>
                     </div>
+                    <div class="flex justify-between" id="summary-row-awning">
+                        <span class="text-brand-ebony/60">Markiza</span>
+                        <span class="font-medium text-brand-ebony" id="summary-awning-type">-</span>
+                    </div>
                 </div>
 
                 <div class="space-y-3 mb-8">
@@ -584,9 +588,17 @@
             ],
             ac: [
                 { id: 'none', name: 'Bez klimatyzacji', price: 0, available: true, label: '(w cenie)',
-                  desc: 'Wentylator dachowy Plus Fan 4.0 pozostaje w standardzie (Original / Family).' },
+                  desc: 'Wentylator dachowy Plus Fan 4.0 w standardzie (Original / Family) — cicha wymiana powietrza także przy zamkniętych oknach.' },
                 { id: 'motoblend_kfr2200', name: 'Klimatyzacja dachowa MotoBlend KFR2200 (chłodzenie 2200W + pompa ciepła)', price: 4499, available: true, label: '(+ 4 499 zł)',
-                  desc: 'Klimatyzacja dachowa 230V z inwerterowym kompresorem — chłodzenie 2200W i grzanie pompą ciepła. Wymaga baterii LiFePO4 400Ah i przetwornicy Multiplus 3000W (auto-upgrade w Standardzie). Grzanie jako uzupełnienie do Truma Combi D4 / Autoterm.' }
+                  desc: 'Klimatyzacja dachowa 230V z inwerterowym kompresorem — chłodzenie 2200W i grzanie pompą ciepła. Zastępuje wentylator dachowy Plus Fan 4.0 (ten sam otwór 400×400 mm). Wymaga baterii LiFePO4 400Ah i przetwornicy Multiplus 3000W (auto-upgrade w Standardzie). Grzanie jako uzupełnienie do Truma Combi D4 / Autoterm.' }
+            ],
+            awning: [
+                { id: 'none', name: 'Bez markizy', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Van bez markizy zewnętrznej.' },
+                { id: 'f45s_300', name: 'Markiza Fiamma F45 S 300 cm', price: 3031, available: true, label: '(+ 3 031 zł)',
+                  desc: 'Markiza kasetowa Fiamma F45 S, długość 3 m. Obudowa Deep Black, tkanina szara. Rekomendowana dla Enzo Mini.' },
+                { id: 'f45s_400', name: 'Markiza Fiamma F45 S 400 cm', price: 3700, available: true, label: '(+ 3 700 zł)',
+                  desc: 'Markiza kasetowa Fiamma F45 S, długość 4 m. Obudowa Deep Black, tkanina szara. Rekomendowana dla Enzo Original i Family.' }
             ]
         };
 
@@ -611,7 +623,8 @@
             window: 'standard',
             sidestep: 'none',
             roofterrace: 'none',
-            ac: 'none'
+            ac: 'none',
+            awning: 'none'
         };
 
         const luxuryPresets = {
@@ -630,7 +643,8 @@
             window: 'rear-extra',
             sidestep: 'polyblend_700',
             roofterrace: 'standard',
-            ac: 'none'
+            ac: 'none',
+            awning: 'f45s_400'
         };
 
         const standardPresets = {
@@ -650,12 +664,17 @@
             window: 'standard',
             sidestep: 'none',
             roofterrace: 'none',
-            ac: 'none'
+            ac: 'none',
+            awning: 'none'
         };
 
         const applyPresets = (presets) => {
             Object.keys(presets).forEach(key => {
-                selection[key] = presets[key];
+                if (key === 'awning' && presets[key] === 'f45s_400' && selection.model === 'mini') {
+                    selection.awning = 'f45s_300';
+                } else {
+                    selection[key] = presets[key];
+                }
             });
         };
 
@@ -967,6 +986,7 @@
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Stopień boczny</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('sidestep', configData.sidestep, selection.sidestep)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Taras dachowy</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('roofterrace', configData.roofterrace, selection.roofterrace)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Klimatyzacja dachowa</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('ac', configData.ac, selection.ac)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Markiza zewnętrzna</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('awning', configData.awning, selection.awning)}</div></div>
                 `;
             } else if (currentStep === 2) {
                 const included = [
@@ -1100,6 +1120,7 @@
             const activeSidestep = configData.sidestep.find(s => s.id === selection.sidestep) || { price: 0, name: '-' };
             const activeRoofterrace = configData.roofterrace.find(r => r.id === selection.roofterrace) || { price: 0, name: '-' };
             const activeAc = configData.ac.find(a => a.id === selection.ac) || { price: 0, name: '-' };
+            const activeAwning = configData.awning.find(w => w.id === selection.awning) || { price: 0, name: '-' };
 
             const allLayouts = configData.layouts[selection.model] || [];
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
@@ -1118,7 +1139,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price + activeSidestep.price + activeRoofterrace.price + activeAc.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price + activeSidestep.price + activeRoofterrace.price + activeAc.price + activeAwning.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -1142,6 +1163,7 @@
             document.getElementById('summary-sidestep-type').textContent = activeSidestep.name;
             document.getElementById('summary-roofterrace-type').textContent = activeRoofterrace.name;
             document.getElementById('summary-ac-type').textContent = activeAc.name;
+            document.getElementById('summary-awning-type').textContent = activeAwning.name;
 
             const rowSteps = {
                 'summary-row-model': 1,
@@ -1164,7 +1186,8 @@
                 'summary-row-window': 9,
                 'summary-row-sidestep': 10,
                 'summary-row-roofterrace': 10,
-                'summary-row-ac': 10
+                'summary-row-ac': 10,
+                'summary-row-awning': 10
             };
             Object.entries(rowSteps).forEach(([id, minStep]) => {
                 const el = document.getElementById(id);
