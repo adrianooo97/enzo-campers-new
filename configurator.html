@@ -303,6 +303,10 @@
                         <span class="text-brand-ebony/60">Taras dachowy</span>
                         <span class="font-medium text-brand-ebony" id="summary-roofterrace-type">-</span>
                     </div>
+                    <div class="flex justify-between" id="summary-row-ac">
+                        <span class="text-brand-ebony/60">Klimatyzacja</span>
+                        <span class="font-medium text-brand-ebony" id="summary-ac-type">-</span>
+                    </div>
                 </div>
 
                 <div class="space-y-3 mb-8">
@@ -577,6 +581,12 @@
                   desc: 'Van bez platformy na dachu.' },
                 { id: 'standard', name: 'Taras dachowy', price: 3500, available: true, label: '(+ 3 500 zł)',
                   desc: 'Platforma zamontowana na dachu vana. Miejsce na poranek z kawą, wieczorny relaks czy obserwację gwiazd. Konstrukcja odporna na warunki atmosferyczne.' }
+            ],
+            ac: [
+                { id: 'none', name: 'Bez klimatyzacji', price: 0, available: true, label: '(w cenie)',
+                  desc: 'Wentylator dachowy Plus Fan 4.0 pozostaje w standardzie (Original / Family).' },
+                { id: 'motoblend_kfr2200', name: 'Klimatyzacja dachowa MotoBlend KFR2200 (chłodzenie 2200W + pompa ciepła)', price: 4499, available: true, label: '(+ 4 499 zł)',
+                  desc: 'Klimatyzacja dachowa 230V z inwerterowym kompresorem — chłodzenie 2200W i grzanie pompą ciepła. Wymaga baterii LiFePO4 400Ah i przetwornicy Multiplus 3000W (auto-upgrade w Standardzie). Grzanie jako uzupełnienie do Truma Combi D4 / Autoterm.' }
             ]
         };
 
@@ -600,7 +610,8 @@
             shower: 'both',
             window: 'standard',
             sidestep: 'none',
-            roofterrace: 'none'
+            roofterrace: 'none',
+            ac: 'none'
         };
 
         const luxuryPresets = {
@@ -618,7 +629,8 @@
             bathroomFinish: 'mikro_mix',
             window: 'rear-extra',
             sidestep: 'polyblend_700',
-            roofterrace: 'standard'
+            roofterrace: 'standard',
+            ac: 'none'
         };
 
         const standardPresets = {
@@ -637,7 +649,8 @@
             shower: 'both',
             window: 'standard',
             sidestep: 'none',
-            roofterrace: 'none'
+            roofterrace: 'none',
+            ac: 'none'
         };
 
         const applyPresets = (presets) => {
@@ -667,6 +680,7 @@
 
         window.selectOption = (category, id) => {
             const oldKitchen = selection.kitchen;
+            const oldAc = selection.ac;
 
             if (category === 'model' && id !== selection.model) {
                 selection.model = id;
@@ -698,6 +712,18 @@
                 selection.gas = preset.gas;
             }
 
+            // Cascade INTO klima: wymusza LiFePO4 400Ah + Multiplus 3000W
+            if (category === 'ac' && selection.ac === 'motoblend_kfr2200') {
+                selection.battery = '400ah';
+                selection.inverter = 'mp3000';
+            }
+            // Cascade OUT of klima: powrót do presetu (chyba że indukcja też wymaga większych baterii)
+            else if (category === 'ac' && oldAc === 'motoblend_kfr2200' && selection.ac !== 'motoblend_kfr2200' && selection.kitchen !== 'induction') {
+                const preset = selection.finish === 'luxury' ? luxuryPresets : standardPresets;
+                selection.battery = preset.battery;
+                selection.inverter = preset.inverter;
+            }
+
             renderStepContent();
             renderSummary();
         };
@@ -711,6 +737,10 @@
                 if (category === 'gas' && itemId !== 'none') return true;
             } else {
                 if (category === 'gas' && itemId === 'none') return true;
+            }
+            if (selection.ac === 'motoblend_kfr2200') {
+                if (category === 'battery' && itemId === '200ah') return true;
+                if (category === 'inverter' && itemId === 'mp1600') return true;
             }
             return false;
         };
@@ -936,6 +966,7 @@
                     <p class="text-brand-ebony/60 mb-10">Akcesoria zewnętrzne — opt-in. Dodaj to, czego naprawdę potrzebujesz.</p>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Stopień boczny</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('sidestep', configData.sidestep, selection.sidestep)}</div></div>
                     <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Taras dachowy</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('roofterrace', configData.roofterrace, selection.roofterrace)}</div></div>
+                    <div class="mb-8"><h3 class="text-[10px] uppercase tracking-[0.3em] font-medium text-brand-ebony/60 mb-4">Klimatyzacja dachowa</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${generateOptionCards('ac', configData.ac, selection.ac)}</div></div>
                 `;
             } else if (currentStep === 2) {
                 const included = [
@@ -1068,6 +1099,7 @@
             const activeWindow = configData.windows.find(w => w.id === selection.window) || { price: 0 };
             const activeSidestep = configData.sidestep.find(s => s.id === selection.sidestep) || { price: 0, name: '-' };
             const activeRoofterrace = configData.roofterrace.find(r => r.id === selection.roofterrace) || { price: 0, name: '-' };
+            const activeAc = configData.ac.find(a => a.id === selection.ac) || { price: 0, name: '-' };
 
             const allLayouts = configData.layouts[selection.model] || [];
             const activeLayout = allLayouts.find(l => l.id === selection.layout);
@@ -1086,7 +1118,7 @@
                 }
             }
 
-            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price + activeSidestep.price + activeRoofterrace.price;
+            const brutto = activeModel.price + activeFinish.price + seatsPrice + activeKitchen.price + activeOven.price + activeCountertop.price + activeBattery.price + activeInverter.price + activeMonitoring.price + activeSolar.price + activeHeating.price + activeGas.price + activeToilet.price + activeBathroomFinish.price + activeShower.price + activeWindow.price + activeSidestep.price + activeRoofterrace.price + activeAc.price;
             const netto = brutto / 1.23;
 
             document.getElementById('summary-model-name').textContent = activeModel.name;
@@ -1109,6 +1141,7 @@
             document.getElementById('summary-window-type').textContent = activeWindow.name;
             document.getElementById('summary-sidestep-type').textContent = activeSidestep.name;
             document.getElementById('summary-roofterrace-type').textContent = activeRoofterrace.name;
+            document.getElementById('summary-ac-type').textContent = activeAc.name;
 
             const rowSteps = {
                 'summary-row-model': 1,
@@ -1130,7 +1163,8 @@
                 'summary-row-shower': 8,
                 'summary-row-window': 9,
                 'summary-row-sidestep': 10,
-                'summary-row-roofterrace': 10
+                'summary-row-roofterrace': 10,
+                'summary-row-ac': 10
             };
             Object.entries(rowSteps).forEach(([id, minStep]) => {
                 const el = document.getElementById(id);
